@@ -1,0 +1,23 @@
+{
+  "name": "next-proj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start -p %PORT%",
+    "production": "next build && next export",
+    "export": "next export"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^7.0.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "bootstrap": "^4.1.1",
+    "react-bootstrap": "^0.32.1"
+  }
+}
