@@ -15,10 +15,8 @@ There are two different version of gkCharts :-
 2. For React/Angular/Vue js NPM package
   To use with npm package run command => npm i gk-chart
 
-### How to use Library or NPM package :-
+### How to use GkChart Library or GkChart NPM package (npm install gk-cahrt) :-
 GkCharts support more than 20+ combination of charts with 8 chart types.
-
-
 
 Few ScreenShots of charts output.
 <img width="1122" alt="lineChart" src="https://user-images.githubusercontent.com/13637167/57194430-875de080-6f64-11e9-8b11-f9af31ed87d2.png">
