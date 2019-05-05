@@ -1,23 +1,28 @@
 {
-  "name": "next-proj",
+  "name": "gkcharts",
   "version": "1.0.0",
-  "description": "",
+  "description": "canvas charting library for web browser, written with JavaScript",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start -p %PORT%",
-    "production": "next build && next export",
-    "export": "next export"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "next": "^7.0.0",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "bootstrap": "^4.1.1",
-    "react-bootstrap": "^0.32.1"
-  }
+  "keywords": [
+    "Canvas",
+    "chart",
+    "GKChart",
+    "charting",
+    "library",
+    "npm",
+    "charts",
+    "Ract",
+    "charts",
+    "Angular",
+    "charts",
+    "Vue",
+    "Charts",
+    "JavaScript",
+    "Charts"
+  ],
+  "author": "Ganpat Kakar",
+  "license": "ISC"
 }
