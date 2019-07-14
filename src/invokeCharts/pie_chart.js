@@ -1,7 +1,13 @@
-import { printOptions, printAction } from "../common/print_options";
-import ChartSurface from "../common/chart_surface";
-import drawPieChart from "../common/drawChart/pie_chart_canvas";
-import PieChartUpperCanvas from "../common/drawUpperChart/pie_chart_upper_canvas";
+// import { printOptions, printAction } from "../common/print_options";
+const printOpts = require("../common/print_options");
+const printOptions = printOpts.printOptions;
+const printAction = printOpts.printAction;
+// import ChartSurface from "../common/chart_surface";
+const ChartSurface = require("../common/chart_surface");
+// import drawPieChart from "../common/drawChart/pie_chart_canvas";
+const drawPieChart = require("../common/drawChart/pie_chart_canvas");
+// import PieChartUpperCanvas from "../common/drawUpperChart/pie_chart_upper_canvas";
+const PieChartUpperCanvas = require("../common/drawUpperChart/pie_chart_upper_canvas");
 
 function GkPieChart(data) {
     try {
@@ -56,4 +62,4 @@ function GkPieChart(data) {
     }
 }
 
-export default GkPieChart;
+module.exports = GkPieChart;

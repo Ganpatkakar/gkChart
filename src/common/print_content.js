@@ -25,4 +25,4 @@ function PrintContent(event, canvasWidth, canvasHeight, chartID) {
     }, true);
 };
 
-export default PrintContent;
+module.exports = PrintContent;

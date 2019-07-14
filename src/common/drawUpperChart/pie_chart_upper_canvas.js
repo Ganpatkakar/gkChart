@@ -1,6 +1,9 @@
-import GetMousePos from "../mouse_position";
-import cssStyle from "../css_style";
-import ratio from "../reatio";
+// import GetMousePos from "../mouse_position";
+const GetMousePos = require("../mouse_position");
+// import cssStyle from "../css_style";
+const cssStyle = require("../css_style");
+// import ratio from "../reatio";
+const ratio = require("../reatio");
 
 function PieChartUpperCanvas(nr, ctx, linecord, container) {
     try {
@@ -53,4 +56,4 @@ function PieChartUpperCanvas(nr, ctx, linecord, container) {
     }
 }
 
-export default PieChartUpperCanvas;
+module.exports = PieChartUpperCanvas;

@@ -134,4 +134,4 @@ function DrawStepChart(canvas, ctx, verticalNr, data, range, chartColor, linecor
     }
 }
 
-export default  DrawStepChart;
+module.exports = DrawStepChart;

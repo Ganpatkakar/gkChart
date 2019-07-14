@@ -1,7 +1,13 @@
-import { printOptions, printAction } from "../common/print_options";
-import ChartSurface from "../common/chart_surface";
-import drawDoughnutChart from "../common/drawChart/doughnut_chart_canvas";
-import DoughnutChartUpperCanvas from "../common/drawUpperChart/doughnut_chart_upper_canvas";
+// import { printOptions, printAction } from "../common/print_options";
+const printOpts = require("../common/print_options");
+const printOptions = printOpts.printOptions;
+const printAction = printOpts.printAction;
+// import ChartSurface from "../common/chart_surface";
+const ChartSurface = require("../common/chart_surface");
+// import drawDoughnutChart from "../common/drawChart/doughnut_chart_canvas";
+const drawDoughnutChart = require("../common/drawChart/doughnut_chart_canvas");
+// import DoughnutChartUpperCanvas from "../common/drawUpperChart/doughnut_chart_upper_canvas";
+const DoughnutChartUpperCanvas = require("../common/drawUpperChart/doughnut_chart_upper_canvas");
 
 function GkDoughnutChart(data) {
     try {
@@ -60,4 +66,4 @@ function GkDoughnutChart(data) {
     }
 }
 
-export default GkDoughnutChart;
+module.exports = GkDoughnutChart;

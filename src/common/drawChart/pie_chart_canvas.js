@@ -60,4 +60,4 @@ function drawPieChart(can, ctx, data, linecord) {
     }
 }
 
-export default drawPieChart;
+module.exports = drawPieChart;

@@ -12,4 +12,4 @@
     }
 };
 
- export default GetMousePos;
+module.exports = GetMousePos;

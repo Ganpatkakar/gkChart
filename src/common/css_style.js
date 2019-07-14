@@ -4,4 +4,4 @@ function cssStyle(el, styles) {
     }
 }
 
-export default cssStyle;
+module.exports = cssStyle;

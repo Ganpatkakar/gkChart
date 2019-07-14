@@ -1,4 +1,4 @@
-export default class DrawChart {
+class DrawChart {
 
     drawMeter(canvas, ctx, verticalNr, data, range, chartColor, ChartDataToShow) {
         try {
@@ -102,3 +102,5 @@ export default class DrawChart {
     }
 
 }
+
+module.exports = DrawChart;

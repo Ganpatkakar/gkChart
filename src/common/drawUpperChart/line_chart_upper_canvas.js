@@ -1,6 +1,9 @@
-import GetMousePos from "../mouse_position";
-import cssStyle from "../css_style";
-import ratio from "../reatio";
+// import GetMousePos from "../mouse_position";
+const GetMousePos = require("../mouse_position");
+// import cssStyle from "../css_style";
+const cssStyle = require("../css_style");
+// import ratio from "../reatio";
+const ratio = require("../reatio");
 
 function LineChartUpperCanvas(nr, ctx, linecord, container, chart) {
     try {
@@ -64,4 +67,4 @@ function LineChartUpperCanvas(nr, ctx, linecord, container, chart) {
     }
 }
 
-export default LineChartUpperCanvas;
+module.exports = LineChartUpperCanvas;

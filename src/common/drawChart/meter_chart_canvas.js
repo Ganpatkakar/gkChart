@@ -90,4 +90,4 @@ function drawMeterChart(can, ctx, verticalNr, data, range, chartColor, ChartData
     }
 }
 
-export default drawMeterChart;
+module.exports = drawMeterChart;

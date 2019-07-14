@@ -1,4 +1,3 @@
-
 function bezierPointsCalc(a, f) {
     for (var b = [], c, e = 0; e < a.length; e++)
         if (0 == e)
@@ -167,4 +166,4 @@ function drawSmoothLineChart(canvas, ctx, verticalNr, data, range, chartColor, l
     }
 }
 
-export default  drawSmoothLineChart;
+module.exports = drawSmoothLineChart;

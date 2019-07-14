@@ -1,20 +1,39 @@
-import { printOptions, printAction } from "./src/common/print_options";
-import ChartSurface from "./src/common/chart_surface";
-import { drawGrid, drawGraphicLinearYcord } from "./src/common/grid";
-import drawLineChart from "./src/common/drawChart/line_chart_canvas";
-import LineChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
-import ClearDetails from "./src/common/drawUpperChart/clear_upper_canvas_details";
-import DrawStepChart from "./src/common/drawChart/step_chart_canvas";
-import drawSmoothLineChart from "./src/common/drawChart/smooth_line_chart_canvas";
-import drawBarChart from "./src/common/drawChart/bar_chart_canvas";
-import BarChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
-import drawPieChart from "./src/common/drawChart/pie_chart_canvas";
-import PieChartUpperCanvas from "./src/common/drawUpperChart/pie_chart_upper_canvas";
-import drawDoughnutChart from "./src/common/drawChart/doughnut_chart_canvas";
-import DoughnutChartUpperCanvas from "./src/common/drawUpperChart/doughnut_chart_upper_canvas";
-import drawMeterChart from "./src/common/drawChart/meter_chart_canvas";
+// import { printOptions, printAction } from "./src/common/print_options";
+const printOpts = require("./src/common/print_options");
+const printOptions = printOpts.printOptions;
+const printAction = printOpts.printAction;
+// import ChartSurface from "./src/common/chart_surface";
+const ChartSurface = require("./src/common/chart_surface");
+// import { drawGrid, drawGraphicLinearYcord } from "./src/common/grid";
+const Grids =  require("./src/common/grid");
+const drawGrid =  Grids.drawGrid;
+const drawGraphicLinearYcord =  Grids.drawGraphicLinearYcord;
+// import drawLineChart from "./src/common/drawChart/line_chart_canvas";
+const drawLineChart = require("./src/common/drawChart/line_chart_canvas");
+// import LineChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
+const LineChartUpperCanvas =  require("./src/common/drawUpperChart/line_chart_upper_canvas");
+// import ClearDetails from "./src/common/drawUpperChart/clear_upper_canvas_details";
+const ClearDetails = require("./src/common/drawUpperChart/clear_upper_canvas_details");
+// import DrawStepChart from "./src/common/drawChart/step_chart_canvas";
+const DrawStepChart = require("./src/common/drawChart/step_chart_canvas");
+// import drawSmoothLineChart from "./src/common/drawChart/smooth_line_chart_canvas";
+const drawSmoothLineChart = require("./src/common/drawChart/smooth_line_chart_canvas");
+// import drawBarChart from "./src/common/drawChart/bar_chart_canvas";
+const drawBarChart = require("./src/common/drawChart/bar_chart_canvas");
+// import BarChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
+const BarChartUpperCanvas = require("./src/common/drawUpperChart/line_chart_upper_canvas");
+// import drawPieChart from "./src/common/drawChart/pie_chart_canvas";
+const drawPieChart = require("./src/common/drawChart/pie_chart_canvas");
+// import PieChartUpperCanvas from "./src/common/drawUpperChart/pie_chart_upper_canvas";
+const PieChartUpperCanvas = require("./src/common/drawUpperChart/pie_chart_upper_canvas");
+// import drawDoughnutChart from "./src/common/drawChart/doughnut_chart_canvas";
+const drawDoughnutChart = require("./src/common/drawChart/doughnut_chart_canvas");
+// import DoughnutChartUpperCanvas from "./src/common/drawUpperChart/doughnut_chart_upper_canvas";
+const DoughnutChartUpperCanvas = require("./src/common/drawUpperChart/doughnut_chart_upper_canvas");
+// import drawMeterChart from "./src/common/drawChart/meter_chart_canvas";
+const drawMeterChart = require("./src/common/drawChart/meter_chart_canvas");
 
-export const GkLineChart = (data) => {
+const GkLineChart = (data) => {
     try {
         // console.log("Start : lineChart");
         const chartSurface = new ChartSurface();
@@ -75,7 +94,7 @@ export const GkLineChart = (data) => {
     }
 };
 
-export const GkStepChart = (data) => {
+const GkStepChart = (data) => {
     try {
         // console.log("Start : stepChart");
         const chartSurface = new ChartSurface();
@@ -139,7 +158,7 @@ export const GkStepChart = (data) => {
     }
 };
 
-export const GkSmoothLineChart = (data) => {
+const GkSmoothLineChart = (data) => {
     try {
         // console.log("Start : splineChart");
         const chartSurface = new ChartSurface();
@@ -202,7 +221,7 @@ export const GkSmoothLineChart = (data) => {
     }
 };
 
-export const GkBarChart = (data) => {
+const GkBarChart = (data) => {
     try {
         // console.log("Start : barChart");
         const chartSurface = new ChartSurface();
@@ -267,7 +286,7 @@ export const GkBarChart = (data) => {
     }
 };
 
-export const GkPieChart = (data) => {
+const GkPieChart = (data) => {
     try {
         // console.log("Start : pieChart");
         const chartSurface = new ChartSurface();
@@ -320,7 +339,7 @@ export const GkPieChart = (data) => {
     }
 };
 
-export const GkDoughnutChart = (data) => {
+const GkDoughnutChart = (data) => {
     try {
         // console.log("Start : donutChart");
         const chartSurface = new ChartSurface();
@@ -375,7 +394,7 @@ export const GkDoughnutChart = (data) => {
     }
 };
 
-export const GkMeterChart = (data) => {
+const GkMeterChart = (data) => {
     try {
         // console.log("Start : meterChart");
         const chartSurface = new ChartSurface();
@@ -422,7 +441,7 @@ export const GkMeterChart = (data) => {
     }
 };
 
-export const GkColumnChart = (data) => {
+const GkColumnChart = (data) => {
     try {
         // console.log("Start : barChart");
         const chartSurface = new ChartSurface();
@@ -504,3 +523,12 @@ export const GkColumnChart = (data) => {
         console.error("Exception occurred in bar chart module:  " + err.message);
     }
 };
+
+exports.GkLineChart = GkLineChart;
+exports.GkStepChart = GkStepChart;
+exports.GkSmoothLineChart = GkSmoothLineChart;
+exports.GkBarChart = GkBarChart;
+exports.GkPieChart = GkPieChart;
+exports.GkDoughnutChart = GkDoughnutChart;
+exports.GkMeterChart = GkMeterChart;
+exports.GkColumnChart = GkColumnChart;

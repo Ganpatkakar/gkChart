@@ -1,9 +1,20 @@
-import { printOptions, printAction } from "../common/print_options";
-import ChartSurface from "../common/chart_surface";
-import { drawGrid, drawGraphicLinearYcord } from "../common/grid";
-import DrawStepChart from "../common/drawChart/step_chart_canvas";
-import LineChartUpperCanvas from "../common/drawUpperChart/line_chart_upper_canvas";
-import ClearDetails from "../common/drawUpperChart/clear_upper_canvas_details";
+// import { printOptions, printAction } from "../common/print_options";
+const printOpts = require("../common/print_options");
+const printOptions = printOpts.printOptions;
+const printAction = printOpts.printAction;
+// import ChartSurface from "../common/chart_surface";
+const ChartSurface = require("../common/chart_surface");
+// import { drawGrid, drawGraphicLinearYcord } from "../common/grid";
+const Grid = require("../common/grid");
+const drawGrid = Grid.drawGrid;
+const drawGraphicLinearYcord = Grid.drawGraphicLinearYcord;
+// import drawLineChart from "../common/drawChart/line_chart_canvas";
+// import DrawStepChart from "../common/drawChart/step_chart_canvas";
+const DrawStepChart = require("../common/drawChart/step_chart_canvas");
+const LineChartUpperCanvas = require("../common/drawUpperChart/line_chart_upper_canvas");
+// import ClearDetails from "../common/drawUpperChart/clear_upper_canvas_details";
+const ClearDetails = require("../common/drawUpperChart/clear_upper_canvas_details");
+
 
 function GkStepChart(data) {
     try {
@@ -70,4 +81,4 @@ function GkStepChart(data) {
     }
 }
 
-export default GkStepChart;
+module.exports = GkStepChart;

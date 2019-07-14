@@ -72,4 +72,4 @@ function drawBarChart(canvas, ctx, verticalNr, data, range, curx, chartColor, li
     }
 }
 
-export default drawBarChart;
+module.exports =  drawBarChart;

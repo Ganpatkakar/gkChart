@@ -1,6 +1,11 @@
-import { printOptions, printAction } from "../common/print_options";
-import ChartSurface from "../common/chart_surface";
-import drawMeterChart from "../common/drawChart/meter_chart_canvas";
+// import { printOptions, printAction } from "../common/print_options";
+const printOpts = require("../common/print_options");
+const printOptions = printOpts.printOptions;
+const printAction = printOpts.printAction;
+// import ChartSurface from "../common/chart_surface";
+const ChartSurface = require("../common/chart_surface");
+// import drawMeterChart from "../common/drawChart/meter_chart_canvas";
+const drawMeterChart = require("../common/drawChart/meter_chart_canvas");
 
 function GkMeterChart(data) {
     try {
@@ -50,4 +55,4 @@ function GkMeterChart(data) {
     }
 }
 
-export default GkMeterChart;
+module.exports = GkMeterChart;

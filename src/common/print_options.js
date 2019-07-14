@@ -1,8 +1,11 @@
-import Canvas2Image from "./canvas_to_image";
-import cssStyle from "./css_style";
-import PrintContent from "./print_content";
+// import Canvas2Image from "./canvas_to_image";
+const Canvas2Image = require("./canvas_to_image");
+// import cssStyle from "./css_style";
+const cssStyle = require("./css_style");
+// import PrintContent from "./print_content";
+const PrintContent = require("./print_content");
 
-export const printOptions = (chartID, chart) => {
+const printOptions = (chartID, chart) => {
     try {
 
         if (chart.config.printEnable != undefined && chart.config.printEnable == true) {
@@ -39,7 +42,7 @@ export const printOptions = (chartID, chart) => {
     }
 };
 
-export const printAction = (chartID, chart) => {
+const printAction = (chartID, chart) => {
     try {
         if (chart.config.printEnable != undefined && chart.config.printEnable == true) {
             let visible = false;
@@ -90,3 +93,6 @@ export const printAction = (chartID, chart) => {
         console.log(error);
     }
 };
+
+exports.printOptions = printOptions;
+exports.printAction = printAction;

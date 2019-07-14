@@ -4,4 +4,5 @@ function ratio(ctx) {
     return 2;
     //return dpr / bsr;
 }
-export default ratio;
+
+module.exports = ratio;

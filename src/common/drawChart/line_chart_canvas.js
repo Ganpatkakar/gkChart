@@ -113,4 +113,4 @@ function drawLineChart(canvas, ctx, verticalNr, data, range, chartColor, linecor
     }
 }
 
-export default drawLineChart;
+module.exports = drawLineChart;

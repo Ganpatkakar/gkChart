@@ -1,12 +1,25 @@
-import { printOptions, printAction } from "../common/print_options";
-import ChartSurface from "../common/chart_surface";
-import { drawGrid, drawGraphicLinearYcord } from "../common/grid";
-import drawBarChart from "../common/drawChart/bar_chart_canvas";
-import drawLineChart from "../common/drawChart/line_chart_canvas";
-import drawSmoothLineChart from "../common/drawChart/smooth_line_chart_canvas";
-import LineChartUpperCanvas from "../common/drawUpperChart/line_chart_upper_canvas";
-import BarChartUpperCanvas from "../common/drawUpperChart/bar_chart_upper_canvas";
-import ClearDetails from "../common/drawUpperChart/clear_upper_canvas_details";
+// import { printOptions, printAction } from "../common/print_options";
+const printOpts = require("../common/print_options");
+const printOptions = printOpts.printOptions;
+const printAction = printOpts.printAction;
+// import ChartSurface from "../common/chart_surface";
+const ChartSurface = require("../common/chart_surface");
+// import { drawGrid, drawGraphicLinearYcord } from "../common/grid";
+const Grid = require("../common/grid");
+const drawGrid = Grid.drawGrid;
+const drawGraphicLinearYcord = Grid.drawGraphicLinearYcord;
+// import drawLineChart from "../common/drawChart/line_chart_canvas";
+const drawLineChart = require("../common/drawChart/line_chart_canvas");
+// import drawBarChart from "../common/drawChart/bar_chart_canvas";
+const drawBarChart = require("../common/drawChart/bar_chart_canvas");
+// import drawSmoothLineChart from "../common/drawChart/smooth_line_chart_canvas";
+const drawSmoothLineChart = require("../common/drawChart/smooth_line_chart_canvas");
+// import LineChartUpperCanvas from "../common/drawUpperChart/line_chart_upper_canvas";
+const LineChartUpperCanvas = require("../common/drawUpperChart/line_chart_upper_canvas");
+// import BarChartUpperCanvas from "../common/drawUpperChart/line_chart_upper_canvas";
+const BarChartUpperCanvas = require("../common/drawUpperChart/line_chart_upper_canvas");
+// import ClearDetails from "../common/drawUpperChart/clear_upper_canvas_details";
+const ClearDetails = require("../common/drawUpperChart/clear_upper_canvas_details");
 
 function GkColumnChart(data) {
     try {
@@ -91,4 +104,4 @@ function GkColumnChart(data) {
     }
 }
 
-export default GkColumnChart;
+module.exports =  GkColumnChart;

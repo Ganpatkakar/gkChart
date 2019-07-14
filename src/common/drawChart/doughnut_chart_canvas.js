@@ -59,4 +59,4 @@ function drawDoughnutChart(can, ctx, data, linecord, chartHeight) {
     }
 }
 
-export default  drawDoughnutChart;
+module.exports = drawDoughnutChart;

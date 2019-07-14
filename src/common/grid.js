@@ -1,4 +1,4 @@
-export const drawGrid = (nr, verticanNr, ctx, data) => {
+const drawGrid = (nr, verticanNr, ctx, data) => {
     try {
         // console.log("Start : drawGrid");
         var canvas = document.getElementById('canvas' + nr);
@@ -66,7 +66,7 @@ export const drawGrid = (nr, verticanNr, ctx, data) => {
     }
 };
 
-export const drawGraphicLinearYcord = (canvas, ctx, verticalNr, cdata) => {
+const drawGraphicLinearYcord = (canvas, ctx, verticalNr, cdata) => {
     try {
         // console.log("Start : drawGraphicLinearYcord");
         //// console.log(cdata);
@@ -136,3 +136,6 @@ export const drawGraphicLinearYcord = (canvas, ctx, verticalNr, cdata) => {
     }
 
 };
+
+exports.drawGrid = drawGrid;
+exports.drawGraphicLinearYcord = drawGraphicLinearYcord;

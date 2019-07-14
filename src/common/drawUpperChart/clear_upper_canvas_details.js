@@ -1,4 +1,5 @@
-import cssStyle from "../css_style";
+// import cssStyle from "../css_style";
+const cssStyle = require("../css_style");
 
 function ClearDetails(nr, ctx, container) {
     const canvasUpperNr = document.getElementById('canvasupper' + nr);
@@ -21,4 +22,4 @@ function ClearDetails(nr, ctx, container) {
     }
 }
 
-export default ClearDetails;
+module.exports = ClearDetails;

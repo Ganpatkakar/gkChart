@@ -1,4 +1,4 @@
-export default class ChartSurface {
+class ChartSurface {
 
     ratio(canvasContainer) {
         let ctx = canvasContainer.getContext('2d');
@@ -112,3 +112,5 @@ export default class ChartSurface {
         }
     }
 }
+
+module.exports = ChartSurface;

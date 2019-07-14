@@ -271,4 +271,4 @@ var Canvas2Image = function () {
 
 };
 
-export default Canvas2Image;
+module.exports = Canvas2Image;
