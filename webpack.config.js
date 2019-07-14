@@ -1,25 +1,23 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    context: path.resolve(__dirname, './src/client'),
     entry :  {
-        client: './client.js',
-        bundle: './bundle.js'
+        client: './script.js'
     },
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: '[name].bundle.js'
+        filename: 'bundle.js'
     },
     plugins: [
-        new CleanWebpackPlugin(['public']),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: "style.css"
         })
     ],
     devServer: {
-        contentBase: path.resolve(__dirname, 'dist/public/assets'),
+        contentBase: path.resolve(__dirname, '/public/assets'),
         open: true,
         port: 5000,
         compress: true
@@ -56,7 +54,7 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/env", "@babel/react"],
+                        presets: [],
                         "plugins": ["transform-class-properties", "transform-object-rest-spread"]
                     }
                 }

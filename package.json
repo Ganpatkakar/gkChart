@@ -4,7 +4,10 @@
   "description": "Open Source JavaScript chart library",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --mode development",
+    "build": "webpack --mode development --watch",
+    "build-prod": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -29,5 +32,25 @@
   "bugs": {
     "url": "https://github.com/Ganpatkakar/gkChart/issues"
   },
-  "homepage": "https://github.com/Ganpatkakar/gkChart#readme"
+  "homepage": "https://github.com/Ganpatkakar/gkChart#readme",
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.5",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-stage-0": "6.24.1",
+    "clean-webpack-plugin": "3.0.0",
+    "css-loader": "3.0.0",
+    "extract-text-webpack-plugin": "3.0.2",
+    "file-loader": "4.0.0",
+    "html-webpack-plugin": "3.2.0",
+    "mini-css-extract-plugin": "0.7.0",
+    "style-loader": "0.23.1",
+    "webpack": "4.35.3",
+    "webpack-cli": "3.3.5",
+    "webpack-dev-server": "3.7.2"
+  }
 }
