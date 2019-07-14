@@ -1,18 +1,18 @@
-import { printOptions, printAction } from "./common/print_options";
-import ChartSurface from "./common/chart_surface";
-import { drawGrid, drawGraphicLinearYcord } from "./common/grid";
-import drawLineChart from "./common/drawChart/line_chart_canvas";
-import LineChartUpperCanvas from "./common/drawUpperChart/line_chart_upper_canvas";
-import ClearDetails from "./common/drawUpperChart/clear_upper_canvas_details";
-import DrawStepChart from "./common/drawChart/step_chart_canvas";
-import drawSmoothLineChart from "./common/drawChart/smooth_line_chart_canvas";
-import drawBarChart from "./common/drawChart/bar_chart_canvas";
-import BarChartUpperCanvas from "./common/drawUpperChart/line_chart_upper_canvas";
-import drawPieChart from "./common/drawChart/pie_chart_canvas";
-import PieChartUpperCanvas from "./common/drawUpperChart/pie_chart_upper_canvas";
-import drawDoughnutChart from "./common/drawChart/doughnut_chart_canvas";
-import DoughnutChartUpperCanvas from "./common/drawUpperChart/doughnut_chart_upper_canvas";
-import drawMeterChart from "./common/drawChart/meter_chart_canvas";
+import { printOptions, printAction } from "./src/common/print_options";
+import ChartSurface from "./src/common/chart_surface";
+import { drawGrid, drawGraphicLinearYcord } from "./src/common/grid";
+import drawLineChart from "./src/common/drawChart/line_chart_canvas";
+import LineChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
+import ClearDetails from "./src/common/drawUpperChart/clear_upper_canvas_details";
+import DrawStepChart from "./src/common/drawChart/step_chart_canvas";
+import drawSmoothLineChart from "./src/common/drawChart/smooth_line_chart_canvas";
+import drawBarChart from "./src/common/drawChart/bar_chart_canvas";
+import BarChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
+import drawPieChart from "./src/common/drawChart/pie_chart_canvas";
+import PieChartUpperCanvas from "./src/common/drawUpperChart/pie_chart_upper_canvas";
+import drawDoughnutChart from "./src/common/drawChart/doughnut_chart_canvas";
+import DoughnutChartUpperCanvas from "./src/common/drawUpperChart/doughnut_chart_upper_canvas";
+import drawMeterChart from "./src/common/drawChart/meter_chart_canvas";
 
 export const GkLineChart = (data) => {
     try {
