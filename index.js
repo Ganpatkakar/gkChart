@@ -21,7 +21,7 @@ const drawSmoothLineChart = require("./src/common/drawChart/smooth_line_chart_ca
 // import drawBarChart from "./src/common/drawChart/bar_chart_canvas";
 const drawBarChart = require("./src/common/drawChart/bar_chart_canvas");
 // import BarChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
-const BarChartUpperCanvas = require("./src/common/drawUpperChart/line_chart_upper_canvas");
+const BarChartUpperCanvas = require("./src/common/drawUpperChart/bar_chart_upper_canvas");
 // import drawPieChart from "./src/common/drawChart/pie_chart_canvas";
 const drawPieChart = require("./src/common/drawChart/pie_chart_canvas");
 // import PieChartUpperCanvas from "./src/common/drawUpperChart/pie_chart_upper_canvas";
@@ -236,7 +236,7 @@ const GkBarChart = (data) => {
         chart.hei = ChartContainer.clientHeight - 33;
 
         let titleAndPrintButton = '';
-        if (chart.config.title != undefined) {
+        if (!chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
@@ -245,11 +245,11 @@ const GkBarChart = (data) => {
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
         (chart.yaxis === undefined) ? chart.yaxis = {} : null
 
-        if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
+        if (!chart.yaxis.max && !chart.yaxis.min) {
             chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
             chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
-            for (var i = 0; i < chart.data.length; i++) {
-                for (var j = 0; j < chart.data[i].datapoints.length; j++) {
+            for (let i = 0; i < chart.data.length; i++) {
+                for (let j = 0; j < chart.data[i].datapoints.length; j++) {
                     if (parseInt(chart.data[i].datapoints[j].y) < chart.yaxis.min) {
                         chart.yaxis.min = parseInt(chart.data[i].datapoints[j].y);
                     }
@@ -261,19 +261,19 @@ const GkBarChart = (data) => {
             chart.yaxis.max += 10;
             (chart.yaxis.min >= 10) ? chart.yaxis.min += -10 : null
         }
-        if (chart.yaxis.difference === undefined) {
+        if (!chart.yaxis.difference) {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / 8);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
-        let barwidth = drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
+        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
         let canvas = 'canvas' + chart.chartnumber;
         let rangedata = [chart.yaxis.min, chart.yaxis.max];
         let linecord = [];
         let nextcurve = 100;
         let barChartCount = chart.data.length;
-        for (var i = 0; i < chart.data.length; i++) {
-            drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], rangedata, nextcurve, chart.data[i].chartColor, linecord, barwidth, barChartCount);
-            nextcurve += barwidth + 5;
+        for (let i = 0; i < chart.data.length; i++) {
+            const rData = drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], rangedata, nextcurve, chart.data[i].chartColor, linecord, barChartCount, chart.data.length, chart.data.length);
+            nextcurve += rData.barwidth + 5;
         }
         drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
@@ -484,8 +484,7 @@ const GkColumnChart = (data) => {
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
         //// console.log("verticaldevisions" + verticaldevisions);
-        let barwidth = drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
-        //// console.log("barwidth:" + barwidth);
+        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
         let canvas = 'canvas' + chart.chartnumber;
         let maxdata = [chart.yaxis.min, chart.yaxis.max];
         //// console.log("maxdata:" + maxdata);
@@ -499,8 +498,8 @@ const GkColumnChart = (data) => {
         }
         for (let i = 0; i < chart.data.length; i++) {
             if (chart.data[i].type == "bar") {
-                drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, nextcurve, chart.data[i].chartColor, barCords, barwidth, barChartCount);
-                nextcurve += barwidth + 5;
+                const rData = drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, nextcurve, chart.data[i].chartColor, barCords, barChartCount, barChartCount);
+                nextcurve += rData.barwidth + 5;
             }
             if (chart.data[i].type == "line") {
                 drawLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, lineLineCords);

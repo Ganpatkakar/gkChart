@@ -2,6 +2,11 @@
 const GetMousePos = require("../mouse_position");
 // import cssStyle from "../css_style";
 const cssStyle = require("../css_style");
+const gkChartConsts = require("../invokeCharts/enums");
+
+const strokeStyle = gkChartConsts.strokeStyle;
+const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
+const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
 class DrawChartUpperCanvas {
     constructor() {
@@ -19,7 +24,7 @@ class DrawChartUpperCanvas {
         try {
             // console.log("Start : lineChartUpperCanvas");
             let dataPointLen = chart.data[0].datapoints.length;
-            let wid = document.getElementById('canvasupper' + nr).width - 100
+            let wid = document.getElementById('canvasupper' + nr).width - canvasWidthSpareForDetails
             var spacingHorizontal = wid / dataPointLen;
             let lineCordRepeat = linecord.length / dataPointLen;
             const canvasUpper = document.getElementById('canvasupper' + nr);
@@ -30,10 +35,10 @@ class DrawChartUpperCanvas {
                     let mousePos = GetMousePos(canvasUpper, evt);
                     for (var i = 0; i < dataPointLen; i++) {
                         ctx.beginPath();
-                        let x1 = i * spacingHorizontal + 100;
+                        let x1 = i * spacingHorizontal + canvasWidthSpareForDetails;
                         let x2 = spacingHorizontal;
                         let y1 = 0;
-                        let y2 = canvasUpper.height - 60;
+                        let y2 = canvasUpper.height - canvasHeightSpareForDetails;
                         ctx.rect(x1, y1, x2, y2);
                         if (ctx.isPointInStroke(mousePos.x, mousePos.y) || ctx.isPointInPath(mousePos.x, mousePos.y)) {
                             //ctx.clearRect(0, 0, document.getElementById('canvasupper' + nr).width, document.getElementById('canvasupper' + nr).height);
@@ -60,7 +65,7 @@ class DrawChartUpperCanvas {
                             ctx.beginPath();
                             let lineX = x1 + (spacingHorizontal / 2)
                             ctx.setLineDash([5, 15]);
-                            ctx.strokeStyle = 'rgba(0,0,0,1)';
+                            ctx.strokeStyle = strokeStyle;
                             ctx.lineWidth = 1;
                             ctx.moveTo(lineX, y1);
                             ctx.lineTo(lineX, y2);
@@ -83,7 +88,7 @@ class DrawChartUpperCanvas {
         try {
             // console.log("Start : barChartUpperCanvas");
             let dataPointLen = chart.data[0].datapoints.length;
-            let wid = document.getElementById('canvasupper' + nr).width - 100;
+            let wid = document.getElementById('canvasupper' + nr).width - canvasWidthSpareForDetails;
             var spacingHorizontal = wid / dataPointLen;
             let lineCordRepeat = linecord.length / dataPointLen;
             const canvasUpper = document.getElementById('canvasupper' + nr);
@@ -96,10 +101,10 @@ class DrawChartUpperCanvas {
                     // console.log(message);*/
                     for (var i = 0; i < dataPointLen; i++) {
                         ctx.beginPath();
-                        let x1 = i * spacingHorizontal + 100;
+                        let x1 = i * spacingHorizontal + canvasWidthSpareForDetails;
                         let x2 = spacingHorizontal;
                         let y1 = 0;
-                        let y2 = document.getElementById('canvasupper' + nr).height - 60;
+                        let y2 = document.getElementById('canvasupper' + nr).height - canvasHeightSpareForDetails;
                         ctx.rect(x1, y1, x2, y2);
                         if (ctx.isPointInStroke(mousePos.x, mousePos.y) || ctx.isPointInPath(mousePos.x, mousePos.y)) {
                             //ctx.clearRect(0, 0, document.getElementById('canvasupper' + nr).width, document.getElementById('canvasupper' + nr).height);
@@ -123,7 +128,7 @@ class DrawChartUpperCanvas {
                             ctx.beginPath();
                             let lineX = x1 + (spacingHorizontal / 2);
                             ctx.setLineDash([5, 15]);
-                            ctx.strokeStyle = 'rgba(0,0,0,1)';
+                            ctx.strokeStyle = strokeStyle;
                             ctx.lineWidth = 1;
                             ctx.moveTo(lineX, y1);
                             ctx.lineTo(lineX, y2);

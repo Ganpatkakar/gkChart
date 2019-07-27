@@ -30,7 +30,7 @@ function GkBarChart(data) {
         chart.hei = ChartContainer.clientHeight - 33;
 
         let titleAndPrintButton = '';
-        if (chart.config.title != undefined) {
+        if (!chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
@@ -42,8 +42,8 @@ function GkBarChart(data) {
         if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
             chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
             chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
-            for (var i = 0; i < chart.data.length; i++) {
-                for (var j = 0; j < chart.data[i].datapoints.length; j++) {
+            for (let i = 0; i < chart.data.length; i++) {
+                for (let j = 0; j < chart.data[i].datapoints.length; j++) {
                     if (parseInt(chart.data[i].datapoints[j].y) < chart.yaxis.min) {
                         chart.yaxis.min = parseInt(chart.data[i].datapoints[j].y);
                     }
@@ -65,7 +65,7 @@ function GkBarChart(data) {
         let linecord = [];
         let nextcurve = 100;
         let barChartCount = chart.data.length;
-        for (var i = 0; i < chart.data.length; i++) {
+        for (let i = 0; i < chart.data.length; i++) {
             drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], rangedata, nextcurve, chart.data[i].chartColor, linecord, barwidth, barChartCount);
             nextcurve += barwidth + 5;
         }

@@ -1,3 +1,8 @@
+const gkChartConsts = require("../../invokeCharts/enums");
+
+const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
+const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+
 function bezierPointsCalc(a, f) {
     for (var b = [], c, e = 0; e < a.length; e++)
         if (0 == e)
@@ -35,17 +40,17 @@ function bezierPointsCalc(a, f) {
     return b
 }
 
-function drawSmoothLineChart(canvas, ctx, verticalNr, data, range, chartColor, linecord) {
+function drawSmoothLineChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord) {
     try {
         // console.log("Start : drawGraphicLinear");
         const calcWayPoints = (vertices) => {
-            var wayPoints = [];
-            for (var i = 1; i < vertices.length; i += 3) {
+            const wayPoints = [];
+            for (let i = 1; i < vertices.length; i += 3) {
                 let startPt = {x: vertices[i - 1].x, y: vertices[i - 1].y}
                 let ct1 = {x: vertices[i].x, y: vertices[i].y}
                 let ct2 = {x: vertices[i + 1].x, y: vertices[i + 1].y}
                 let endPt = {x: vertices[i + 2].x, y: vertices[i + 2].y}
-                for (var t = 0; t < difference; t++) {
+                for (let t = 0; t < difference; t++) {
                     let pointers = getQuadraticBezierXYatT(startPt, ct1, ct2, endPt, t / difference);
                     wayPoints.push({
                         x: pointers.x,
@@ -119,9 +124,9 @@ function drawSmoothLineChart(canvas, ctx, verticalNr, data, range, chartColor, l
             i = i + 1;
         };
 
-        var canvas = document.getElementById(canvas);
-        const hei = canvas.height - 60;
-        const wid = canvas.width - +100
+        var canvas = document.getElementById(canvasId);
+        const hei = canvas.height - canvasHeightSpareForDetails;
+        const wid = canvas.width - +canvasWidthSpareForDetails;
         const spacingVertical = hei / verticalNr;
         var spacingHorizontal = wid / data.datapoints.length;
 
@@ -133,7 +138,7 @@ function drawSmoothLineChart(canvas, ctx, verticalNr, data, range, chartColor, l
 
         for (let i = 0; i < data.datapoints.length; i++) {
             let newobj = {
-                x: i * spacingHorizontal + spacingHorizontal / 2 + 100,
+                x: i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails,
                 y: hei - (data.datapoints[i].y - range[0]) * verticalCoefficient,
                 label: data.datapoints[i].label,
                 dataLabel: data.dataLabel,

@@ -1,4 +1,9 @@
-function DrawStepChart(canvas, ctx, verticalNr, data, range, chartColor, linecord) {
+const gkChartConsts = require("../../invokeCharts/enums");
+
+const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
+const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+
+function DrawStepChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord) {
     try {
         // console.log("Start : drawStepchart");
 
@@ -79,9 +84,9 @@ function DrawStepChart(canvas, ctx, verticalNr, data, range, chartColor, linecor
             t += 1;
         };
 
-        var canvas = document.getElementById(canvas);
-        var hei = canvas.height - 60;
-        var wid = canvas.width - +100
+        var canvas = document.getElementById(canvasId);
+        var hei = canvas.height - canvasHeightSpareForDetails;
+        var wid = canvas.width - +canvasWidthSpareForDetails
         var spacingVertical = hei / verticalNr;
         var spacingHorizontal = wid / data.datapoints.length;
 
@@ -92,7 +97,7 @@ function DrawStepChart(canvas, ctx, verticalNr, data, range, chartColor, linecor
         var localLineCords = [];
         for (let i = 0; i < data.datapoints.length; i++) {
             var newobj = {
-                x: i * spacingHorizontal + spacingHorizontal / 2 + 100,
+                x: i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails,
                 y: hei - (data.datapoints[i].y - range[0]) * verticalCoefficient,
                 label: data.datapoints[i].label,
                 dataLabel: data.dataLabel,

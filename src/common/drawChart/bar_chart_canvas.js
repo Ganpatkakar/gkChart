@@ -1,6 +1,19 @@
-function drawBarChart(canvas, ctx, verticalNr, data, range, curx, chartColor, linecord, barwidth, barChartCount) {
+const gkChartConsts = require("../../invokeCharts/enums");
+
+const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
+const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+
+function drawBarChart(canvasId, ctx, verticalNr, data, range, curx, chartColor, linecord, barChartCount, chartDataLength) {
     try {
         // console.log("Start : drawBar");
+        const canvas = document.getElementById(canvasId);
+        const hei = canvas.height - canvasHeightSpareForDetails;
+        const wid = canvas.width - canvasWidthSpareForDetails;
+        const spacingHorizontal = wid / data.datapoints.length;
+        const totalRange = range[1] - range[0];
+        const verticalCoefficient = hei / totalRange;
+        const barwidth = spacingHorizontal / chartDataLength * .60;
+
         const calcWayPoints = (points) => {
             let wayPoints = [];
             for (let i = 0; i < points.length; i++) {
@@ -23,7 +36,7 @@ function drawBarChart(canvas, ctx, verticalNr, data, range, curx, chartColor, li
             ctx.beginPath();
             ctx.globalAlpha = 1;
             ctx.fillStyle = cColor;
-            ctx.fillRect(animateArr[t].x, animateArr[t].y, animateArr[t].wid, animateArr[t].hei);
+            ctx.fillRect(animateArr[t].x, animateArr[t].y, barwidth, animateArr[t].hei);
             ctx.closePath();
             t = t + 1;
             if (t < animateArr.length) {
@@ -31,17 +44,10 @@ function drawBarChart(canvas, ctx, verticalNr, data, range, curx, chartColor, li
             }
         };
 
-        var canvas = document.getElementById(canvas);
-        const hei = canvas.height - 60;
-        const wid = canvas.width - 100;
-        const spacingHorizontal = wid / data.datapoints.length;
-        const totalRange = range[1] - range[0];
-        const verticalCoefficient = hei / totalRange;
-        ctx.beginPath();
         const localLinecord = [];
         for (let i = 0; i < data.datapoints.length; i++) {
             var rectHeight = (hei - (data.datapoints[i].y - range[0]) * verticalCoefficient);
-            let barChartWidth = barChartCount * barwidth + (barChartCount - 1) * 5
+            let barChartWidth = barChartCount * barwidth + (barChartCount - 1) * 5;
             let fromLeft = (i * spacingHorizontal + spacingHorizontal / 2 + curx) - barChartWidth / 2;
             var newobj = {
                 x: fromLeft,
@@ -56,7 +62,7 @@ function drawBarChart(canvas, ctx, verticalNr, data, range, curx, chartColor, li
             linecord.push(newobj);
             localLinecord.push(newobj);
         }
-        ctx.closePath();
+
         let points = calcWayPoints(localLinecord);
 
         for (let i = 0; i < points.length; i++) {
@@ -65,7 +71,7 @@ function drawBarChart(canvas, ctx, verticalNr, data, range, curx, chartColor, li
             animate(points[i], t, cColor);
         }
 
-        return linecord;
+        return {linecord, barwidth};
         // console.log("End : drawBar");
     } catch (e) {
         console.log("error occurred in drawBar : ", e);

@@ -1,4 +1,9 @@
-function drawLineChart(canvas, ctx, verticalNr, data, range, chartColor, linecord) {
+const gkChartConsts = require("../../invokeCharts/enums");
+
+const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
+const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+
+function drawLineChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord) {
     try {
         // console.log("Start : drawGraphicLinear");
         const commonCodeCircle = () => {
@@ -75,9 +80,9 @@ function drawLineChart(canvas, ctx, verticalNr, data, range, chartColor, linecor
             t += 1;
         };
 
-        var canvas = document.getElementById(canvas);
-        const hei = canvas.height - 60;
-        const wid = canvas.width - 100;
+        var canvas = document.getElementById(canvasId);
+        const hei = canvas.height - canvasHeightSpareForDetails;
+        const wid = canvas.width - canvasWidthSpareForDetails;
         const spacingVertical = hei / verticalNr;
         const spacingHorizontal = wid / data.datapoints.length;
 
@@ -87,7 +92,7 @@ function drawLineChart(canvas, ctx, verticalNr, data, range, chartColor, linecor
         const localLineCords = [];
         for (let i = 0; i < data.datapoints.length; i++) {
             let newObj = {
-                x: i * spacingHorizontal + spacingHorizontal / 2 + 100,
+                x: i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails,
                 y: hei - (data.datapoints[i].y - range[0]) * verticalCoefficient,
                 label: data.datapoints[i].label,
                 dataLabel: data.dataLabel,

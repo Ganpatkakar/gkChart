@@ -1,3 +1,11 @@
+const gkChartConsts = require("../../invokeCharts/enums");
+
+const xAxisSpacing = gkChartConsts.xAxisSpacing;
+const fontLineHeight = gkChartConsts.fontLineHeight;
+const blackFillStyle = gkChartConsts.blackFillStyle;
+const font = gkChartConsts.font;
+const white = gkChartConsts.white;
+
 function drawMeterChart(can, ctx, verticalNr, data, range, chartColor, ChartDataToShow) {
     try {
         // console.log("Start : drawMeter");
@@ -13,7 +21,7 @@ function drawMeterChart(can, ctx, verticalNr, data, range, chartColor, ChartData
             myTotal += data.datapoints[e].y;
         }
         for (let i = 0; i < data.datapoints.length; i++) {
-            ctx.strokeStyle = "#fff";
+            ctx.strokeStyle = white;
             ctx.fillStyle = data.datapoints[i].color;
             ctx.beginPath();
             ctx.moveTo(canvas.width / 2, canvas.height / 2);
@@ -32,12 +40,12 @@ function drawMeterChart(can, ctx, verticalNr, data, range, chartColor, ChartData
             lastend += Math.PI * (data.datapoints[i].y / myTotal);
         }
         ctx.beginPath();
-        ctx.fillStyle = "#fff";
+        ctx.fillStyle = white;
         ctx.arc(canvas.width / 2, canvas.height / 2, radius * 0.7, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
         ctx.beginPath();
-        ctx.fillStyle = "#000";
+        ctx.fillStyle = blackFillStyle;
         ctx.arc(canvas.width / 2, canvas.height / 2, radius * 0.1, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
@@ -52,10 +60,10 @@ function drawMeterChart(can, ctx, verticalNr, data, range, chartColor, ChartData
         var fromy = canvas.height / 2;
         ctx.moveTo(canvas.width / 2, canvas.height / 2);
         ctx.lineTo(tox, toy);
-        ctx.strokeStyle = "#000";
+        ctx.strokeStyle = blackFillStyle;
         ctx.stroke();
         ctx.beginPath();
-        ctx.fillStyle = "#fff";
+        ctx.fillStyle = white;
         ctx.arc(canvas.width / 2, canvas.height / 2, radius * 0.07, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
@@ -64,8 +72,8 @@ function drawMeterChart(can, ctx, verticalNr, data, range, chartColor, ChartData
         let angle = 3.141592653589793;
         let x = Math.floor(canvas.width / 2);
         let y = Math.floor(canvas.height / 2);
-        ctx.fillStyle = "#000";
-        ctx.font = "18px Arial";
+        ctx.fillStyle = blackFillStyle;
+        ctx.font = font;
         ctx.save();
 
         /*Text in data format loop*/
