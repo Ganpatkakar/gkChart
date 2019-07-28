@@ -1,6 +1,6 @@
 {
   "name": "gk-chart",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "Open Source JavaScript chart library",
   "main": "index.js",
   "scripts": {
