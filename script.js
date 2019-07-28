@@ -12,13 +12,17 @@ import {
 
 let datapoints = [
     {label: "January", y: 60},
-    {label: "Feburary", y: 85},
+    {label: "February", y: 85},
     {label: "March", y: 80},
     {label: "April", y: 70},
     {label: "May", y: 65},
     {label: "June", y: 75},
     {label: "July", y: 95},
-    {label: "Aug", y: 80}
+    {label: "Aug", y: 80},
+    {label: "Sep", y: 55},
+    {label: "Oct", y: 65},
+    {label: "Nov", y: 75},
+    {label: "Dec", y: 82}
 ];
 let datapoints1 = [
     {label: "January", y: 18},
@@ -28,7 +32,11 @@ let datapoints1 = [
     {label: "May", y: 54},
     {label: "Jun", y: 55},
     {label: "July", y: 70},
-    {label: "Aug", y: 60}
+    {label: "Aug", y: 60},
+    {label: "Sep", y: 72},
+    {label: "Oct", y: 76},
+    {label: "Nov", y: 87},
+    {label: "Dec", y: 92}
 ];
 let datapoints2 = [
     {label: "January", y: 20},
@@ -38,7 +46,11 @@ let datapoints2 = [
     {label: "May", y: 29},
     {label: "Jun", y: 20},
     {label: "July", y: 50},
-    {label: "Aug", y: 40}
+    {label: "Aug", y: 40},
+    {label: "Sep", y: 42},
+    {label: "Oct", y: 46},
+    {label: "Nov", y: 57},
+    {label: "Dec", y: 52}
 ];
 let datapoints3 = [
     {label: "January", y: 16},
@@ -48,7 +60,26 @@ let datapoints3 = [
     {label: "May", y: 24},
     {label: "Jun", y: 35},
     {label: "July", y: 40},
-    {label: "Aug", y: 50}
+    {label: "Aug", y: 50},
+    {label: "Sep", y: 60},
+    {label: "Oct", y: 70},
+    {label: "Nov", y: 80},
+    {label: "Dec", y: 90}
+];
+
+const singlePoints = [
+    {label: "Jan", y: 1},
+    {label: "Feb", y: 5},
+    {label: "Mar", y: 10},
+    {label: "Apr", y: 12},
+    {label: "May", y: 14},
+    {label: "Jun", y: 16},
+    {label: "Jul", y: 20},
+    {label: "Aug", y: 22},
+    {label: "Sep", y: 20},
+    {label: "Oct", y: 16},
+    {label: "Nov", y: 7},
+    {label: "Dec", y: 2}
 ];
 
 (function DrawChart() {
@@ -85,12 +116,17 @@ let datapoints3 = [
                 chartType: "line-chart",
                 printEnable: true
             },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             data: [
                 {
                     chartColor: "#00d554",
                     fill: false,
                     dataLabel: "Data Set 1",
-                    datapoints: datapoints
+                    datapoints: singlePoints
                 }
             ]
         };
@@ -109,12 +145,17 @@ let datapoints3 = [
                 chartType: "line-chart",
                 printEnable: true
             },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             data: [
                 {
                     chartColor: "#00d554",
                     fill: true,
                     dataLabel: "Data Set 1",
-                    datapoints: datapoints
+                    datapoints: singlePoints
                 }
             ]
         };
@@ -132,6 +173,11 @@ let datapoints3 = [
                 title: "Multi Line Comparision Chart",
                 chartType: "line-chart",
                 printEnable: true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
             },
             data: [
                 {
@@ -174,6 +220,11 @@ let datapoints3 = [
                 chartType: "line-chart",
                 printEnable: true
             },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             data: [
                 {
                     chartColor: "#00d554",
@@ -215,10 +266,15 @@ let datapoints3 = [
                 "chartType": 'bar-chart',
                 "printEnable": true
             },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             "data": [{
                 "chartColor": "#00d554",
                 "dataLabel": "Data set 1",
-                "datapoints": datapoints
+                "datapoints": singlePoints
             }]
         };
 
@@ -231,6 +287,11 @@ let datapoints3 = [
                 "title": "Multi Bar Chart Comparision",
                 "chartType": 'bar-chart',
                 "printEnable": true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
             },
             "data": [
                 {
@@ -266,6 +327,11 @@ let datapoints3 = [
                 "title": "Bar Chart and Smooth Line Comparision",
                 "chartType": 'multi-random',
                 "printEnable": true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
             },
             "data": [
                 {
@@ -415,11 +481,16 @@ let datapoints3 = [
                 "chartType": "smooth-line-chart",
                 "printEnable": true
             },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             "data": [{
                 "chartColor": "#00d554",
                 "fill": false,
                 "dataLabel": "Data Set 1",
-                "datapoints": datapoints
+                "datapoints": singlePoints
             }]
         };
 
@@ -433,6 +504,11 @@ let datapoints3 = [
                 "title": "Multi Smooth Line Comparision Chart",
                 "chartType": "smooth-line-chart",
                 "printEnable": true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
             },
             "data": [
                 {
@@ -473,11 +549,16 @@ let datapoints3 = [
                 "chartType": "smooth-line-chart",
                 "printEnable": true
             },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             "data": [{
                 "chartColor": "#00d554",
                 "fill": true,
                 "dataLabel": "Data Set 1",
-                "datapoints": datapoints
+                "datapoints": singlePoints
             }]
         };
 
@@ -491,6 +572,11 @@ let datapoints3 = [
                 "title": "Multi Smooth Line Comparision Chart",
                 "chartType": "smooth-line-chart",
                 "printEnable": true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
             },
             "data": [
                 {
@@ -531,11 +617,16 @@ let datapoints3 = [
                 "chartType": "step-line-chart",
                 "printEnable" : true
             },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             "data": [{
                 "chartColor": "#00d554",
                 "fill": false,
                 "dataLabel" : "Data Set 1",
-                "datapoints": datapoints
+                "datapoints": singlePoints
             }]
         };
 
@@ -552,6 +643,11 @@ let datapoints3 = [
                 "title": "Multi Step Comparision Chart",
                 "chartType": "step-line-chart",
                 "printEnable" : true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
             },
             "data": [
                 {
@@ -595,11 +691,16 @@ let datapoints3 = [
                 "chartType": "step-line-chart",
                 "printEnable" : true
             },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             "data": [{
                 "chartColor": "#00d554",
                 "fill": true,
                 "dataLabel" : "Data Set 1",
-                "datapoints": datapoints
+                "datapoints": singlePoints
             }]
         };
 
@@ -616,6 +717,11 @@ let datapoints3 = [
                 "title": "Multi Step Comparision Chart",
                 "chartType": "step-line-chart",
                 "printEnable" : true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
             },
             "data": [
                 {

@@ -57,25 +57,33 @@ const GkLineChart = (data) => {
         ChartContainer.innerHTML = titleAndPrintButton;
 
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
-        (chart.yaxis === undefined) ? chart.yaxis = {} : null
-        if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
-            chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
-            chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
+        (chart.yaxis === undefined) ? chart.yaxis = {} : null;
+        if (!chart.yaxis.hasOwnProperty("max") || !chart.yaxis.hasOwnProperty("min")) {
+            let max = parseInt(chart.data[0].datapoints[0].y);
+            let min = parseInt(chart.data[0].datapoints[0].y);
             for (let i = 0; i < chart.data.length; i++) {
                 for (let j = 0; j < chart.data[i].datapoints.length; j++) {
-                    if (parseInt(chart.data[i].datapoints[j].y) < chart.yaxis.min) {
-                        chart.yaxis.min = parseInt(chart.data[i].datapoints[j].y);
+                    if (parseInt(chart.data[i].datapoints[j].y) < min) {
+                        min = parseInt(chart.data[i].datapoints[j].y);
                     }
-                    if (parseInt(chart.data[i].datapoints[j].y) > chart.yaxis.max) {
-                        chart.yaxis.max = parseInt(chart.data[i].datapoints[j].y);
+                    if (parseInt(chart.data[i].datapoints[j].y) > max) {
+                        max = parseInt(chart.data[i].datapoints[j].y);
                     }
                 }
             }
-            chart.yaxis.max += 10;
-            (chart.yaxis.min >= 10) ? chart.yaxis.min += -10 : null
+            if(!chart.yaxis.hasOwnProperty("max")) {
+                const extraAddition = max < 100 ? 2 : 10;
+                chart.yaxis.max = max + extraAddition;
+            }
+            if (!chart.yaxis.hasOwnProperty("min")) {
+                chart.yaxis.min = (chart.yaxis.min >= 10) ? min -10 : min
+            }
+            console.log(chart.yaxis.max, chart.yaxis.min);
         }
-        if (chart.yaxis.difference === undefined) {
+        if (!chart.yaxis.numOfRows) {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / 8);
+        } else {
+            chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
         drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
@@ -119,24 +127,32 @@ const GkStepChart = (data) => {
 
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
         (chart.yaxis === undefined) ? chart.yaxis = {} : null
-        if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
-            chart.yaxis.max = chart.data[0].datapoints[0].y;
-            chart.yaxis.min = chart.data[0].datapoints[0].y;
-            for (var i = 0; i < chart.data.length; i++) {
-                for (var j = 0; j < chart.data[i].datapoints.length; j++) {
-                    if (chart.data[i].datapoints[j].y < chart.yaxis.min) {
-                        chart.yaxis.min = chart.data[i].datapoints[j].y;
+        if (!chart.yaxis.hasOwnProperty("max") || !chart.yaxis.hasOwnProperty("min")) {
+            let max = parseInt(chart.data[0].datapoints[0].y);
+            let min = parseInt(chart.data[0].datapoints[0].y);
+            for (let i = 0; i < chart.data.length; i++) {
+                for (let j = 0; j < chart.data[i].datapoints.length; j++) {
+                    if (parseInt(chart.data[i].datapoints[j].y) < min) {
+                        min = parseInt(chart.data[i].datapoints[j].y);
                     }
-                    if (chart.data[i].datapoints[j].y > chart.yaxis.max) {
-                        chart.yaxis.max = chart.data[i].datapoints[j].y;
+                    if (parseInt(chart.data[i].datapoints[j].y) > max) {
+                        max = parseInt(chart.data[i].datapoints[j].y);
                     }
                 }
             }
-            chart.yaxis.max += 10;
-            (chart.yaxis.min >= 10) ? chart.yaxis.min += -10 : null
+            if(!chart.yaxis.hasOwnProperty("max")) {
+                const extraAddition = max < 100 ? 2 : 10;
+                chart.yaxis.max = max + extraAddition;
+            }
+            if (!chart.yaxis.hasOwnProperty("min")) {
+                chart.yaxis.min = (chart.yaxis.min >= 10) ? min -10 : min
+            }
+            console.log(chart.yaxis.max, chart.yaxis.min);
         }
-        if (chart.yaxis.difference === undefined) {
+        if (!chart.yaxis.numOfRows) {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / 8);
+        } else {
+            chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
 
@@ -184,24 +200,32 @@ const GkSmoothLineChart = (data) => {
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
 
         (chart.yaxis === undefined) ? chart.yaxis = {} : null
-        if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
-            chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
-            chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
-            for (var i = 0; i < chart.data.length; i++) {
-                for (var j = 0; j < chart.data[i].datapoints.length; j++) {
-                    if (parseInt(chart.data[i].datapoints[j].y) < chart.yaxis.min) {
-                        chart.yaxis.min = parseInt(chart.data[i].datapoints[j].y);
+        if (!chart.yaxis.hasOwnProperty("max") || !chart.yaxis.hasOwnProperty("min")) {
+            let max = parseInt(chart.data[0].datapoints[0].y);
+            let min = parseInt(chart.data[0].datapoints[0].y);
+            for (let i = 0; i < chart.data.length; i++) {
+                for (let j = 0; j < chart.data[i].datapoints.length; j++) {
+                    if (parseInt(chart.data[i].datapoints[j].y) < min) {
+                        min = parseInt(chart.data[i].datapoints[j].y);
                     }
-                    if (parseInt(chart.data[i].datapoints[j].y) > chart.yaxis.max) {
-                        chart.yaxis.max = parseInt(chart.data[i].datapoints[j].y);
+                    if (parseInt(chart.data[i].datapoints[j].y) > max) {
+                        max = parseInt(chart.data[i].datapoints[j].y);
                     }
                 }
             }
-            chart.yaxis.max += 10;
-            (chart.yaxis.min >= 10) ? chart.yaxis.min += -10 : null
+            if(!chart.yaxis.hasOwnProperty("max")) {
+                const extraAddition = max < 100 ? 2 : 10;
+                chart.yaxis.max = max + extraAddition;
+            }
+            if (!chart.yaxis.hasOwnProperty("min")) {
+                chart.yaxis.min = (chart.yaxis.min >= 10) ? min -10 : min
+            }
+            console.log(chart.yaxis.max, chart.yaxis.min);
         }
-        if (chart.yaxis.difference === undefined) {
+        if (!chart.yaxis.numOfRows) {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / 8);
+        } else {
+            chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
         drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
@@ -245,26 +269,34 @@ const GkBarChart = (data) => {
         ChartContainer.innerHTML = titleAndPrintButton;
 
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
-        (chart.yaxis === undefined) ? chart.yaxis = {} : null
+        !chart.yaxis ? chart.yaxis = {} : null;
 
-        if (!chart.yaxis.max && !chart.yaxis.min) {
-            chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
-            chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
+        if (!chart.yaxis.hasOwnProperty("max") || !chart.yaxis.hasOwnProperty("min")) {
+            let max = parseInt(chart.data[0].datapoints[0].y);
+            let min = parseInt(chart.data[0].datapoints[0].y);
             for (let i = 0; i < chart.data.length; i++) {
                 for (let j = 0; j < chart.data[i].datapoints.length; j++) {
-                    if (parseInt(chart.data[i].datapoints[j].y) < chart.yaxis.min) {
-                        chart.yaxis.min = parseInt(chart.data[i].datapoints[j].y);
+                    if (parseInt(chart.data[i].datapoints[j].y) < min) {
+                        min = parseInt(chart.data[i].datapoints[j].y);
                     }
-                    if (parseInt(chart.data[i].datapoints[j].y) > chart.yaxis.max) {
-                        chart.yaxis.max = parseInt(chart.data[i].datapoints[j].y);
+                    if (parseInt(chart.data[i].datapoints[j].y) > max) {
+                        max = parseInt(chart.data[i].datapoints[j].y);
                     }
                 }
             }
-            chart.yaxis.max += 10;
-            (chart.yaxis.min >= 10) ? chart.yaxis.min += -10 : null
+            if(!chart.yaxis.hasOwnProperty("max")) {
+                const extraAddition = max < 100 ? 2 : 10;
+                chart.yaxis.max = max + extraAddition;
+            }
+            if (!chart.yaxis.hasOwnProperty("min")) {
+                chart.yaxis.min = (chart.yaxis.min >= 10) ? min -10 : min
+            }
+            console.log(chart.yaxis.max, chart.yaxis.min);
         }
-        if (!chart.yaxis.difference) {
+        if (!chart.yaxis.numOfRows) {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / 8);
+        } else {
+            chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
         drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
@@ -465,24 +497,32 @@ const GkColumnChart = (data) => {
         ChartContainer.innerHTML = titleAndPrintButton;
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
         (chart.yaxis === undefined) ? chart.yaxis = {} : null;
-        if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
-            chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
-            chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
+        if (!chart.yaxis.hasOwnProperty("max") || !chart.yaxis.hasOwnProperty("min")) {
+            let max = parseInt(chart.data[0].datapoints[0].y);
+            let min = parseInt(chart.data[0].datapoints[0].y);
             for (let i = 0; i < chart.data.length; i++) {
                 for (let j = 0; j < chart.data[i].datapoints.length; j++) {
-                    if (parseInt(chart.data[i].datapoints[j].y) < chart.yaxis.min) {
-                        chart.yaxis.min = parseInt(chart.data[i].datapoints[j].y);
+                    if (parseInt(chart.data[i].datapoints[j].y) < min) {
+                        min = parseInt(chart.data[i].datapoints[j].y);
                     }
-                    if (parseInt(chart.data[i].datapoints[j].y) > chart.yaxis.max) {
-                        chart.yaxis.max = parseInt(chart.data[i].datapoints[j].y);
+                    if (parseInt(chart.data[i].datapoints[j].y) > max) {
+                        max = parseInt(chart.data[i].datapoints[j].y);
                     }
                 }
             }
-            chart.yaxis.max += 10;
-            (chart.yaxis.min >= 10) ? chart.yaxis.min += -10 : null
+            if(!chart.yaxis.hasOwnProperty("max")) {
+                const extraAddition = max < 100 ? 2 : 10;
+                chart.yaxis.max = max + extraAddition;
+            }
+            if (!chart.yaxis.hasOwnProperty("min")) {
+                chart.yaxis.min = (chart.yaxis.min >= 10) ? min -10 : min
+            }
+            console.log(chart.yaxis.max, chart.yaxis.min);
         }
-        if (chart.yaxis.difference === undefined) {
+        if (!chart.yaxis.numOfRows) {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / 8);
+        } else {
+            chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
         //// console.log("verticaldevisions" + verticaldevisions);
