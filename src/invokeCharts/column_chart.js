@@ -21,7 +21,7 @@ const BarChartUpperCanvas = require("../common/drawUpperChart/line_chart_upper_c
 // import ClearDetails from "../common/drawUpperChart/clear_upper_canvas_details";
 const ClearDetails = require("../common/drawUpperChart/clear_upper_canvas_details");
 
-function GkColumnChart(data) {
+const GkColumnChart = (data) => {
     try {
         // console.log("Start : barChart");
         const chartSurface = new ChartSurface();
@@ -36,7 +36,7 @@ function GkColumnChart(data) {
         chart.hei = ChartContainer.clientHeight - 33;
 
         let titleAndPrintButton = ''
-        if (chart.config.title != undefined) {
+        if (chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
@@ -46,8 +46,8 @@ function GkColumnChart(data) {
         if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
             chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
             chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
-            for (var i = 0; i < chart.data.length; i++) {
-                for (var j = 0; j < chart.data[i].datapoints.length; j++) {
+            for (let i = 0; i < chart.data.length; i++) {
+                for (let j = 0; j < chart.data[i].datapoints.length; j++) {
                     if (parseInt(chart.data[i].datapoints[j].y) < chart.yaxis.min) {
                         chart.yaxis.min = parseInt(chart.data[i].datapoints[j].y);
                     }
@@ -64,8 +64,7 @@ function GkColumnChart(data) {
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
         //// console.log("verticaldevisions" + verticaldevisions);
-        let barwidth = drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
-        //// console.log("barwidth:" + barwidth);
+        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
         let canvas = 'canvas' + chart.chartnumber;
         let maxdata = [chart.yaxis.min, chart.yaxis.max];
         //// console.log("maxdata:" + maxdata);
@@ -75,17 +74,17 @@ function GkColumnChart(data) {
         let nextcurve = 100;
         let barChartCount = 0;
         for (let i in chart.data) {
-            (chart.data[i].type == "bar") ? barChartCount++ : null;
+            (chart.data[i] && chart.data[i].type === "bar-chart") ? barChartCount++ : null;
         }
         for (let i = 0; i < chart.data.length; i++) {
-            if (chart.data[i].type == "bar") {
-                drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, nextcurve, chart.data[i].chartColor, barCords, barwidth, barChartCount);
-                nextcurve += barwidth + 5;
+            if (chart.data[i] && chart.data[i].type === "bar-chart") {
+                const rData = drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, nextcurve, chart.data[i].chartColor, barCords, barChartCount, barChartCount);
+                nextcurve += rData.barwidth + 5;
             }
-            if (chart.data[i].type == "line") {
+            if (chart.data[i] && chart.data[i].type === "line-chart") {
                 drawLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, lineLineCords);
             }
-            if (chart.data[i].type == "spline") {
+            if (chart.data[i] && chart.data[i].type === "spline-chart") {
                 drawSmoothLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, lineLineCords);
             }
         }
@@ -102,6 +101,6 @@ function GkColumnChart(data) {
     } catch (err) {
         console.error("Exception occurred in bar chart module:  " + err.message);
     }
-}
+};
 
 module.exports =  GkColumnChart;

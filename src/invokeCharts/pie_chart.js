@@ -28,7 +28,7 @@ const GkPieChart = (data) => {
             chartHeight = chart.wid;
         }
         let titleAndPrintButton = '';
-        if (chart.config.title !== undefined) {
+        if (chart.config.title) {
             titleAndPrintButton += `<h2 class="chartTitle">${chart.config.title}</h2>`;
         }
         titleAndPrintButton += printOptions(chartID, chart);

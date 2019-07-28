@@ -66,10 +66,10 @@ class ChartSurface {
             var innerCotent =
                 `<canvas id="canvasupper${nr}" class="canvas" style="position:absolute;"
                     width="${width}" height="${height}"> </canvas>
-                <div class="canvasjs-chart-tooltip" style="position: absolute; height: auto; 
+                <div class="canvasjs-chart-tooltip" style="position:absolute;height:auto;
                     box-shadow: rgba(0, 0, 0, 0.0980392) 1px 1px 2px 2px; z-index: 1000; display: none; 
                     border-radius: 3px; transition: left 0.2s ease-out, bottom 0.2s ease-out; pointer-events: none;
-                    background-color: rgba(0,0, 0, .8); border: 1px solid rgba(0,0,0,.5); padding: 5px;">
+                    background-color: rgba(0,0, 0, .8); border: 1px solid rgba(0,0,0,.5); padding: 5px;color: #fff">
                         <span style="color:#7F6084;"> </span>
                 </div>`;
             container.insertAdjacentHTML('beforeend', innerCotent);
