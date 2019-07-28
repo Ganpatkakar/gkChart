@@ -9,6 +9,47 @@ import {
     GkStepChart
 } from "./index";
 
+let datapoints = [
+    {label: "January", y: 60},
+    {label: "Feburary", y: 85},
+    {label: "March", y: 80},
+    {label: "April", y: 70},
+    {label: "May", y: 65},
+    {label: "June", y: 75},
+    {label: "July", y: 95},
+    {label: "Aug", y: 80}
+];
+let datapoints1 = [
+    {label: "January", y: 18},
+    {label: "Feb", y: 28},
+    {label: "Mar", y: 34},
+    {label: "Apr", y: 42},
+    {label: "May", y: 54},
+    {label: "Jun", y: 55},
+    {label: "July", y: 70},
+    {label: "Aug", y: 60}
+];
+let datapoints2 = [
+    {label: "January", y: 20},
+    {label: "Feb", y: 22},
+    {label: "Mar", y: 27},
+    {label: "Apr", y: 22},
+    {label: "May", y: 29},
+    {label: "Jun", y: 20},
+    {label: "July", y: 50},
+    {label: "Aug", y: 40}
+];
+let datapoints3 = [
+    {label: "January", y: 16},
+    {label: "Feb", y: 19},
+    {label: "Mar", y: 21},
+    {label: "Apr", y: 21},
+    {label: "May", y: 24},
+    {label: "Jun", y: 35},
+    {label: "July", y: 40},
+    {label: "Aug", y: 50}
+];
+
 (function DrawChart() {
     const lineChart = document.getElementById("line-chart");
     const chartLineFill = document.getElementById("chartLineFill");
@@ -36,15 +77,6 @@ import {
     const stepChartComparisionFillId = document.getElementById("step-chart-comparision-fill");
 
     if (lineChart) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120}
-        ];
 
         let chartline = {
             config: {
@@ -69,15 +101,6 @@ import {
     }
 
     if (chartLineFill) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120}
-        ];
 
         let chartLineFill = {
             config: {
@@ -102,24 +125,6 @@ import {
     }
 
     if (lineChartComparision) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120}
-        ];
-        let datapoints1 = [
-            {label: "January", y: 20},
-            {label: "Feb", y: 120},
-            {label: "Mar", y: 210},
-            {label: "Apr", y: 246},
-            {label: "May", y: 96},
-            {label: "Jun", y: 15},
-            {label: "July", y: 70}
-        ];
 
         var chartlineComparision = {
             config: {
@@ -139,6 +144,18 @@ import {
                     fill: false,
                     dataLabel: "Data Set 2",
                     datapoints: datapoints1
+                },
+                {
+                    chartColor: "#ff00dd",
+                    fill: false,
+                    dataLabel: "Data Set 3",
+                    datapoints: datapoints2
+                },
+                {
+                    chartColor: "#00f0dd",
+                    fill: false,
+                    dataLabel: "Data Set 4",
+                    datapoints: datapoints3
                 }
             ]
         };
@@ -150,24 +167,6 @@ import {
     }
 
     if (lineChartComparisionFill) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120}
-        ];
-        let datapoints1 = [
-            {label: "January", y: 20},
-            {label: "Feb", y: 120},
-            {label: "Mar", y: 210},
-            {label: "Apr", y: 246},
-            {label: "May", y: 96},
-            {label: "Jun", y: 15},
-            {label: "July", y: 70}
-        ];
         var chartlineComparisionFill = {
             config: {
                 title: "Multi Line Comparision Chart",
@@ -186,6 +185,18 @@ import {
                     fill: true,
                     dataLabel: "Data Set 2",
                     datapoints: datapoints1
+                },
+                {
+                    chartColor: "#ff00dd",
+                    fill: true,
+                    dataLabel: "Data Set 3",
+                    datapoints: datapoints2
+                },
+                {
+                    chartColor: "#00f0dd",
+                    fill: true,
+                    dataLabel: "Data Set 4",
+                    datapoints: datapoints3
                 }
             ]
         };
@@ -197,17 +208,6 @@ import {
     }
 
     if (barChart) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120},
-            {label: "Aug", y: 80}
-        ];
-
         let chartbar = {
             "config": {
                 "title": "Bar Chart",
@@ -225,43 +225,33 @@ import {
     }
 
     if (barChartComparision) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120},
-            {label: "Aug", y: 80}
-        ];
-        let datapoints1 = [
-            {label: "January", y: 20},
-            {label: "Feb", y: 120},
-            {label: "Mar", y: 210},
-            {label: "Apr", y: 246},
-            {label: "May", y: 96},
-            {label: "Jun", y: 15},
-            {label: "July", y: 70},
-            {label: "Aug", y: 50}
-        ];
-
         const chartmultibar = {
             "config": {
                 "title": "Multi Bar Chart Comparision",
                 "chartType": 'bar',
                 "printEnable": true
             },
-            "data": [{
-                "chartColor": "#009788",
-                "dataLabel": "Data set 1",
-                "datapoints": datapoints
-            }, {
-                "chartColor": "#00d554",
-                "dataLabel": "Data set 2",
-                "datapoints": datapoints1
-            }
-
+            "data": [
+                {
+                    chartColor: "teal",
+                    dataLabel: "Data Set 1",
+                    datapoints: datapoints3
+                },
+                {
+                    chartColor: "green",
+                    dataLabel: "Data Set 2",
+                    datapoints: datapoints1
+                },
+                {
+                    chartColor: "yellow",
+                    dataLabel: "Data Set 3",
+                    datapoints: datapoints2
+                },
+                {
+                    chartColor: "#00f0dd",
+                    dataLabel: "Data Set 4",
+                    datapoints: datapoints
+                }
             ]
         };
 
@@ -269,51 +259,37 @@ import {
     }
 
     if (barChartWithSpline) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120},
-            {label: "Aug", y: 80}
-        ];
-        let datapoints1 = [
-            {label: "January", y: 20},
-            {label: "Feb", y: 120},
-            {label: "Mar", y: 210},
-            {label: "Apr", y: 246},
-            {label: "May", y: 96},
-            {label: "Jun", y: 15},
-            {label: "July", y: 70},
-            {label: "Aug", y: 50}
-        ];
 
         var chartbar = {
             "config": {
                 "title": "Bar Chart and Smooth Line Comparision",
-                "chartType": 'column',
+                "chartType": 'multi-random',
                 "printEnable": true
             },
-            "data": [{
+            "data": [
+                {
                 "chartColor": "#00d554",
-                "type": 'bar',
+                "type": 'bar-chart',
                 "dataLabel": "Data set 1",
-                "datapoints": datapoints1
-            },
+                "datapoints": datapoints2
+                },
                 {
                     "chartColor": "teal",
-                    "type": 'bar',
+                    "type": 'bar-chart',
                     "dataLabel": "Data set 2",
+                    "datapoints": datapoints3
+                },
+                {
+                    "chartColor": "blue",
+                    "type": 'spline-chart',
+                    "dataLabel": "Data set 3",
                     "datapoints": datapoints
                 },
                 {
                     "chartColor": "red",
-                    "type": 'spline',
-                    "fill": true,
-                    "dataLabel": "Data set 3",
-                    "datapoints": datapoints
+                    "type": 'line-chart',
+                    "dataLabel": "Data set 4",
+                    "datapoints": datapoints1
                 },
             ]
         };
@@ -431,15 +407,6 @@ import {
     }
 
     if (smoothChartId) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120}
-        ];
 
         const chartsmoothline = {
             "config": {
@@ -459,24 +426,6 @@ import {
     }
 
     if (smoothChartComparisionId) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120}
-        ];
-        let datapoints1 = [
-            {label: "January", y: 20},
-            {label: "Feb", y: 120},
-            {label: "Mar", y: 210},
-            {label: "Apr", y: 246},
-            {label: "May", y: 96},
-            {label: "Jun", y: 15},
-            {label: "July", y: 70}
-        ];
 
         const smoothLineComparision = {
             "config": {
@@ -484,16 +433,31 @@ import {
                 "chartType": "spline",
                 "printEnable": true
             },
-            "data": [{
-                "chartColor": "#00d554",
-                "dataLabel": "Data Set 1",
-                "datapoints": datapoints
-            }, {
-                "chartColor": "#ff0000",
-                "dataLabel": "Data Set 2",
-                "ydataname": "Days",
-                "datapoints": datapoints1
-            }
+            "data": [
+                {
+                    chartColor: "#00d554",
+                    fill: false,
+                    dataLabel: "Data Set 1",
+                    datapoints: datapoints
+                },
+                {
+                    chartColor: "#ff0000",
+                    fill: false,
+                    dataLabel: "Data Set 2",
+                    datapoints: datapoints1
+                },
+                {
+                    chartColor: "#ff00dd",
+                    fill: false,
+                    dataLabel: "Data Set 3",
+                    datapoints: datapoints2
+                },
+                {
+                    chartColor: "#00f0dd",
+                    fill: false,
+                    dataLabel: "Data Set 4",
+                    datapoints: datapoints3
+                }
             ]
         };
 
@@ -501,15 +465,6 @@ import {
     }
 
     if (smoothChartFillId) {
-        let datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120}
-        ];
 
         const chartsmoothlinefill = {
             "config": {
@@ -529,24 +484,6 @@ import {
     }
 
     if (smoothChartComparisionFillId) {
-        const datapoints = [
-            {label: "January", y: 40},
-            {label: "Feburary", y: 160},
-            {label: "March", y: 80},
-            {label: "April", y: 200},
-            {label: "May", y: 140},
-            {label: "June", y: 240},
-            {label: "July", y: 120}
-        ];
-        const datapoints1 = [
-            {label: "January", y: 20},
-            {label: "Feb", y: 120},
-            {label: "Mar", y: 210},
-            {label: "Apr", y: 246},
-            {label: "May", y: 96},
-            {label: "Jun", y: 15},
-            {label: "July", y: 70}
-        ];
 
         const smoothLineComparisionFill = {
             "config": {
@@ -554,18 +491,31 @@ import {
                 "chartType": "spline",
                 "printEnable": true
             },
-            "data": [{
-                "chartColor": "#00d554",
-                "dataLabel": "Data Set 1",
-                "datapoints": datapoints,
-                "fill": true
-            }, {
-                "chartColor": "#ff0000",
-                "dataLabel": "Data Set 2",
-                "ydataname": "Days",
-                "datapoints": datapoints1,
-                "fill": true
-            }
+            "data": [
+                {
+                    chartColor: "#00d554",
+                    fill: true,
+                    dataLabel: "Data Set 1",
+                    datapoints: datapoints
+                },
+                {
+                    chartColor: "#ff0000",
+                    fill: true,
+                    dataLabel: "Data Set 2",
+                    datapoints: datapoints1
+                },
+                {
+                    chartColor: "#ff00dd",
+                    fill: true,
+                    dataLabel: "Data Set 3",
+                    datapoints: datapoints2
+                },
+                {
+                    chartColor: "#00f0dd",
+                    fill: true,
+                    dataLabel: "Data Set 4",
+                    datapoints: datapoints3
+                }
             ]
         };
 
@@ -573,15 +523,6 @@ import {
     }
 
     if(stepChartId) {
-        let datapoints = [
-            {label: "January",y: 40},
-            {label: "Feburary",y: 160},
-            {label: "March",y: 80},
-            {label: "April",y: 200},
-            {label: "May",y: 140},
-            {label: "June",y: 240},
-            {label: "July",y: 120}
-        ];
 
         const stepChart = {
             "config": {
@@ -604,24 +545,6 @@ import {
     }
 
     if(stepChartComparisionId) {
-        let datapoints = [
-            {label: "January",y: 40},
-            {label: "Feburary",y: 160},
-            {label: "March",y: 80},
-            {label: "April",y: 200},
-            {label: "May",y: 140},
-            {label: "June",y: 240},
-            {label: "July",y: 120}
-        ];
-        let datapoints1 = [
-            {label: "January",y: 20},
-            {label: "Feb",y: 120},
-            {label: "Mar",y: 210},
-            {label: "Apr",y: 246},
-            {label: "May",y: 96},
-            {label: "Jun",y: 15},
-            {label: "July",y: 70}
-        ];
 
         let stepChartComparision = {
             "config": {
@@ -629,17 +552,32 @@ import {
                 "chartType": "step",
                 "printEnable" : true
             },
-            "data": [{
-                "chartColor": "#00d554",
-                "fill": false,
-                "dataLabel" : "Data Set 1",
-                "datapoints": datapoints
-            }, {
-                "chartColor": "#ff0000",
-                "fill": false,
-                "dataLabel" : "Data Set 2",
-                "datapoints": datapoints1
-            }]
+            "data": [
+                {
+                    chartColor: "#00d554",
+                    fill: false,
+                    dataLabel: "Data Set 1",
+                    datapoints: datapoints
+                },
+                {
+                    chartColor: "#ff0000",
+                    fill: false,
+                    dataLabel: "Data Set 2",
+                    datapoints: datapoints1
+                },
+                {
+                    chartColor: "#ff00dd",
+                    fill: false,
+                    dataLabel: "Data Set 3",
+                    datapoints: datapoints2
+                },
+                {
+                    chartColor: "#00f0dd",
+                    fill: false,
+                    dataLabel: "Data Set 4",
+                    datapoints: datapoints3
+                }
+            ]
         };
 
         GkStepChart({
@@ -649,15 +587,6 @@ import {
     }
 
     if(stepChartFillId) {
-        let datapoints = [
-            {label: "January",y: 40},
-            {label: "Feburary",y: 160},
-            {label: "March",y: 80},
-            {label: "April",y: 200},
-            {label: "May",y: 140},
-            {label: "June",y: 240},
-            {label: "July",y: 120}
-        ];
 
         const stepChartFill = {
             "config": {
@@ -680,24 +609,6 @@ import {
     }
 
     if(stepChartComparisionFillId) {
-        let datapoints = [
-            {label: "January",y: 40},
-            {label: "Feburary",y: 160},
-            {label: "March",y: 80},
-            {label: "April",y: 200},
-            {label: "May",y: 140},
-            {label: "June",y: 240},
-            {label: "July",y: 120}
-        ];
-        let datapoints1 = [
-            {label: "January",y: 20},
-            {label: "Feb",y: 120},
-            {label: "Mar",y: 210},
-            {label: "Apr",y: 246},
-            {label: "May",y: 96},
-            {label: "Jun",y: 15},
-            {label: "July",y: 70}
-        ];
 
         let stepChartComparisionFill = {
             "config": {
@@ -705,17 +616,32 @@ import {
                 "chartType": "step",
                 "printEnable" : true
             },
-            "data": [{
-                "chartColor": "#00d554",
-                "fill": true,
-                "dataLabel" : "Data Set 1",
-                "datapoints": datapoints
-            }, {
-                "chartColor": "#ff0000",
-                "fill": true,
-                "dataLabel" : "Data Set 2",
-                "datapoints": datapoints1
-            }]
+            "data": [
+                {
+                    chartColor: "#00d554",
+                    fill: true,
+                    dataLabel: "Data Set 1",
+                    datapoints: datapoints
+                },
+                {
+                    chartColor: "#ff0000",
+                    fill: true,
+                    dataLabel: "Data Set 2",
+                    datapoints: datapoints1
+                },
+                {
+                    chartColor: "#ff00dd",
+                    fill: true,
+                    dataLabel: "Data Set 3",
+                    datapoints: datapoints2
+                },
+                {
+                    chartColor: "#00f0dd",
+                    fill: true,
+                    dataLabel: "Data Set 4",
+                    datapoints: datapoints3
+                }
+            ]
         };
 
         GkStepChart({

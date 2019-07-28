@@ -2,7 +2,7 @@
 const GetMousePos = require("../mouse_position");
 // import cssStyle from "../css_style";
 const cssStyle = require("../css_style");
-const gkChartConsts = require("../invokeCharts/enums");
+const gkChartConsts = require("../../invokeCharts/enums");
 
 const strokeStyle = gkChartConsts.strokeStyle;
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;

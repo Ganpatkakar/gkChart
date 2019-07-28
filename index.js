@@ -33,6 +33,8 @@ const DoughnutChartUpperCanvas = require("./src/common/drawUpperChart/doughnut_c
 // import drawMeterChart from "./src/common/drawChart/meter_chart_canvas";
 const drawMeterChart = require("./src/common/drawChart/meter_chart_canvas");
 
+const enums = require("./src/invokeCharts/enums");
+
 const GkLineChart = (data) => {
     try {
         // console.log("Start : lineChart");
@@ -48,7 +50,7 @@ const GkLineChart = (data) => {
         chart.hei = ChartContainer.clientHeight - 33;
 
         let titleAndPrintButton = '';
-        if (chart.config.title != undefined) {
+        if (!chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
@@ -59,8 +61,8 @@ const GkLineChart = (data) => {
         if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
             chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
             chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
-            for (var i = 0; i < chart.data.length; i++) {
-                for (var j = 0; j < chart.data[i].datapoints.length; j++) {
+            for (let i = 0; i < chart.data.length; i++) {
+                for (let j = 0; j < chart.data[i].datapoints.length; j++) {
                     if (parseInt(chart.data[i].datapoints[j].y) < chart.yaxis.min) {
                         chart.yaxis.min = parseInt(chart.data[i].datapoints[j].y);
                     }
@@ -456,7 +458,7 @@ const GkColumnChart = (data) => {
         chart.hei = ChartContainer.clientHeight - 33;
 
         let titleAndPrintButton = ''
-        if (chart.config.title != undefined) {
+        if (!chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
@@ -466,8 +468,8 @@ const GkColumnChart = (data) => {
         if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
             chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
             chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
-            for (var i = 0; i < chart.data.length; i++) {
-                for (var j = 0; j < chart.data[i].datapoints.length; j++) {
+            for (let i = 0; i < chart.data.length; i++) {
+                for (let j = 0; j < chart.data[i].datapoints.length; j++) {
                     if (parseInt(chart.data[i].datapoints[j].y) < chart.yaxis.min) {
                         chart.yaxis.min = parseInt(chart.data[i].datapoints[j].y);
                     }
@@ -494,17 +496,17 @@ const GkColumnChart = (data) => {
         let nextcurve = 100;
         let barChartCount = 0;
         for (let i in chart.data) {
-            (chart.data[i].type == "bar") ? barChartCount++ : null;
+            (chart.data[i] && chart.data[i].type === "bar-chart") ? barChartCount++ : null;
         }
         for (let i = 0; i < chart.data.length; i++) {
-            if (chart.data[i].type == "bar") {
+            if (chart.data[i] && chart.data[i].type === "bar-chart") {
                 const rData = drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, nextcurve, chart.data[i].chartColor, barCords, barChartCount, barChartCount);
                 nextcurve += rData.barwidth + 5;
             }
-            if (chart.data[i].type == "line") {
+            if (chart.data[i] && chart.data[i].type === "line-chart") {
                 drawLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, lineLineCords);
             }
-            if (chart.data[i].type == "spline") {
+            if (chart.data[i] && chart.data[i].type === "spline-chart") {
                 drawSmoothLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, lineLineCords);
             }
         }
@@ -523,6 +525,73 @@ const GkColumnChart = (data) => {
     }
 };
 
+const GkRandomChart = GkColumnChart;
+
+const GkChart = (chartData) => {
+    try {
+        // console.info("Enter: Chart Designing initialize function");
+        this.chartID = chartData.id;
+
+        switch(chartData.config.chartType){
+            case enums.linechart:
+            {
+                GkLineChart(chartData);
+                break;
+            }
+
+            case enums.columnChart:
+            {
+                GkBarChart(chartData);
+                break;
+            }
+
+            case enums.pieChart:
+            {
+                GkPieChart(chartData);
+                break;
+            }
+
+            case enums.doughnutChart:
+            {
+                GkDoughnutChart(chartData);
+                break;
+            }
+
+            case enums.meterChart:
+            {
+                GkMeterChart(chartData);
+                break;
+            }
+
+            case enums.barStepLineSmoothChart:
+            {
+                GkRandomChart(chartData);
+                break;
+            }
+
+            case enums.smoothLinechart:
+            {
+                GkSmoothLineChart(chartData);
+                break;
+            }
+
+            case enums.stepLinechart:
+            {
+                GkStepChart(chartData);
+                break;
+            }
+
+            default:
+            {
+                // console.log("Invalid choice of chart");
+                break;
+            }
+        }
+    } catch (err) {
+        console.log("Error Found in GKChart Constructoru", err);
+    }
+};
+
 exports.GkLineChart = GkLineChart;
 exports.GkStepChart = GkStepChart;
 exports.GkSmoothLineChart = GkSmoothLineChart;
@@ -531,3 +600,5 @@ exports.GkPieChart = GkPieChart;
 exports.GkDoughnutChart = GkDoughnutChart;
 exports.GkMeterChart = GkMeterChart;
 exports.GkColumnChart = GkColumnChart;
+exports.GkRandomChart = GkRandomChart;
+exports.GkChart = GkChart;
