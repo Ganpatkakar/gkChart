@@ -3,7 +3,7 @@ exports.fontLineHeight = 16;
 exports.strokeStyle = "rgba(0,0,0,1)";
 exports.white = "#fff";
 exports.blackFillStyle = "#000";
-exports.canvasHeightSpareForDetails = 150;
+exports.canvasHeightSpareForDetails = 105;
 exports.canvasWidthSpareForDetails = 100;
 exports.font = "18px Arial";
 

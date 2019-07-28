@@ -11,75 +11,60 @@ import {
 } from "./index";
 
 let datapoints = [
-    {label: "January", y: 60},
-    {label: "February", y: 85},
-    {label: "March", y: 80},
-    {label: "April", y: 70},
-    {label: "May", y: 65},
-    {label: "June", y: 75},
-    {label: "July", y: 95},
-    {label: "Aug", y: 80},
-    {label: "Sep", y: 55},
-    {label: "Oct", y: 65},
-    {label: "Nov", y: 75},
-    {label: "Dec", y: 82}
+    {label: "January", y: 1},
+    {label: "February", y: 2},
+    {label: "March", y: 5},
+    {label: "April", y: 7},
+    {label: "May", y: 10},
+    {label: "June", y: 12},
+    {label: "July", y: 16},
+    {label: "August", y: 12},
+    {label: "September", y: 18},
+    {label: "October", y: 15},
+    {label: "November", y: 20},
+    {label: "December", y: 22}
 ];
 let datapoints1 = [
     {label: "January", y: 18},
-    {label: "Feb", y: 28},
-    {label: "Mar", y: 34},
-    {label: "Apr", y: 42},
+    {label: "February", y: 28},
+    {label: "March", y: 34},
+    {label: "April", y: 42},
     {label: "May", y: 54},
-    {label: "Jun", y: 55},
+    {label: "June", y: 55},
     {label: "July", y: 70},
-    {label: "Aug", y: 60},
-    {label: "Sep", y: 72},
-    {label: "Oct", y: 76},
-    {label: "Nov", y: 87},
-    {label: "Dec", y: 92}
+    {label: "August", y: 60},
+    {label: "September", y: 72},
+    {label: "October", y: 76},
+    {label: "November", y: 87},
+    {label: "December", y: 92}
 ];
 let datapoints2 = [
     {label: "January", y: 20},
-    {label: "Feb", y: 22},
-    {label: "Mar", y: 27},
-    {label: "Apr", y: 22},
+    {label: "February", y: 22},
+    {label: "March", y: 27},
+    {label: "April", y: 22},
     {label: "May", y: 29},
-    {label: "Jun", y: 20},
+    {label: "June", y: 20},
     {label: "July", y: 50},
-    {label: "Aug", y: 40},
-    {label: "Sep", y: 42},
-    {label: "Oct", y: 46},
-    {label: "Nov", y: 57},
-    {label: "Dec", y: 52}
+    {label: "August", y: 40},
+    {label: "September", y: 42},
+    {label: "October", y: 46},
+    {label: "November", y: 57},
+    {label: "December", y: 52}
 ];
 let datapoints3 = [
     {label: "January", y: 16},
-    {label: "Feb", y: 19},
-    {label: "Mar", y: 21},
-    {label: "Apr", y: 21},
+    {label: "February", y: 19},
+    {label: "March", y: 21},
+    {label: "April", y: 21},
     {label: "May", y: 24},
-    {label: "Jun", y: 35},
+    {label: "June", y: 35},
     {label: "July", y: 40},
-    {label: "Aug", y: 50},
-    {label: "Sep", y: 60},
-    {label: "Oct", y: 70},
-    {label: "Nov", y: 80},
-    {label: "Dec", y: 90}
-];
-
-const singlePoints = [
-    {label: "Jan", y: 1},
-    {label: "Feb", y: 5},
-    {label: "Mar", y: 10},
-    {label: "Apr", y: 12},
-    {label: "May", y: 14},
-    {label: "Jun", y: 16},
-    {label: "Jul", y: 20},
-    {label: "Aug", y: 22},
-    {label: "Sep", y: 20},
-    {label: "Oct", y: 16},
-    {label: "Nov", y: 7},
-    {label: "Dec", y: 2}
+    {label: "August", y: 50},
+    {label: "September", y: 60},
+    {label: "October", y: 70},
+    {label: "November", y: 80},
+    {label: "December", y: 90}
 ];
 
 (function DrawChart() {
@@ -126,7 +111,7 @@ const singlePoints = [
                     chartColor: "#00d554",
                     fill: false,
                     dataLabel: "Data Set 1",
-                    datapoints: singlePoints
+                    datapoints: datapoints
                 }
             ]
         };
@@ -155,7 +140,7 @@ const singlePoints = [
                     chartColor: "#00d554",
                     fill: true,
                     dataLabel: "Data Set 1",
-                    datapoints: singlePoints
+                    datapoints: datapoints
                 }
             ]
         };
@@ -274,7 +259,7 @@ const singlePoints = [
             "data": [{
                 "chartColor": "#00d554",
                 "dataLabel": "Data set 1",
-                "datapoints": singlePoints
+                "datapoints": datapoints
             }]
         };
 
@@ -490,7 +475,7 @@ const singlePoints = [
                 "chartColor": "#00d554",
                 "fill": false,
                 "dataLabel": "Data Set 1",
-                "datapoints": singlePoints
+                "datapoints": datapoints
             }]
         };
 
@@ -558,7 +543,7 @@ const singlePoints = [
                 "chartColor": "#00d554",
                 "fill": true,
                 "dataLabel": "Data Set 1",
-                "datapoints": singlePoints
+                "datapoints": datapoints
             }]
         };
 
@@ -626,7 +611,7 @@ const singlePoints = [
                 "chartColor": "#00d554",
                 "fill": false,
                 "dataLabel" : "Data Set 1",
-                "datapoints": singlePoints
+                "datapoints": datapoints
             }]
         };
 
@@ -700,7 +685,7 @@ const singlePoints = [
                 "chartColor": "#00d554",
                 "fill": true,
                 "dataLabel" : "Data Set 1",
-                "datapoints": singlePoints
+                "datapoints": datapoints
             }]
         };
 
