@@ -9,7 +9,7 @@ const drawPieChart = require("../common/drawChart/pie_chart_canvas");
 // import PieChartUpperCanvas from "../common/drawUpperChart/pie_chart_upper_canvas";
 const PieChartUpperCanvas = require("../common/drawUpperChart/pie_chart_upper_canvas");
 
-function GkPieChart(data) {
+const GkPieChart = (data) => {
     try {
         // console.log("Start : pieChart");
         const chartSurface = new ChartSurface();
@@ -18,7 +18,7 @@ function GkPieChart(data) {
         let chart = data.data;
 
         chart.container = chartID;
-        var chartContainerSelector = document.querySelector("#" + chart.container);
+        const chartContainerSelector = document.querySelector("#" + chart.container);
         let ChartContainer = document.querySelector("#" + chart.container);
         chart.chartnumber = chartID;
         chart.wid = chartContainerSelector.clientWidth;
@@ -36,8 +36,8 @@ function GkPieChart(data) {
 
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chartHeight, chart.container);
         let canvas = 'canvas' + chart.chartnumber;
-        var linecord = [];
-        for (var i = 0; i < chart.data.length; i++) {
+        const linecord = [];
+        for (let i = 0; i < chart.data.length; i++) {
             drawPieChart(canvas, ctx_base, chart.data[i], linecord);
         }
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chartHeight, chart.container);
@@ -60,6 +60,6 @@ function GkPieChart(data) {
     } catch (err) {
         console.error("Exception occurred in pie chart module:  " + err.message);
     }
-}
+};
 
 module.exports = GkPieChart;

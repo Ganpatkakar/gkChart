@@ -15,7 +15,7 @@ const BarChartUpperCanvas = require("../common/drawUpperChart/line_chart_upper_c
 // import ClearDetails from "../common/drawUpperChart/clear_upper_canvas_details";
 const ClearDetails = require("../common/drawUpperChart/clear_upper_canvas_details");
 
-function GkBarChart(data) {
+const GkBarChart = (data) => {
     try {
         // console.log("Start : barChart");
         const chartSurface = new ChartSurface();
@@ -30,7 +30,7 @@ function GkBarChart(data) {
         chart.hei = ChartContainer.clientHeight - 33;
 
         let titleAndPrintButton = '';
-        if (!chart.config.title) {
+        if (chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
@@ -39,7 +39,7 @@ function GkBarChart(data) {
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
         (chart.yaxis === undefined) ? chart.yaxis = {} : null
 
-        if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
+        if (!chart.yaxis.max && !chart.yaxis.min) {
             chart.yaxis.max = parseInt(chart.data[0].datapoints[0].y);
             chart.yaxis.min = parseInt(chart.data[0].datapoints[0].y);
             for (let i = 0; i < chart.data.length; i++) {
@@ -55,19 +55,19 @@ function GkBarChart(data) {
             chart.yaxis.max += 10;
             (chart.yaxis.min >= 10) ? chart.yaxis.min += -10 : null
         }
-        if (chart.yaxis.difference === undefined) {
+        if (!chart.yaxis.difference) {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / 8);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
-        let barwidth = drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
+        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
         let canvas = 'canvas' + chart.chartnumber;
         let rangedata = [chart.yaxis.min, chart.yaxis.max];
         let linecord = [];
         let nextcurve = 100;
         let barChartCount = chart.data.length;
         for (let i = 0; i < chart.data.length; i++) {
-            drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], rangedata, nextcurve, chart.data[i].chartColor, linecord, barwidth, barChartCount);
-            nextcurve += barwidth + 5;
+            const rData = drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], rangedata, nextcurve, chart.data[i].chartColor, linecord, barChartCount, chart.data.length, chart.data.length);
+            nextcurve += rData.barwidth + 5;
         }
         drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
@@ -78,6 +78,6 @@ function GkBarChart(data) {
     } catch (err) {
         console.error("Exception occurred in bar chart module:  " + err.message);
     }
-}
+};
 
 module.exports = GkBarChart;

@@ -9,7 +9,7 @@ const drawDoughnutChart = require("../common/drawChart/doughnut_chart_canvas");
 // import DoughnutChartUpperCanvas from "../common/drawUpperChart/doughnut_chart_upper_canvas";
 const DoughnutChartUpperCanvas = require("../common/drawUpperChart/doughnut_chart_upper_canvas");
 
-function GkDoughnutChart(data) {
+const GkDoughnutChart = (data) => {
     try {
         // console.log("Start : donutChart");
         const chartSurface = new ChartSurface();
@@ -31,20 +31,18 @@ function GkDoughnutChart(data) {
         }
 
         let titleAndPrintButton = ''
-        if (chart.config.title != undefined) {
+        if (chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
         ChartContainer.innerHTML = titleAndPrintButton;
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chartHeight, chart.container);
-        // drawGrid(chart.chartnumber, 10, ctx_base, chart.data);
         let canvas = 'canvas' + chart.chartnumber;
         let linecord = [];
         let linewidth = 60;
         for (let i = 0; i < chart.data.length; i++) {
             drawDoughnutChart(canvas, ctx_base, chart.data[i], linecord, chartHeight);
         }
-        //// console.log(linecord);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chartHeight, chart.container);
         DoughnutChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container);
 
@@ -64,6 +62,6 @@ function GkDoughnutChart(data) {
     } catch (err) {
         console.error("Exception occurred in donut chart module:  " + err.message);
     }
-}
+};
 
 module.exports = GkDoughnutChart;

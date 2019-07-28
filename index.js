@@ -50,7 +50,7 @@ const GkLineChart = (data) => {
         chart.hei = ChartContainer.clientHeight - 33;
 
         let titleAndPrintButton = '';
-        if (!chart.config.title) {
+        if (chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
@@ -238,7 +238,7 @@ const GkBarChart = (data) => {
         chart.hei = ChartContainer.clientHeight - 33;
 
         let titleAndPrintButton = '';
-        if (!chart.config.title) {
+        if (chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
@@ -458,7 +458,7 @@ const GkColumnChart = (data) => {
         chart.hei = ChartContainer.clientHeight - 33;
 
         let titleAndPrintButton = ''
-        if (!chart.config.title) {
+        if (chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);

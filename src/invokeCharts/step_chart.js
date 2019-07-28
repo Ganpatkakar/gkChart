@@ -16,7 +16,7 @@ const LineChartUpperCanvas = require("../common/drawUpperChart/line_chart_upper_
 const ClearDetails = require("../common/drawUpperChart/clear_upper_canvas_details");
 
 
-function GkStepChart(data) {
+const GkStepChart = (data) => {
     try {
         // console.log("Start : stepChart");
         const chartSurface = new ChartSurface();
@@ -30,8 +30,8 @@ function GkStepChart(data) {
         chart.wid = ChartContainer.clientWidth - 10;
         chart.hei = ChartContainer.clientHeight - 33;
 
-        let titleAndPrintButton = ''
-        if (chart.config.title != undefined) {
+        let titleAndPrintButton = '';
+        if (chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
@@ -42,8 +42,8 @@ function GkStepChart(data) {
         if (chart.yaxis.max === undefined && chart.yaxis.min === undefined) {
             chart.yaxis.max = chart.data[0].datapoints[0].y;
             chart.yaxis.min = chart.data[0].datapoints[0].y;
-            for (var i = 0; i < chart.data.length; i++) {
-                for (var j = 0; j < chart.data[i].datapoints.length; j++) {
+            for (let i = 0; i < chart.data.length; i++) {
+                for (let j = 0; j < chart.data[i].datapoints.length; j++) {
                     if (chart.data[i].datapoints[j].y < chart.yaxis.min) {
                         chart.yaxis.min = chart.data[i].datapoints[j].y;
                     }
@@ -73,12 +73,11 @@ function GkStepChart(data) {
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
         LineChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart);
-        // this.drawUpperChart.lineChartUpperCanvas(chart.chartnumber, ctx_upper, chart.wid, chart.hei, linecord, chart.container, chart.type);
         printAction(chartID, chart);
         // console.log("End : stepChart");
     } catch (error) {
         console.log("Error Occured while chart calling of step chart" + error.message)
     }
-}
+};
 
 module.exports = GkStepChart;

@@ -7,7 +7,7 @@ const ChartSurface = require("../common/chart_surface");
 // import drawMeterChart from "../common/drawChart/meter_chart_canvas";
 const drawMeterChart = require("../common/drawChart/meter_chart_canvas");
 
-function GkMeterChart(data) {
+const GkMeterChart = (data) => {
     try {
         // console.log("Start : meterChart");
         const chartSurface = new ChartSurface();
@@ -21,14 +21,13 @@ function GkMeterChart(data) {
         chart.wid = ChartContainer.clientWidth - 10;
         chart.hei = ChartContainer.clientHeight - 33;
 
-        let titleAndPrintButton = ''
-        if (chart.config.title != undefined) {
+        let titleAndPrintButton = '';
+        if (chart.config.title) {
             titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
         }
         titleAndPrintButton += printOptions(chartID, chart);
         ChartContainer.innerHTML = titleAndPrintButton;
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
-        // drawGrid(chart.chartnumber, 10, ctx_base, chart.data);
         let canvas = 'canvas' + chart.chartnumber;
         let maxdata = [];
         maxdata[0] = maxdata[1] = chart.data[0].datapoints[0].y;
@@ -53,6 +52,6 @@ function GkMeterChart(data) {
     } catch (err) {
         console.error("Exception occurred in  meter chart module:  " + err.message);
     }
-}
+};
 
 module.exports = GkMeterChart;
