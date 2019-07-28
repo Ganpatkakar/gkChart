@@ -9,10 +9,10 @@ exports.font = "18px Arial";
 
 exports.barChart = "bar-chart";
 exports.columnChart = "column-chart";
-exports.linechart = "line-chart";
-exports.stepLinechart = "step-line-chart";
-exports.smoothLinechart = "smooth-line-chart";
-exports.barStepLineSmoothChart = "bar-step-line-smooth-chart";
+exports.lineChart = "line-chart";
+exports.stepLineChart = "step-line-chart";
+exports.smoothLineChart = "smooth-line-chart";
+exports.multiRandomChart = "multi-random";
 exports.pieChart = "pie-chart";
 exports.doughnutChart = "doughnut-chart";
 exports.meterChart = "meter-chart";

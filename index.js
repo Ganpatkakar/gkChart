@@ -530,16 +530,22 @@ const GkRandomChart = GkColumnChart;
 const GkChart = (chartData) => {
     try {
         // console.info("Enter: Chart Designing initialize function");
-        this.chartID = chartData.id;
+        let chartType = chartData.data.config.chartType;
 
-        switch(chartData.config.chartType){
-            case enums.linechart:
+        switch(chartType){
+            case enums.lineChart:
             {
                 GkLineChart(chartData);
                 break;
             }
 
             case enums.columnChart:
+            {
+                GkBarChart(chartData);
+                break;
+            }
+
+            case enums.barChart:
             {
                 GkBarChart(chartData);
                 break;
@@ -563,19 +569,19 @@ const GkChart = (chartData) => {
                 break;
             }
 
-            case enums.barStepLineSmoothChart:
+            case enums.multiRandomChart:
             {
                 GkRandomChart(chartData);
                 break;
             }
 
-            case enums.smoothLinechart:
+            case enums.smoothLineChart:
             {
                 GkSmoothLineChart(chartData);
                 break;
             }
 
-            case enums.stepLinechart:
+            case enums.stepLineChart:
             {
                 GkStepChart(chartData);
                 break;

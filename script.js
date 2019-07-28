@@ -6,7 +6,8 @@ import {
     GkMeterChart,
     GkPieChart,
     GkSmoothLineChart,
-    GkStepChart
+    GkStepChart,
+    GkChart
 } from "./index";
 
 let datapoints = [
@@ -81,7 +82,7 @@ let datapoints3 = [
         let chartline = {
             config: {
                 title: "Line Chart",
-                chartType: "line",
+                chartType: "line-chart",
                 printEnable: true
             },
             data: [
@@ -94,7 +95,7 @@ let datapoints3 = [
             ]
         };
 
-        GkLineChart({
+        GkChart({
             id: "line-chart",
             data: chartline
         });
@@ -105,7 +106,7 @@ let datapoints3 = [
         let chartLineFill = {
             config: {
                 title: "Line Chart Fill",
-                chartType: "line",
+                chartType: "line-chart",
                 printEnable: true
             },
             data: [
@@ -118,7 +119,7 @@ let datapoints3 = [
             ]
         };
 
-        GkLineChart({
+        GkChart({
             id: "chartLineFill",
             data: chartLineFill
         });
@@ -129,7 +130,7 @@ let datapoints3 = [
         var chartlineComparision = {
             config: {
                 title: "Multi Line Comparision Chart",
-                chartType: "line",
+                chartType: "line-chart",
                 printEnable: true
             },
             data: [
@@ -160,7 +161,7 @@ let datapoints3 = [
             ]
         };
 
-        GkLineChart({
+        GkChart({
             id: "line-chart-comparision",
             data: chartlineComparision
         });
@@ -170,7 +171,7 @@ let datapoints3 = [
         var chartlineComparisionFill = {
             config: {
                 title: "Multi Line Comparision Chart",
-                chartType: "line",
+                chartType: "line-chart",
                 printEnable: true
             },
             data: [
@@ -201,7 +202,7 @@ let datapoints3 = [
             ]
         };
 
-        GkLineChart({
+        GkChart({
             id: "line-chart-comparision-fill",
             data: chartlineComparisionFill
         });
@@ -211,7 +212,7 @@ let datapoints3 = [
         let chartbar = {
             "config": {
                 "title": "Bar Chart",
-                "chartType": 'bar',
+                "chartType": 'bar-chart',
                 "printEnable": true
             },
             "data": [{
@@ -221,14 +222,14 @@ let datapoints3 = [
             }]
         };
 
-        GkBarChart({id: "bar-chart", data: chartbar});
+        GkChart({id: "bar-chart", data: chartbar});
     }
 
     if (barChartComparision) {
         const chartmultibar = {
             "config": {
                 "title": "Multi Bar Chart Comparision",
-                "chartType": 'bar',
+                "chartType": 'bar-chart',
                 "printEnable": true
             },
             "data": [
@@ -255,7 +256,7 @@ let datapoints3 = [
             ]
         };
 
-        GkBarChart({id: "bar-chart-comparision", data: chartmultibar});
+        GkChart({id: "bar-chart-comparision", data: chartmultibar});
     }
 
     if (barChartWithSpline) {
@@ -294,14 +295,14 @@ let datapoints3 = [
             ]
         };
 
-        GkColumnChart({id: "bar-chart-with-smooth-line-chart", data: chartbar});
+        GkChart({id: "bar-chart-with-smooth-line-chart", data: chartbar});
     }
 
     if (doughnutChart) {
         const doughnut = {
             "config": {
                 "title": "Doughnut Chart",
-                "chartType": "donut",
+                "chartType": "doughnut-chart",
                 "printEnable": true
             },
             "data": [{
@@ -330,14 +331,14 @@ let datapoints3 = [
             }]
         };
 
-        GkDoughnutChart({id: "doughnut-chart", data: doughnut});
+        GkChart({id: "doughnut-chart", data: doughnut});
     }
 
     if (meterChart) {
         const meter = {
             "config": {
                 "title": "Meter Gauge Chart",
-                "chartType": "meter",
+                "chartType": "meter-chart",
                 "printEnable": true
             },
             "data": [ /*Give as required data in given formate, syntax error with json will cause of error in charts*/ {
@@ -367,14 +368,14 @@ let datapoints3 = [
             }]
         };
 
-        GkMeterChart({id: "meter-chart", data: meter});
+        GkChart({id: "meter-chart", data: meter});
     }
 
     if (pieChartId) {
         const pieChart = {
             "config": {
                 "title": "Pie Chart",
-                "chartType": "pie",
+                "chartType": "pie-chart",
                 "printEnable": true
             },
             "data": [{
@@ -403,7 +404,7 @@ let datapoints3 = [
             }]
         };
 
-        GkPieChart({id: "pie-chart", data: pieChart});
+        GkChart({id: "pie-chart", data: pieChart});
     }
 
     if (smoothChartId) {
@@ -411,7 +412,7 @@ let datapoints3 = [
         const chartsmoothline = {
             "config": {
                 "title": "Smooth Line Chart",
-                "chartType": "spline",
+                "chartType": "smooth-line-chart",
                 "printEnable": true
             },
             "data": [{
@@ -422,7 +423,7 @@ let datapoints3 = [
             }]
         };
 
-        GkSmoothLineChart({id: "smooth-chart", data: chartsmoothline});
+        GkChart({id: "smooth-chart", data: chartsmoothline});
     }
 
     if (smoothChartComparisionId) {
@@ -430,7 +431,7 @@ let datapoints3 = [
         const smoothLineComparision = {
             "config": {
                 "title": "Multi Smooth Line Comparision Chart",
-                "chartType": "spline",
+                "chartType": "smooth-line-chart",
                 "printEnable": true
             },
             "data": [
@@ -461,7 +462,7 @@ let datapoints3 = [
             ]
         };
 
-        GkSmoothLineChart({id: "smooth-chart-comparision", data: smoothLineComparision});
+        GkChart({id: "smooth-chart-comparision", data: smoothLineComparision});
     }
 
     if (smoothChartFillId) {
@@ -469,7 +470,7 @@ let datapoints3 = [
         const chartsmoothlinefill = {
             "config": {
                 "title": "Smooth Line Chart",
-                "chartType": "spline",
+                "chartType": "smooth-line-chart",
                 "printEnable": true
             },
             "data": [{
@@ -480,7 +481,7 @@ let datapoints3 = [
             }]
         };
 
-        GkSmoothLineChart({id: "smooth-chart-fill", data: chartsmoothlinefill});
+        GkChart({id: "smooth-chart-fill", data: chartsmoothlinefill});
     }
 
     if (smoothChartComparisionFillId) {
@@ -488,7 +489,7 @@ let datapoints3 = [
         const smoothLineComparisionFill = {
             "config": {
                 "title": "Multi Smooth Line Comparision Chart",
-                "chartType": "spline",
+                "chartType": "smooth-line-chart",
                 "printEnable": true
             },
             "data": [
@@ -519,7 +520,7 @@ let datapoints3 = [
             ]
         };
 
-        GkSmoothLineChart({id: "smooth-chart-comparision-fill", data: smoothLineComparisionFill});
+        GkChart({id: "smooth-chart-comparision-fill", data: smoothLineComparisionFill});
     }
 
     if(stepChartId) {
@@ -527,7 +528,7 @@ let datapoints3 = [
         const stepChart = {
             "config": {
                 "title": "Step Chart",
-                "chartType": "step",
+                "chartType": "step-line-chart",
                 "printEnable" : true
             },
             "data": [{
@@ -538,7 +539,7 @@ let datapoints3 = [
             }]
         };
 
-        GkStepChart({
+        GkChart({
             id: "step-chart",
             data: stepChart
         });
@@ -549,7 +550,7 @@ let datapoints3 = [
         let stepChartComparision = {
             "config": {
                 "title": "Multi Step Comparision Chart",
-                "chartType": "step",
+                "chartType": "step-line-chart",
                 "printEnable" : true
             },
             "data": [
@@ -580,7 +581,7 @@ let datapoints3 = [
             ]
         };
 
-        GkStepChart({
+        GkChart({
             id: "step-chart-comparision",
             data: stepChartComparision
         }) ;
@@ -591,7 +592,7 @@ let datapoints3 = [
         const stepChartFill = {
             "config": {
                 "title": "Step Chart",
-                "chartType": "step",
+                "chartType": "step-line-chart",
                 "printEnable" : true
             },
             "data": [{
@@ -602,7 +603,7 @@ let datapoints3 = [
             }]
         };
 
-        GkStepChart({
+        GkChart({
             id: "step-chart-fill",
             data: stepChartFill
         }) ;
@@ -613,7 +614,7 @@ let datapoints3 = [
         let stepChartComparisionFill = {
             "config": {
                 "title": "Multi Step Comparision Chart",
-                "chartType": "step",
+                "chartType": "step-line-chart",
                 "printEnable" : true
             },
             "data": [
@@ -644,7 +645,7 @@ let datapoints3 = [
             ]
         };
 
-        GkStepChart({
+        GkChart({
             id: "step-chart-comparision-fill",
             data: stepChartComparisionFill
         }) ;
