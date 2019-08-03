@@ -308,10 +308,72 @@ let datapoints3 = [
                 numOfRows : 5,
                 title : "Hours"
             },
+            xaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             "data": [{
                 "chartColor": "#00d554",
                 "dataLabel": "Data set 1",
-                "datapoints": datapoints
+                "datapoints": [
+                    {
+                        label: "Travel & Leisure",
+                        y: "41"
+                    },
+                    {
+                        label: "Advertising/Marketing/PR",
+                        y: "39"
+                    },
+                    {
+                        label: "Other",
+                        y: "38"
+                    },
+                    {
+                        label: "Real Estate",
+                        y: "32"
+                    },
+                    {
+                        label: "Communications/Cable/Phone",
+                        y: "26"
+                    },
+                    {
+                        label: "Construction",
+                        y: "25"
+                    },
+                    {
+                        label: "Entertainment",
+                        y: "25"
+                    },
+                    {
+                        label: "Staffing Firm/Full Time/Temporary",
+                        y: "24"
+                    },
+                    {
+                        label: "Transportation/Logistics",
+                        y: "23"
+                    },
+                    {
+                        label: "Utilities",
+                        y: "22"
+                    },
+                    {
+                        label: "Aerospace/Defense Products",
+                        y: "18"
+                    },
+                    {
+                        label: "Banking/Finance/Securities",
+                        y: "16"
+                    },
+                    {
+                        label: "Consumer Products - Non-Durables",
+                        y: "15"
+                    },
+                    {
+                        label: "Distribution",
+                        y: "13"
+                    }
+                ]
             }]
         };
 
@@ -321,7 +383,7 @@ let datapoints3 = [
     if (barChartComparision) {
         const chartmultibar = {
             "config": {
-                "title": "Multi Bar Chart Comparision",
+                "title": "Bar Chart",
                 "chartType": 'bar-chart',
                 "printEnable": true
             },
@@ -330,26 +392,119 @@ let datapoints3 = [
                 numOfRows : 5,
                 title : "Hours"
             },
+            xaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
             "data": [
                 {
-                    chartColor: "teal",
-                    dataLabel: "Data Set 1",
-                    datapoints: datapoints3
+                    "chartColor": "#00d554",
+                    "dataLabel": "Data set 1",
+                    "datapoints": [
+                        {
+                            label: "Travel & Leisure",
+                            y: "41"
+                        },
+                        {
+                            label: "Advertising/Marketing/PR",
+                            y: "39"
+                        },
+                        {
+                            label: "Other",
+                            y: "38"
+                        },
+                        {
+                            label: "Real Estate",
+                            y: "32"
+                        },
+                        {
+                            label: "Communications/Cable/Phone",
+                            y: "26"
+                        },
+                        {
+                            label: "Construction",
+                            y: "25"
+                        },
+                        {
+                            label: "Entertainment",
+                            y: "25"
+                        },
+                        {
+                            label: "Staffing Firm/Full Time/Temporary",
+                            y: "24"
+                        },
+                        {
+                            label: "Transportation/Logistics",
+                            y: "23"
+                        },
+                        {
+                            label: "Utilities",
+                            y: "22"
+                        },
+                        {
+                            label: "Aerospace/Defense Products",
+                            y: "18"
+                        },
+                        {
+                            label: "Banking/Finance/Securities",
+                            y: "16"
+                        }
+                    ]
                 },
                 {
-                    chartColor: "green",
-                    dataLabel: "Data Set 2",
-                    datapoints: datapoints1
-                },
-                {
-                    chartColor: "yellow",
-                    dataLabel: "Data Set 3",
-                    datapoints: datapoints2
-                },
-                {
-                    chartColor: "#00f0dd",
-                    dataLabel: "Data Set 4",
-                    datapoints: datapoints
+                    "chartColor": "rgb(93, 98, 181)",
+                    "dataLabel": "Data set 1",
+                    "datapoints": [
+                        {
+                            label: "Travel & Leisure",
+                            y: "30"
+                        },
+                        {
+                            label: "Advertising/Marketing/PR",
+                            y: "20"
+                        },
+                        {
+                            label: "Other",
+                            y: "18"
+                        },
+                        {
+                            label: "Real Estate",
+                            y: "41"
+                        },
+                        {
+                            label: "Communications/Cable/Phone",
+                            y: "40"
+                        },
+                        {
+                            label: "Construction",
+                            y: "35"
+                        },
+                        {
+                            label: "Entertainment",
+                            y: "15"
+                        },
+                        {
+                            label: "Staffing Firm/Full Time/Temporary",
+                            y: "4"
+                        },
+                        {
+                            label: "Transportation/Logistics",
+                            y: "2"
+                        },
+                        {
+                            label: "Utilities",
+                            y: "28"
+                        },
+                        {
+                            label: "Aerospace/Defense Products",
+                            y: "38"
+                        },
+                        {
+                            label: "Banking/Finance/Securities",
+                            y: "36"
+                        }
+                    ]
                 }
             ]
         };
