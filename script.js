@@ -1,15 +1,3 @@
-import {
-    GkLineChart,
-    GkBarChart,
-    GkColumnChart,
-    GkDoughnutChart,
-    GkMeterChart,
-    GkPieChart,
-    GkSmoothLineChart,
-    GkStepChart,
-    GkChart
-} from "./index";
-
 let datapoints = [
     {label: "January", y: 1},
     {label: "February", y: 2},
@@ -77,6 +65,8 @@ let datapoints3 = [
     const barChartComparision = document.getElementById("bar-chart-comparision");
     const barChartWithSpline = document.getElementById("bar-chart-with-smooth-line-chart");
 
+    const columnChart = document.getElementById("column-chart");
+    const columnChartComparision = document.getElementById("column-chart-comparision");
 
     const doughnutChart = document.getElementById("doughnut-chart");
     const meterChart = document.getElementById("meter-chart");
@@ -244,6 +234,67 @@ let datapoints3 = [
         });
     }
 
+    if (columnChart) {
+        let chartbar = {
+            "config": {
+                "title": "Column Chart",
+                "chartType": 'column-chart',
+                "printEnable": true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
+            "data": [{
+                "chartColor": "#00d554",
+                "dataLabel": "Data set 1",
+                "datapoints": datapoints
+            }]
+        };
+
+        GkChart({id: "column-chart", data: chartbar});
+    }
+
+    if (columnChartComparision) {
+        const chartmultibar = {
+            "config": {
+                "title": "Multi Column Chart Comparision",
+                "chartType": 'column-chart',
+                "printEnable": true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
+            "data": [
+                {
+                    chartColor: "teal",
+                    dataLabel: "Data Set 1",
+                    datapoints: datapoints3
+                },
+                {
+                    chartColor: "green",
+                    dataLabel: "Data Set 2",
+                    datapoints: datapoints1
+                },
+                {
+                    chartColor: "yellow",
+                    dataLabel: "Data Set 3",
+                    datapoints: datapoints2
+                },
+                {
+                    chartColor: "#00f0dd",
+                    dataLabel: "Data Set 4",
+                    datapoints: datapoints
+                }
+            ]
+        };
+
+        GkChart({id: "column-chart-comparision", data: chartmultibar});
+    }
+
     if (barChart) {
         let chartbar = {
             "config": {
@@ -338,9 +389,21 @@ let datapoints3 = [
                     "datapoints": datapoints
                 },
                 {
+                    "chartColor": "blue",
+                    "type": 'bar-chart',
+                    "dataLabel": "Data set 6",
+                    "datapoints": datapoints
+                },
+                {
                     "chartColor": "red",
                     "type": 'line-chart',
                     "dataLabel": "Data set 4",
+                    "datapoints": datapoints1
+                },
+                {
+                    "chartColor": "red",
+                    "type": 'bar-chart',
+                    "dataLabel": "Data set 5",
                     "datapoints": datapoints1
                 },
             ]
