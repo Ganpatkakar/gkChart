@@ -317,8 +317,9 @@ const GkBarChart = (data) => {
         }
         // let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
         let horizontalNr = chart.xaxis.numOfRows ? chart.xaxis.numOfRows : 8;
-        drawVerticalGrid(chart.chartnumber, horizontalNr, ctx_base, chart.data, maxTextWidth);
         let canvas = 'canvas' + chart.chartnumber;
+        drawVerticalGrid(chart.chartnumber, horizontalNr, ctx_base, chart.data, maxTextWidth);
+        drawDocumentationDetails(canvas, ctx_base, horizontalNr, chart, maxTextWidth);
         let rangedata = [chart.yaxis.min, chart.yaxis.max];
         let linecord = [];
         let nextcurve = 0;
@@ -340,7 +341,6 @@ const GkBarChart = (data) => {
             const rData = drawBarChart(barChartProps);
             nextcurve += rData.barHeight + 5;
         }
-        drawDocumentationDetails(canvas, ctx_base, horizontalNr, chart, maxTextWidth);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
         BarChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart);
