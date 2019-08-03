@@ -1,10 +1,13 @@
+const gkChartEnums = require("../invokeCharts/enums");
+const font = gkChartEnums.font;
+
 class DrawChart {
 
-    drawMeter(canvas, ctx, verticalNr, data, range, chartColor, ChartDataToShow) {
+    drawMeter(canvasId, ctx, verticalNr, data, range, chartColor, ChartDataToShow) {
         try {
             // console.log("Start : drawMeter");
-            var linecord = [];
-            var canvas = document.getElementById(canvas);
+            const linecord = [];
+            const canvas = document.getElementById(canvasId);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             var linewidth = 50;
             ctx.lineWidth = 4;
@@ -45,15 +48,15 @@ class DrawChart {
             ctx.fill();
             ctx.closePath();
             ctx.beginPath();
-            var rotateangel = Math.PI * (ChartDataToShow / 100) + 3.141592653589793;
+            let rotateangel = Math.PI * (ChartDataToShow / 100) + 3.141592653589793;
             //// console.log(rotateangel);
-            var headlen = 10;
+            // var headlen = 10;
             ctx.lineWidth = 6;
             ctx.lineCap = "round";
-            var tox = canvas.width / 2 + (radius * .8) * Math.cos(rotateangel);
-            var toy = canvas.height / 2 + (radius * .8) * Math.sin(rotateangel);
-            var fromx = canvas.width / 2;
-            var fromy = canvas.height / 2;
+            let tox = canvas.width / 2 + (radius * .8) * Math.cos(rotateangel);
+            let toy = canvas.height / 2 + (radius * .8) * Math.sin(rotateangel);
+            // var fromx = canvas.width / 2;
+            // var fromy = canvas.height / 2;
             ctx.moveTo(canvas.width / 2, canvas.height / 2);
             ctx.lineTo(tox, toy);
             ctx.strokeStyle = "#000";
@@ -65,18 +68,18 @@ class DrawChart {
             ctx.closePath();
 
             /* Draw piechart number values */
-            var angle = 3.141592653589793;
-            var x = Math.floor(canvas.width / 2);
-            var y = Math.floor(canvas.height / 2);
+            let angle = 3.141592653589793;
+            // let x = Math.floor(canvas.width / 2);
+            // let y = Math.floor(canvas.height / 2);
             ctx.fillStyle = "#000";
-            ctx.font = "18px Arial";
+            ctx.font = font;
             ctx.save();
 
             /*Text in data format loop*/
-            var anglenew;
+            let anglenew;
             for (i = 0; i < data.datapoints.length; i++) {
                 anglenew = (Math.PI * 2 * (data.datapoints[i].y / myTotal)) / 2;
-                var anglemiddle = anglenew / 6;
+                let anglemiddle = anglenew / 6;
                 /*ctx.translate(x, y);
                  ctx.rotate(angle + anglemiddle);
                  ctx.translate(-x, -y);
@@ -84,8 +87,8 @@ class DrawChart {
                  angle = (Math.PI * (data.datapoints[i].y / myTotal)) - anglemiddle;*/
                 //// console.log(angle);
 
-                var fx = canvas.width / 2 + (radius * 1.01) * Math.cos(angle + anglemiddle);
-                var fy = canvas.height / 2 + (radius * 1.01) * Math.sin(angle + anglemiddle);
+                let fx = canvas.width / 2 + (radius * 1.01) * Math.cos(angle + anglemiddle);
+                let fy = canvas.height / 2 + (radius * 1.01) * Math.sin(angle + anglemiddle);
                 ctx.translate(fx, fy);
                 ctx.rotate(angle + 1.8);
                 ctx.fillText(data.datapoints[i].label.toString(), 0, 0);

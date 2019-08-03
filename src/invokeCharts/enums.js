@@ -5,7 +5,7 @@ exports.white = "#fff";
 exports.blackFillStyle = "#000";
 exports.canvasHeightSpareForDetails = 105;
 exports.canvasWidthSpareForDetails = 100;
-exports.font = "18px Arial";
+exports.font = "26px  Source Sans Pro";
 
 exports.barChart = "bar-chart";
 exports.columnChart = "column-chart";

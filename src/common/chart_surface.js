@@ -1,24 +1,27 @@
+const gkChartEnums = require("../invokeCharts/enums");
+const font = gkChartEnums.font;
+
 class ChartSurface {
 
     ratio(canvasContainer) {
-        let ctx = canvasContainer.getContext('2d');
-        let dpr = window.devicePixelRatio || 1;
-        let bsr = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1;
+        // let ctx = canvasContainer.getContext('2d');
+        // let dpr = window.devicePixelRatio || 1;
+        // let bsr = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1;
         // return dpr / bsr;
         return 2;
     }
 
-    prepSurface(nr, width, height, container) {
+    prepSurface(nr, width, height, containerId) {
         try {
             // console.log("Start : prepSurface");
-            var canvas = document.createElement("CANVAS");
+            const canvas = document.createElement("CANVAS");
             canvas.id = 'canvas' + nr;
             canvas.setAttribute('class', 'canvas');
             canvas.setAttribute("style", "position:absolute");
-            var container = document.getElementById(container);
+            const container = document.getElementById(containerId);
             container.appendChild(canvas);
 
-            var canvasDom = document.getElementById('canvas' + nr);
+            const canvasDom = document.getElementById('canvas' + nr);
             canvasDom.width = width * this.ratio(canvasDom);
             canvasDom.height = height * this.ratio(canvasDom);
             canvasDom.style.width = width + "px";
@@ -36,9 +39,9 @@ class ChartSurface {
         try {
             // console.log("Start : prepUI");
             //// console.log(nr);
-            var canvas = document.getElementById('canvas' + nr);
-            var ctx = canvas.getContext('2d');
-            ctx.font = "23px arial";
+            const canvas = document.getElementById('canvas' + nr);
+            const ctx = canvas.getContext('2d');
+            ctx.font = font;
             ctx.lineWidth = 1;
             // console.log("End : prepUI");
             return ctx;
@@ -51,7 +54,7 @@ class ChartSurface {
         try {
             // console.log("Start : preparePlot");
             this.prepSurface(nr, sizex, sizey, container);
-            var canvasContext = this.prepUI(nr);
+            const canvasContext = this.prepUI(nr);
             // console.log("End : preparePlot");
             return canvasContext;
         } catch (e) {
@@ -59,11 +62,11 @@ class ChartSurface {
         }
     }
 
-    prepSurfaceupper(nr, width, height, container) {
+    prepSurfaceupper(nr, width, height, containerId) {
         try {
             // console.log("Start : prepSurfaceupper");
-            var container = document.getElementById(container);
-            var innerCotent =
+            const container = document.getElementById(containerId);
+            let innerCotent =
                 `<canvas id="canvasupper${nr}" class="canvas" style="position:absolute;"
                     width="${width}" height="${height}"> </canvas>
                 <div class="canvasjs-chart-tooltip" style="position:absolute;height:auto;
@@ -74,7 +77,7 @@ class ChartSurface {
                 </div>`;
             container.insertAdjacentHTML('beforeend', innerCotent);
 
-            var canvasDom = document.getElementById('canvasupper' + nr);
+            let canvasDom = document.getElementById('canvasupper' + nr);
             canvasDom.width = width * this.ratio(canvasDom);
             canvasDom.height = height * this.ratio(canvasDom);
             canvasDom.style.width = width + "px";
@@ -89,8 +92,8 @@ class ChartSurface {
     prepUIUpper(nr) {
         try {
             // console.log("Start : prepUIUpper");
-            var canvas = document.getElementById('canvasupper' + nr);
-            var ctx = canvas.getContext('2d');
+            const canvas = document.getElementById('canvasupper' + nr);
+            const ctx = canvas.getContext('2d');
             //ctx.font = '18px Arial';
             ctx.lineWidth = 1;
             // console.log("End : prepUIUpper");
@@ -104,7 +107,7 @@ class ChartSurface {
         try {
             // console.log("Start : preparePlotUpper");
             this.prepSurfaceupper(nr, sizex, sizey, container);
-            var canvasContext = this.prepUIUpper(nr);
+            const canvasContext = this.prepUIUpper(nr);
             // console.log("End : preparePlotUpper");
             return canvasContext;
         } catch (e) {
