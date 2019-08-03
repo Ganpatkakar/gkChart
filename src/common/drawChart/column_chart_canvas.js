@@ -48,7 +48,7 @@ function drawColumnChart(canvasId, ctx, verticalNr, data, range, curx, chartColo
         for (let i = 0; i < data.datapoints.length; i++) {
             var rectHeight = (hei - (data.datapoints[i].y - range[0]) * verticalCoefficient);
             let barChartWidth = barChartCount * barwidth + (barChartCount - 1) * 5;
-            let fromLeft = (i * spacingHorizontal + spacingHorizontal / 2 + curx) - barChartWidth / 2;
+            let fromLeft = (i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails + curx) - barChartWidth / 2;
             var newobj = {
                 x: fromLeft,
                 y: rectHeight,

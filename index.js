@@ -378,7 +378,7 @@ const GkColumnChart = (data) => {
         let canvas = 'canvas' + chart.chartnumber;
         let rangedata = [chart.yaxis.min, chart.yaxis.max];
         let linecord = [];
-        let nextcurve = 100;
+        let nextcurve = 0;
         let barChartCount = chart.data.length;
         for (let i = 0; i < chart.data.length; i++) {
             const rData = drawColumnChart(canvas, ctx_base, verticaldevisions, chart.data[i], rangedata, nextcurve, chart.data[i].chartColor, linecord, barChartCount, chart.data.length, chart.data.length);
