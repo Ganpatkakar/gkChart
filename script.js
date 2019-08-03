@@ -1,3 +1,4 @@
+import {GkChart} from "./index";
 let datapoints = [
     {label: "January", y: 1},
     {label: "February", y: 2},
