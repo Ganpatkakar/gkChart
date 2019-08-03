@@ -8,6 +8,10 @@ const ChartSurface = require("./src/common/chart_surface");
 const Grids =  require("./src/common/grid");
 const drawGrid =  Grids.drawGrid;
 const drawGraphicLinearYcord =  Grids.drawGraphicLinearYcord;
+
+const verticalGrids =  require("./src/common/vertical-grid");
+const drawVerticalGrid =  verticalGrids.drawVerticalGrid;
+const drawDocumentationDetails  =  verticalGrids.drawDocumentationDetails;
 // import drawLineChart from "./src/common/drawChart/line_chart_canvas";
 const drawLineChart = require("./src/common/drawChart/line_chart_canvas");
 // import LineChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
@@ -295,23 +299,48 @@ const GkBarChart = (data) => {
             }
             console.log(chart.yaxis.max, chart.yaxis.min);
         }
+
+        let maxTextWidth = chart.data[0].datapoints.reduce((acc, value) => {
+            const labelTextWidth = ctx_base.measureText(value.label).width;
+            if (labelTextWidth > acc) {
+                acc = labelTextWidth + 20;
+            }
+            return acc;
+        }, 0);
+
+        console.log(maxTextWidth);
+
         if (!chart.yaxis.numOfRows) {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / 8);
         } else {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
         }
-        let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
-        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
+        // let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
+        let horizontalNr = chart.xaxis.numOfRows ? chart.xaxis.numOfRows : 8;
+        drawVerticalGrid(chart.chartnumber, horizontalNr, ctx_base, chart.data, maxTextWidth);
         let canvas = 'canvas' + chart.chartnumber;
         let rangedata = [chart.yaxis.min, chart.yaxis.max];
         let linecord = [];
-        let nextcurve = 100;
+        let nextcurve = 0;
         let barChartCount = chart.data.length;
         for (let i = 0; i < chart.data.length; i++) {
-            const rData = drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], rangedata, nextcurve, chart.data[i].chartColor, linecord, barChartCount, chart.data.length, chart.data.length);
-            nextcurve += rData.barwidth + 5;
+            const barChartProps = {
+                canvas,
+                ctx_base,
+                horizontalNr,
+                data: chart.data[i],
+                rangedata,
+                nextcurve,
+                chartColor: chart.data[i].chartColor,
+                linecord,
+                barChartCount,
+                chartDataLength: chart.data.length,
+                maxTextWidth
+            };
+            const rData = drawBarChart(barChartProps);
+            nextcurve += rData.barHeight + 5;
         }
-        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
+        drawDocumentationDetails(canvas, ctx_base, horizontalNr, chart, maxTextWidth);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
         BarChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart);
