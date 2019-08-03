@@ -69,7 +69,7 @@ function drawBarChart(props) {
             const barChartWidth = (data.datapoints[i].y - range[0]) * horizontalCoefficient;
             // let barChartWidth = barChartCount * barWidth + (barChartCount - 1) * 5;
             let fromLeft = canvasWidthSpareForDetails;
-            let fromTop = (i * spacingVertical + spacingVertical / 2 + curx) - barHeight / 2;
+            let fromTop = (i * spacingVertical + spacingVertical / 2 + curx) - (barHeight / 2) * barChartCount;
             const newObj = {
                 x: fromLeft,
                 y: fromTop,
