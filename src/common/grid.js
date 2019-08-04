@@ -143,7 +143,7 @@ const drawGraphicLinearYcord = (canvasId, ctx, verticalNr, cdata, maxTextWidth =
             let yAxis = canvas.height - (i * spacingVertical + canvasHeightSpareForDetails);
             yAxis = i !== verticalNr ? yAxis : yAxis + fontLineHeight;
             const text = String(Math.floor(i * difference + min));
-            const xAxis = spacingVertical - ctx.measureText(text).width - 20;
+            const xAxis = canvasWidthSpareForDetails - ctx.measureText(text).width - 20;
             ctx.fillText(text, xAxis, yAxis);
         }
         //ctx.restore();
