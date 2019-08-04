@@ -64,10 +64,10 @@ let datapoints3 = [
 
     const barChart = document.getElementById("bar-chart");
     const barChartComparision = document.getElementById("bar-chart-comparision");
-    const barChartWithSpline = document.getElementById("bar-chart-with-smooth-line-chart");
 
     const columnChart = document.getElementById("column-chart");
     const columnChartComparision = document.getElementById("column-chart-comparision");
+    const columnChartWithSpline = document.getElementById("column-chart-with-smooth-line-chart");
 
     const doughnutChart = document.getElementById("doughnut-chart");
     const meterChart = document.getElementById("meter-chart");
@@ -512,7 +512,7 @@ let datapoints3 = [
         GkChart({id: "bar-chart-comparision", data: chartmultibar});
     }
 
-    if (barChartWithSpline) {
+    if (columnChartWithSpline) {
 
         var chartbar = {
             "config": {
@@ -528,13 +528,13 @@ let datapoints3 = [
             "data": [
                 {
                 "chartColor": "#00d554",
-                "type": 'bar-chart',
+                "type": 'column-chart',
                 "dataLabel": "Data set 1",
                 "datapoints": datapoints2
                 },
                 {
                     "chartColor": "teal",
-                    "type": 'bar-chart',
+                    "type": 'column-chart',
                     "dataLabel": "Data set 2",
                     "datapoints": datapoints3
                 },
@@ -546,7 +546,7 @@ let datapoints3 = [
                 },
                 {
                     "chartColor": "blue",
-                    "type": 'bar-chart',
+                    "type": 'column-chart',
                     "dataLabel": "Data set 6",
                     "datapoints": datapoints
                 },
@@ -558,14 +558,14 @@ let datapoints3 = [
                 },
                 {
                     "chartColor": "red",
-                    "type": 'bar-chart',
+                    "type": 'column-chart',
                     "dataLabel": "Data set 5",
                     "datapoints": datapoints1
                 },
             ]
         };
 
-        GkChart({id: "bar-chart-with-smooth-line-chart", data: chartbar});
+        GkChart({id: "column-chart-with-smooth-line-chart", data: chartbar});
     }
 
     if (doughnutChart) {
