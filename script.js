@@ -56,6 +56,24 @@ let datapoints3 = [
     {label: "December", y: 90}
 ];
 
+const dataPoint5 = [
+    {label: "East", y: 1441290},
+    {label: "West", y: 855912},
+    {label: "South", y: 911404},
+    {label: "North", y: 648136},
+];
+const dataPoint6 = [
+    {label: "East", y: 1297430},
+    {label: "West", y: 776485},
+    {label: "South", y: 685352},
+    {label: "North", y: 726791},
+];const dataPoint7 = [
+    {label: "East", y: 143860},
+    {label: "West", y: 79427},
+    {label: "South", y: 226052},
+    {label: "North", y: 78655},
+];
+
 (function DrawChart() {
     const lineChart = document.getElementById("line-chart");
     const chartLineFill = document.getElementById("chartLineFill");
@@ -67,7 +85,10 @@ let datapoints3 = [
 
     const columnChart = document.getElementById("column-chart");
     const columnChartComparision = document.getElementById("column-chart-comparision");
+
     const columnChartWithSpline = document.getElementById("column-chart-with-smooth-line-chart");
+    const columnLineAndAriaChart = document.getElementById("column-line-and-aria-chart");
+    const columnSmoothLineAndAriaChart = document.getElementById("column-smooth-line-and-aria-chart");
 
     const doughnutChart = document.getElementById("doughnut-chart");
     const meterChart = document.getElementById("meter-chart");
@@ -959,6 +980,82 @@ let datapoints3 = [
             id: "step-chart-comparision-fill",
             data: stepChartComparisionFill
         }) ;
+    }
+
+    if(columnLineAndAriaChart) {
+        const chartbar = {
+            "config": {
+                "title": "Column line and aria chart",
+                "chartType": 'combination-chart',
+                "printEnable": true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
+            "data": [
+                {
+                    "chartColor": "#5d62b5",
+                    "type": 'column-chart',
+                    "dataLabel": "Data set 1",
+                    "datapoints": dataPoint5
+                },
+                {
+                    "chartColor": "#29c3be",
+                    "type": 'line-chart',
+                    "dataLabel": "Data set 6",
+                    "datapoints": dataPoint6
+                },
+                {
+                    "chartColor": "#f2726f",
+                    "type": 'line-chart',
+                    "fill": true,
+                    "dataLabel": "Data set 5",
+                    "datapoints": dataPoint7
+                },
+            ]
+        };
+
+        GkChart({id: "column-line-and-aria-chart", data: chartbar});
+    }
+
+    if(columnSmoothLineAndAriaChart) {
+        const chartbar = {
+            "config": {
+                "title": "Column line and aria chart",
+                "chartType": 'combination-chart',
+                "printEnable": true
+            },
+            yaxis : {
+                min : 0,
+                numOfRows : 5,
+                title : "Hours"
+            },
+            "data": [
+                {
+                    "chartColor": "#5d62b5",
+                    "type": 'column-chart',
+                    "dataLabel": "Data set 1",
+                    "datapoints": dataPoint5
+                },
+                {
+                    "chartColor": "#29c3be",
+                    "type": 'smooth-line-chart',
+                    "dataLabel": "Data set 6",
+                    "datapoints": dataPoint6
+                },
+                {
+                    "chartColor": "#f2726f",
+                    "type": 'smooth-line-chart',
+                    "fill": true,
+                    "dataLabel": "Data set 5",
+                    "datapoints": dataPoint7
+                },
+            ]
+        };
+
+        GkChart({id: "column-smooth-line-and-aria-chart", data: chartbar});
     }
 
 })();
