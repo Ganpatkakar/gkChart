@@ -14,8 +14,8 @@ class DrawChartUpperCanvas {
     }
 
     ratio(ctx) {
-        var dpr = window.devicePixelRatio || 1;
-        var bsr = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1;
+        // var dpr = window.devicePixelRatio || 1;
+        // var bsr = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1;
         return 2;
         //return dpr / bsr;
     }
@@ -24,7 +24,7 @@ class DrawChartUpperCanvas {
         try {
             // console.log("Start : lineChartUpperCanvas");
             let dataPointLen = chart.data[0].datapoints.length;
-            let wid = document.getElementById('canvasupper' + nr).width - canvasWidthSpareForDetails
+            let wid = document.getElementById('canvasupper' + nr).width - canvasWidthSpareForDetails;
             var spacingHorizontal = wid / dataPointLen;
             let lineCordRepeat = linecord.length / dataPointLen;
             const canvasUpper = document.getElementById('canvasupper' + nr);
@@ -48,8 +48,8 @@ class DrawChartUpperCanvas {
                                 ctx.arc(linecord[position].x, linecord[position].y, 12, 0, 2 * Math.PI);
                                 // console.log("lineChart compare mouse over on upper canvas");
                                 //ctx.lineWidth = 5;
-                                ctx.strokeStyle = linecord[position].dataColor //'rgba(0,0,0,.7)';
-                                ctx.fillStyle = linecord[position].dataColor //'rgba(0,0,0,.7)';
+                                ctx.strokeStyle = linecord[position].dataColor; //'rgba(0,0,0,.7)';
+                                ctx.fillStyle = linecord[position].dataColor; //'rgba(0,0,0,.7)';
                                 //ctx.stroke();
                                 ctx.fill();
                                 if (chartToolTip) {
@@ -63,7 +63,7 @@ class DrawChartUpperCanvas {
                             }
 
                             ctx.beginPath();
-                            let lineX = x1 + (spacingHorizontal / 2)
+                            let lineX = x1 + (spacingHorizontal / 2);
                             ctx.setLineDash([5, 15]);
                             ctx.strokeStyle = strokeStyle;
                             ctx.lineWidth = 1;
@@ -149,12 +149,12 @@ class DrawChartUpperCanvas {
     clearDetails(nr, ctx, container) {
         const canvasUpperNr = document.getElementById('canvasupper' + nr);
         if (canvasUpperNr) {
-            canvasUpperNr.addEventListener('mousemove', function (evt) {
+            canvasUpperNr.addEventListener('mousemove', function () {
                 this.details = '';
                 ctx.clearRect(0, 0, canvasUpperNr.width, canvasUpperNr.height);
             }.bind(this));
 
-            canvasUpperNr.addEventListener('mouseout', function (evt) {
+            canvasUpperNr.addEventListener('mouseout', function () {
                 setTimeout(function () {
                     ctx.clearRect(0, 0, canvasUpperNr.width, canvasUpperNr.height);
                     const chartToolTip = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
@@ -206,7 +206,7 @@ class DrawChartUpperCanvas {
                     }
                 }.bind(this), false);
 
-                canvasUpper.addEventListener('mouseout', function (evt) {
+                canvasUpper.addEventListener('mouseout', function () {
                     setTimeout(function () {
                         ctx.clearRect(0, 0, canvasUpperWidth, canvasUpperHeight);
                         cssStyle(chartToolTip, {
@@ -256,7 +256,7 @@ class DrawChartUpperCanvas {
                         }
                     }
                 }.bind(this), false);
-                canvasUpper.addEventListener('mouseout', function (evt) {
+                canvasUpper.addEventListener('mouseout', function () {
                     setTimeout(function () {
                         ctx.clearRect(0, 0, canvasUpperWidth,canvasUpperHeight);
                         if(chartToolTip) {
