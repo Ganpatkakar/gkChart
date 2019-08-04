@@ -1,7 +1,7 @@
 const gkChartConsts = require("../../invokeCharts/enums");
 
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
-const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
 function drawColumnChart(props) {
     try {
@@ -15,6 +15,12 @@ function drawColumnChart(props) {
         const chartColor = props.chartColor;
         const columnCords = props.columnCords;
         const columnChartCount = props.columnChartCount;
+        const maxTextWidth = props.hasOwnProperty("maxTextWidth") ? props.maxTextWidth : 0;
+        const animation = props.hasOwnProperty("animate") ? props.animate : true;
+
+        if(maxTextWidth > canvasWidthSpareForDetails) {
+            canvasWidthSpareForDetails = maxTextWidth;
+        }
 
         const canvas = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
@@ -23,6 +29,8 @@ function drawColumnChart(props) {
         const totalRange = range[1] - range[0];
         const verticalCoefficient = hei / totalRange;
         const barwidth = spacingHorizontal / columnChartCount * .60;
+
+        // ctx.globalCompositeOperation='destination-over';
 
         const calcWayPoints = (points) => {
             let wayPoints = [];
@@ -71,13 +79,21 @@ function drawColumnChart(props) {
             };
             columnCords.push(newobj);
             localColumnCords.push(newobj);
+            if(!animation) {
+                ctx.beginPath();
+                ctx.globalAlpha = 1;
+                ctx.fillStyle = chartColor;
+                ctx.fillRect(newobj.x, newobj.y, barwidth, newobj.hei);
+                ctx.closePath();
+            }
         }
+        if(animation) {
+            let points = calcWayPoints(localColumnCords);
 
-        let points = calcWayPoints(localColumnCords);
-
-        for (let i = 0; i < points.length; i++) {
-            let t = 0;
-            animate(points[i], t, chartColor);
+            for (let i = 0; i < points.length; i++) {
+                let t = 0;
+                animate(points[i], t, chartColor);
+            }
         }
 
         return {columnCords, barwidth};
