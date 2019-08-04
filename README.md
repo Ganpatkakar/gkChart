@@ -13,6 +13,18 @@ There are two different version of gkCharts :-
 2. For React/Angular/Vue js NPM package
   To use with npm package run command => npm i gk-chart
 
+### Type of charts possible and the naming conventions
+    barChart = "bar-chart";
+    columnChart = "column-chart";
+    lineChart = "line-chart";
+    stepLineChart = "step-line-chart";
+    smoothLineChart = "smooth-line-chart";
+    multiRandomChart = "multi-random";
+    combinationChart = "combination-chart";
+    pieChart = "pie-chart";
+    doughnutChart = "doughnut-chart";
+    meterChart = "meter-chart";
+
 ### How to use GkChart Library or GkChart NPM package (npm install gk-cahrt) :-
 GkCharts support more than 20+ combination of charts with 8 chart types.
 
