@@ -9,18 +9,25 @@ const gkChartConsts = require("../../invokeCharts/enums");
 
 const strokeStyle = gkChartConsts.strokeStyle;
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
-const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-function BarChartUpperCanvas(nr, ctx, linecord, container, chart) {
+function BarChartUpperCanvas(nr, ctx, linecord, container, chart, maxTextWidth) {
     try {
         // console.log("Start : barChartUpperCanvas");
+        if(maxTextWidth > canvasWidthSpareForDetails) {
+            canvasWidthSpareForDetails = maxTextWidth;
+        }
+
         let dataPointLen = chart.data[0].datapoints.length;
         let wid = document.getElementById('canvasupper' + nr).width - canvasWidthSpareForDetails;
+        let hei = document.getElementById('canvasupper' + nr).height - canvasHeightSpareForDetails;
         const spacingHorizontal = wid / dataPointLen;
+        const spacingVertical = hei / dataPointLen;
         let lineCordRepeat = linecord.length / dataPointLen;
         const canvasUpper = document.getElementById('canvasupper' + nr);
         const chartToolTip = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
         const canvasUpperHeight = canvasUpper.height;
+        // const barHeight = spacingVertical / lineCordRepeat * .80;
         // const canvasUpperWidth = canvasUpper.width;
         if(canvasUpper) {
             canvasUpper.addEventListener('mousemove', function (evt) {
@@ -28,16 +35,16 @@ function BarChartUpperCanvas(nr, ctx, linecord, container, chart) {
                 let details = '';
                 for (let i = 0; i < dataPointLen; i++) {
                     ctx.beginPath();
-                    let x1 = i * spacingHorizontal + canvasWidthSpareForDetails;
-                    let x2 = spacingHorizontal;
-                    let y1 = 0;
-                    let y2 = canvasUpperHeight - canvasHeightSpareForDetails;
+                    let x1 = canvasWidthSpareForDetails;
+                    let x2 = wid;
+                    let y1 = i * spacingVertical;
+                    let y2 = spacingVertical;
                     ctx.rect(x1, y1, x2, y2);
 
                     if (ctx.isPointInStroke(mousePos.x, mousePos.y) || ctx.isPointInPath(mousePos.x, mousePos.y)) {
                         ctx.beginPath();
                         ctx.rect(x1, y1, x2, y2);
-                        ctx.fillStyle = 'rgba(0,0,0,.05)';
+                        ctx.fillStyle = 'rgba(0,0,0,.1)';
                         ctx.fill();
                         ctx.closePath();
                         for (let j = 0; j < lineCordRepeat; j++) {
