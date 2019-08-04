@@ -1,11 +1,15 @@
 const gkChartConsts = require("../../invokeCharts/enums");
 
-const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
-const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+let canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
+let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-function drawLineChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord) {
+function drawLineChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord, maxTextWidth) {
     try {
         // console.log("Start : drawGraphicLinear");
+        if(maxTextWidth > canvasWidthSpareForDetails) {
+            canvasWidthSpareForDetails = maxTextWidth;
+        }
+
         const commonCodeCircle = () => {
             ctx.beginPath();
             ctx.fillStyle = chartColor;
@@ -27,7 +31,7 @@ function drawLineChart(canvasId, ctx, verticalNr, data, range, chartColor, linec
                 ctx.lineTo(vertices[vertices.length - 1].x, hei);
             }
             ctx.closePath();
-            ctx.globalAlpha = 0.1;
+            ctx.globalAlpha = 0.3;
             ctx.fillStyle = chartColor;
             ctx.fill();
         };
