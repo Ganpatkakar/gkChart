@@ -5,11 +5,14 @@ const fontLineHeight = gkChartConsts.fontLineHeight;
 const strokeStyle = gkChartConsts.strokeStyle;
 const blackFillStyle = gkChartConsts.blackFillStyle;
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
-const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-const drawGrid = (nr, verticanNr, ctx, data) => {
+const drawGrid = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
     try {
         // console.log("Start : drawGrid");
+        if(maxTextWidth > canvasWidthSpareForDetails) {
+            canvasWidthSpareForDetails = maxTextWidth;
+        }
         const canvas = document.getElementById('canvas' + nr);
         const hei = canvas.height - canvasHeightSpareForDetails;
         //// console.log("canvas height to draw grid lines:" + hei);
@@ -75,10 +78,12 @@ const drawGrid = (nr, verticanNr, ctx, data) => {
     }
 };
 
-const drawGraphicLinearYcord = (canvasId, ctx, verticalNr, cdata) => {
+const drawGraphicLinearYcord = (canvasId, ctx, verticalNr, cdata, maxTextWidth = 0) => {
     try {
         // console.log("Start : drawGraphicLinearYcord");
-        //// console.log(cdata);
+        if(maxTextWidth > canvasWidthSpareForDetails) {
+            canvasWidthSpareForDetails = maxTextWidth;
+        }
         const canvas = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
@@ -135,7 +140,11 @@ const drawGraphicLinearYcord = (canvasId, ctx, verticalNr, cdata) => {
             // const max = cdata.yaxis.max;
             const min = cdata.yaxis.min;
             const difference = cdata.yaxis.difference;
-            ctx.fillText(i * difference + min, 35, canvas.height - (i * spacingVertical + canvasHeightSpareForDetails));
+            let yAxis = canvas.height - (i * spacingVertical + canvasHeightSpareForDetails);
+            yAxis = i !== verticalNr ? yAxis : yAxis + fontLineHeight;
+            const text = String(Math.floor(i * difference + min));
+            const xAxis = spacingVertical - ctx.measureText(text).width - 20;
+            ctx.fillText(text, xAxis, yAxis);
         }
         //ctx.restore();
         ctx.closePath();
