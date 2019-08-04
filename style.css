@@ -292,17 +292,17 @@ pre {
     }
 }
 
-.chartTitle {
-    font-size: 16px;
-    background: #009788;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-top-right-radius: 2px;
-    border-top-left-radius: 2px;
-    padding: 15px;
-    margin: 0 0 30px
-}
+/*.chartTitle {*/
+/*    font-size: 16px;*/
+/*    background: #009788;*/
+/*    color: #fff;*/
+/*    text-transform: uppercase;*/
+/*    letter-spacing: 1px;*/
+/*    border-top-right-radius: 2px;*/
+/*    border-top-left-radius: 2px;*/
+/*    padding: 15px;*/
+/*    margin: 0 0 30px*/
+/*}*/
 
 .chartDiv {
     height: 450px;
@@ -521,4 +521,8 @@ pre {
 
 .donation-paypal {
     width: 150px
+}
+
+.content-center {
+
 }
