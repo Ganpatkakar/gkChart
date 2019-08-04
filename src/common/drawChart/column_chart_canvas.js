@@ -3,16 +3,26 @@ const gkChartConsts = require("../../invokeCharts/enums");
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-function drawColumnChart(canvasId, ctx, verticalNr, data, range, curx, chartColor, linecord, barChartCount, chartDataLength) {
+function drawColumnChart(props) {
     try {
         // console.log("Start : drawBar");
+        const canvasId = props.canvas;
+        const ctx = props.ctx_base;
+        const verticalNr = props.verticaldevisions;
+        const data = props.data;
+        const range = props.range;
+        const curx = props.nextcurve;
+        const chartColor = props.chartColor;
+        const columnCords = props.columnCords;
+        const columnChartCount = props.columnChartCount;
+
         const canvas = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         const spacingHorizontal = wid / data.datapoints.length;
         const totalRange = range[1] - range[0];
         const verticalCoefficient = hei / totalRange;
-        const barwidth = spacingHorizontal / chartDataLength * .60;
+        const barwidth = spacingHorizontal / columnChartCount * .60;
 
         const calcWayPoints = (points) => {
             let wayPoints = [];
@@ -44,12 +54,12 @@ function drawColumnChart(canvasId, ctx, verticalNr, data, range, curx, chartColo
             }
         };
 
-        const localLinecord = [];
+        const localColumnCords = [];
         for (let i = 0; i < data.datapoints.length; i++) {
-            var rectHeight = (hei - (data.datapoints[i].y - range[0]) * verticalCoefficient);
-            let barChartWidth = barChartCount * barwidth + (barChartCount - 1) * 5;
-            let fromLeft = (i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails + curx) - barChartWidth / 2;
-            var newobj = {
+            const rectHeight = (hei - (data.datapoints[i].y - range[0]) * verticalCoefficient);
+            let columnChartWidth = columnChartCount * barwidth + (columnChartCount - 1) * 5;
+            let fromLeft = (canvasWidthSpareForDetails + i * spacingHorizontal + spacingHorizontal / 2  + curx) - columnChartWidth / 2;
+            const newobj = {
                 x: fromLeft,
                 y: rectHeight,
                 wid: barwidth,
@@ -59,18 +69,18 @@ function drawColumnChart(canvasId, ctx, verticalNr, data, range, curx, chartColo
                 dataval: data.datapoints[i].y,
                 dataColor: data.chartColor
             };
-            linecord.push(newobj);
-            localLinecord.push(newobj);
+            columnCords.push(newobj);
+            localColumnCords.push(newobj);
         }
 
-        let points = calcWayPoints(localLinecord);
+        let points = calcWayPoints(localColumnCords);
 
         for (let i = 0; i < points.length; i++) {
             let t = 0;
             animate(points[i], t, chartColor);
         }
 
-        return {linecord, barwidth};
+        return {columnCords, barwidth};
         // console.log("End : drawBar");
     } catch (e) {
         console.log("error occurred in drawBar : ", e);
