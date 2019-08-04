@@ -99,7 +99,7 @@ let datapoints3 = [
             },
             data: [
                 {
-                    chartColor: "#00d554",
+                    chartColor: "#5d62b5",
                     fill: false,
                     dataLabel: "Data Set 1",
                     datapoints: datapoints
@@ -128,7 +128,7 @@ let datapoints3 = [
             },
             data: [
                 {
-                    chartColor: "#00d554",
+                    chartColor: "#5d62b5",
                     fill: true,
                     dataLabel: "Data Set 1",
                     datapoints: datapoints
@@ -157,13 +157,13 @@ let datapoints3 = [
             },
             data: [
                 {
-                    chartColor: "#00d554",
+                    chartColor: "#5d62b5",
                     fill: false,
                     dataLabel: "Data Set 1",
                     datapoints: datapoints
                 },
                 {
-                    chartColor: "#ff0000",
+                    chartColor: "#29c3be",
                     fill: false,
                     dataLabel: "Data Set 2",
                     datapoints: datapoints1
@@ -175,7 +175,7 @@ let datapoints3 = [
                     datapoints: datapoints2
                 },
                 {
-                    chartColor: "#00f0dd",
+                    chartColor: "#f2726f",
                     fill: false,
                     dataLabel: "Data Set 4",
                     datapoints: datapoints3
@@ -203,13 +203,13 @@ let datapoints3 = [
             },
             data: [
                 {
-                    chartColor: "#00d554",
+                    chartColor: "#5d62b5",
                     fill: true,
                     dataLabel: "Data Set 1",
                     datapoints: datapoints
                 },
                 {
-                    chartColor: "#ff0000",
+                    chartColor: "#29c3be",
                     fill: true,
                     dataLabel: "Data Set 2",
                     datapoints: datapoints1
@@ -221,7 +221,7 @@ let datapoints3 = [
                     datapoints: datapoints2
                 },
                 {
-                    chartColor: "#00f0dd",
+                    chartColor: "#f2726f",
                     fill: true,
                     dataLabel: "Data Set 4",
                     datapoints: datapoints3
@@ -248,7 +248,7 @@ let datapoints3 = [
                 title : "Hours"
             },
             "data": [{
-                "chartColor": "#00d554",
+                "chartColor": "#5d62b5",
                 "dataLabel": "Data set 1",
                 "datapoints": datapoints
             }]
@@ -286,7 +286,7 @@ let datapoints3 = [
                     datapoints: datapoints2
                 },
                 {
-                    chartColor: "#00f0dd",
+                    chartColor: "#f2726f",
                     dataLabel: "Data Set 4",
                     datapoints: datapoints
                 }
@@ -314,7 +314,7 @@ let datapoints3 = [
                 title : "Hours"
             },
             "data": [{
-                "chartColor": "#00d554",
+                "chartColor": "#5d62b5",
                 "dataLabel": "Data set 1",
                 "datapoints": [
                     {
@@ -399,7 +399,7 @@ let datapoints3 = [
             },
             "data": [
                 {
-                    "chartColor": "#00d554",
+                    "chartColor": "#5d62b5",
                     "dataLabel": "Data set 1",
                     "datapoints": [
                         {
@@ -453,7 +453,7 @@ let datapoints3 = [
                     ]
                 },
                 {
-                    "chartColor": "rgb(93, 98, 181)",
+                    "chartColor": "#29c3be",
                     "dataLabel": "Data set 1",
                     "datapoints": [
                         {
@@ -517,7 +517,7 @@ let datapoints3 = [
         var chartbar = {
             "config": {
                 "title": "Bar Chart and Smooth Line Comparision",
-                "chartType": 'multi-random',
+                "chartType": 'combination-chart',
                 "printEnable": true
             },
             yaxis : {
@@ -527,7 +527,7 @@ let datapoints3 = [
             },
             "data": [
                 {
-                "chartColor": "#00d554",
+                "chartColor": "#5d62b5",
                 "type": 'column-chart',
                 "dataLabel": "Data set 1",
                 "datapoints": datapoints2
@@ -539,25 +539,25 @@ let datapoints3 = [
                     "datapoints": datapoints3
                 },
                 {
-                    "chartColor": "blue",
+                    "chartColor": "#ffc533",
                     "type": 'spline-chart',
                     "dataLabel": "Data set 3",
                     "datapoints": datapoints
                 },
                 {
-                    "chartColor": "blue",
+                    "chartColor": "#29c3be",
                     "type": 'column-chart',
                     "dataLabel": "Data set 6",
                     "datapoints": datapoints
                 },
                 {
-                    "chartColor": "red",
+                    "chartColor": "#ff00dd",
                     "type": 'line-chart',
                     "dataLabel": "Data set 4",
                     "datapoints": datapoints1
                 },
                 {
-                    "chartColor": "red",
+                    "chartColor": "#f2726f",
                     "type": 'column-chart',
                     "dataLabel": "Data set 5",
                     "datapoints": datapoints1
@@ -576,7 +576,7 @@ let datapoints3 = [
                 "printEnable": true
             },
             "data": [{
-                "chartColor": "#ff0000",
+                "chartColor": "#29c3be",
                 "datapoints": [{
                     "label": "Jan",
                     "y": 200,
@@ -612,15 +612,15 @@ let datapoints3 = [
                 "printEnable": true
             },
             "data": [ /*Give as required data in given formate, syntax error with json will cause of error in charts*/ {
-                "chartColor": "#ff0000",
+                "chartColor": "#29c3be",
                 "datapoints": [{
                     "label": "Poor",
                     "y": 50,
-                    "color": "#ff0000"
+                    "color": "#29c3be"
                 }, {
                     "label": "Blw Avg",
                     "y": 25,
-                    "color": "#ff0000"
+                    "color": "#29c3be"
                 }, {
                     "label": "Average",
                     "y": 25,
@@ -691,7 +691,7 @@ let datapoints3 = [
                 title : "Hours"
             },
             "data": [{
-                "chartColor": "#00d554",
+                "chartColor": "#5d62b5",
                 "fill": false,
                 "dataLabel": "Data Set 1",
                 "datapoints": datapoints
@@ -716,13 +716,13 @@ let datapoints3 = [
             },
             "data": [
                 {
-                    chartColor: "#00d554",
+                    chartColor: "#5d62b5",
                     fill: false,
                     dataLabel: "Data Set 1",
                     datapoints: datapoints
                 },
                 {
-                    chartColor: "#ff0000",
+                    chartColor: "#29c3be",
                     fill: false,
                     dataLabel: "Data Set 2",
                     datapoints: datapoints1
@@ -734,7 +734,7 @@ let datapoints3 = [
                     datapoints: datapoints2
                 },
                 {
-                    chartColor: "#00f0dd",
+                    chartColor: "#f2726f",
                     fill: false,
                     dataLabel: "Data Set 4",
                     datapoints: datapoints3
@@ -759,7 +759,7 @@ let datapoints3 = [
                 title : "Hours"
             },
             "data": [{
-                "chartColor": "#00d554",
+                "chartColor": "#5d62b5",
                 "fill": true,
                 "dataLabel": "Data Set 1",
                 "datapoints": datapoints
@@ -784,13 +784,13 @@ let datapoints3 = [
             },
             "data": [
                 {
-                    chartColor: "#00d554",
+                    chartColor: "#5d62b5",
                     fill: true,
                     dataLabel: "Data Set 1",
                     datapoints: datapoints
                 },
                 {
-                    chartColor: "#ff0000",
+                    chartColor: "#29c3be",
                     fill: true,
                     dataLabel: "Data Set 2",
                     datapoints: datapoints1
@@ -802,7 +802,7 @@ let datapoints3 = [
                     datapoints: datapoints2
                 },
                 {
-                    chartColor: "#00f0dd",
+                    chartColor: "#f2726f",
                     fill: true,
                     dataLabel: "Data Set 4",
                     datapoints: datapoints3
@@ -827,7 +827,7 @@ let datapoints3 = [
                 title : "Hours"
             },
             "data": [{
-                "chartColor": "#00d554",
+                "chartColor": "#5d62b5",
                 "fill": false,
                 "dataLabel" : "Data Set 1",
                 "datapoints": datapoints
@@ -855,13 +855,13 @@ let datapoints3 = [
             },
             "data": [
                 {
-                    chartColor: "#00d554",
+                    chartColor: "#5d62b5",
                     fill: false,
                     dataLabel: "Data Set 1",
                     datapoints: datapoints
                 },
                 {
-                    chartColor: "#ff0000",
+                    chartColor: "#29c3be",
                     fill: false,
                     dataLabel: "Data Set 2",
                     datapoints: datapoints1
@@ -873,7 +873,7 @@ let datapoints3 = [
                     datapoints: datapoints2
                 },
                 {
-                    chartColor: "#00f0dd",
+                    chartColor: "#f2726f",
                     fill: false,
                     dataLabel: "Data Set 4",
                     datapoints: datapoints3
@@ -901,7 +901,7 @@ let datapoints3 = [
                 title : "Hours"
             },
             "data": [{
-                "chartColor": "#00d554",
+                "chartColor": "#5d62b5",
                 "fill": true,
                 "dataLabel" : "Data Set 1",
                 "datapoints": datapoints
@@ -929,13 +929,13 @@ let datapoints3 = [
             },
             "data": [
                 {
-                    chartColor: "#00d554",
+                    chartColor: "#5d62b5",
                     fill: true,
                     dataLabel: "Data Set 1",
                     datapoints: datapoints
                 },
                 {
-                    chartColor: "#ff0000",
+                    chartColor: "#29c3be",
                     fill: true,
                     dataLabel: "Data Set 2",
                     datapoints: datapoints1
@@ -947,7 +947,7 @@ let datapoints3 = [
                     datapoints: datapoints2
                 },
                 {
-                    chartColor: "#00f0dd",
+                    chartColor: "#f2726f",
                     fill: true,
                     dataLabel: "Data Set 4",
                     datapoints: datapoints3
