@@ -1,7 +1,7 @@
 const gkChartConsts = require("../../invokeCharts/enums");
 
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
-const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
 function bezierPointsCalc(a, f) {
     for (var b = [], c, e = 0; e < a.length; e++)
@@ -40,9 +40,12 @@ function bezierPointsCalc(a, f) {
     return b
 }
 
-function drawSmoothLineChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord) {
+function drawSmoothLineChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord, maxTextWidth) {
     try {
         // console.log("Start : drawGraphicLinear");
+        if(maxTextWidth > canvasWidthSpareForDetails) {
+            canvasWidthSpareForDetails = maxTextWidth;
+        }
         const calcWayPoints = (vertices) => {
             const wayPoints = [];
             for (let i = 1; i < vertices.length; i += 3) {

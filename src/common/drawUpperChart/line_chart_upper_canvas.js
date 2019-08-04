@@ -9,11 +9,14 @@ const gkChartConsts = require("../../invokeCharts/enums");
 
 const strokeStyle = gkChartConsts.strokeStyle;
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
-const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-function LineChartUpperCanvas(nr, ctx, linecord, container, chart) {
+function LineChartUpperCanvas(nr, ctx, linecord, container, chart, maxTextWidth) {
     try {
         // console.log("Start : lineChartUpperCanvas");
+        if(maxTextWidth > canvasWidthSpareForDetails) {
+            canvasWidthSpareForDetails = maxTextWidth;
+        }
         let dataPointLen = chart.data[0].datapoints.length;
         let wid = document.getElementById('canvasupper' + nr).width - canvasWidthSpareForDetails
         var spacingHorizontal = wid / dataPointLen;

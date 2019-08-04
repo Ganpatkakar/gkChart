@@ -1,12 +1,14 @@
 const gkChartConsts = require("../../invokeCharts/enums");
 
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
-const canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
+let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-function DrawStepChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord) {
+function DrawStepChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord, maxTextWidth = 0) {
     try {
         // console.log("Start : drawStepchart");
-
+        if(maxTextWidth > canvasWidthSpareForDetails) {
+            canvasWidthSpareForDetails = maxTextWidth;
+        }
         const calcWayPoints = (vertices) => {
             const wayPoints = [];
             for (var i = 1; i < vertices.length; i++) {
