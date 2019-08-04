@@ -297,7 +297,7 @@ const GkBarChart = (data) => {
             if (!chart.yaxis.hasOwnProperty("min")) {
                 chart.yaxis.min = (chart.yaxis.min >= 10) ? min -10 : min
             }
-            console.log(chart.yaxis.max, chart.yaxis.min);
+            // console.log(chart.yaxis.max, chart.yaxis.min);
         }
 
         let maxTextWidth = chart.data[0].datapoints.reduce((acc, value) => {
@@ -343,7 +343,7 @@ const GkBarChart = (data) => {
         }
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
-        BarChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart);
+        BarChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart, maxTextWidth);
         printAction(chartID, chart);
         // console.log("End : barChart");
     } catch (err) {
@@ -405,18 +405,29 @@ const GkColumnChart = (data) => {
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
         drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
         let canvas = 'canvas' + chart.chartnumber;
-        let rangedata = [chart.yaxis.min, chart.yaxis.max];
-        let linecord = [];
+        let range = [chart.yaxis.min, chart.yaxis.max];
+        let columnCords = [];
         let nextcurve = 0;
         let barChartCount = chart.data.length;
         for (let i = 0; i < chart.data.length; i++) {
-            const rData = drawColumnChart(canvas, ctx_base, verticaldevisions, chart.data[i], rangedata, nextcurve, chart.data[i].chartColor, linecord, barChartCount, chart.data.length, chart.data.length);
+            const props = {
+                canvas,
+                ctx_base,
+                verticaldevisions,
+                data: chart.data[i],
+                range,
+                nextcurve,
+                chartColor: chart.data[i].chartColor,
+                columnCords,
+                columnChartCount: barChartCount
+            };
+            const rData = drawColumnChart(props);
             nextcurve += rData.barwidth + 5;
         }
         drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
-        columnChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart);
+        columnChartUpperCanvas(chart.chartnumber, ctx_upper, columnCords, chart.container, chart);
         printAction(chartID, chart);
         // console.log("End : barChart");
     } catch (err) {
@@ -632,35 +643,46 @@ const GkRandomChart = (data) => {
         //// console.log("verticaldevisions" + verticaldevisions);
         drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
         let canvas = 'canvas' + chart.chartnumber;
-        let maxdata = [chart.yaxis.min, chart.yaxis.max];
+        let range = [chart.yaxis.min, chart.yaxis.max];
         //// console.log("maxdata:" + maxdata);
         let linecord = [];
-        let barCords = [];
+        let columnCords = [];
         let lineLineCords = [];
-        let nextcurve = 100;
-        let barChartCount = 0;
+        let nextcurve = 0;
+        let columnChartCount = 0;
         for (let i in chart.data) {
-            (chart.data[i] && chart.data[i].type === "bar-chart") ? barChartCount++ : null;
+            (chart.data[i] && chart.data[i].type === "column-chart") ? columnChartCount++ : null;
         }
         for (let i = 0; i < chart.data.length; i++) {
-            if (chart.data[i] && chart.data[i].type === "bar-chart") {
-                const rData = drawBarChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, nextcurve, chart.data[i].chartColor, barCords, barChartCount, barChartCount);
+            if (chart.data[i] && chart.data[i].type === "column-chart") {
+                const props = {
+                    canvas,
+                    ctx_base,
+                    verticaldevisions,
+                    data: chart.data[i],
+                    range,
+                    nextcurve,
+                    chartColor: chart.data[i].chartColor,
+                    columnCords,
+                    columnChartCount
+                };
+                const rData = drawColumnChart(props);
                 nextcurve += rData.barwidth + 5;
             }
             if (chart.data[i] && chart.data[i].type === "line-chart") {
-                drawLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, lineLineCords);
+                drawLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], range, chart.data[i].chartColor, lineLineCords);
             }
             if (chart.data[i] && chart.data[i].type === "spline-chart") {
-                drawSmoothLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, lineLineCords);
+                drawSmoothLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], range, chart.data[i].chartColor, lineLineCords);
             }
         }
         drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
         console.log("lineLineCords ", lineLineCords);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
-
+        let finalCords = [...columnCords, ...lineLineCords];
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
-        LineChartUpperCanvas(chart.chartnumber, ctx_upper, lineLineCords, chart.container, chart);
-        BarChartUpperCanvas(chart.chartnumber, ctx_upper, barCords, chart.container, chart);
+        columnChartUpperCanvas(chart.chartnumber, ctx_upper, finalCords, chart.container, chart);
+        LineChartUpperCanvas(chart.chartnumber, ctx_upper, finalCords, chart.container, chart);
 
         printAction(chartID, chart);
         // console.log("End : barChart");
