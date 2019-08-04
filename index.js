@@ -590,7 +590,7 @@ const GkMeterChart = (data) => {
     }
 };
 
-const GkRandomChart = (data) => {
+const GkCombinationChart = (data) => {
     try {
         // console.log("Start : barChart");
         const chartSurface = new ChartSurface();
@@ -733,9 +733,9 @@ const GkChart = (chartData) => {
                 break;
             }
 
-            case enums.multiRandomChart:
+            case enums.combinationChart:
             {
-                GkRandomChart(chartData);
+                GkCombinationChart(chartData);
                 break;
             }
 
@@ -770,5 +770,5 @@ exports.GkColumnChart = GkColumnChart;
 exports.GkPieChart = GkPieChart;
 exports.GkDoughnutChart = GkDoughnutChart;
 exports.GkMeterChart = GkMeterChart;
-exports.GkRandomChart = GkRandomChart;
+exports.GkCombinationChart = GkCombinationChart;
 exports.GkChart = GkChart;
