@@ -91,7 +91,7 @@ function drawSmoothLineChart(canvasId, ctx, verticalNr, data, range, chartColor,
                 ctx.lineTo(vertices[vertices.length - 1].x, hei);
             }
             ctx.closePath();
-            ctx.globalAlpha = 0.1;
+            ctx.globalAlpha = 0.3;
             ctx.fillStyle = chartColor;
             ctx.fill();
         };
