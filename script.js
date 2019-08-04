@@ -67,7 +67,8 @@ const dataPoint6 = [
     {label: "West", y: 776485},
     {label: "South", y: 685352},
     {label: "North", y: 726791},
-];const dataPoint7 = [
+];
+const dataPoint7 = [
     {label: "East", y: 143860},
     {label: "West", y: 79427},
     {label: "South", y: 226052},
@@ -561,7 +562,7 @@ const dataPoint6 = [
                 },
                 {
                     "chartColor": "#ffc533",
-                    "type": 'spline-chart',
+                    "type": 'line-chart',
                     "dataLabel": "Data set 3",
                     "datapoints": datapoints
                 },
@@ -573,7 +574,7 @@ const dataPoint6 = [
                 },
                 {
                     "chartColor": "#ff00dd",
-                    "type": 'line-chart',
+                    "type": 'smooth-line-chart',
                     "dataLabel": "Data set 4",
                     "datapoints": datapoints1
                 },
