@@ -39,6 +39,8 @@ const DoughnutChartUpperCanvas = require("./src/common/drawUpperChart/doughnut_c
 // import drawMeterChart from "./src/common/drawChart/meter_chart_canvas";
 const drawMeterChart = require("./src/common/drawChart/meter_chart_canvas");
 
+const calcTextWidth = require("./src/common/calc-text-width");
+
 const enums = require("./src/invokeCharts/enums");
 
 const GkLineChart = (data) => {
@@ -92,18 +94,20 @@ const GkLineChart = (data) => {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
-        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
+
+        let maxTextWidth = 30 + calcTextWidth(chart.data[0].datapoints, ctx_base, "y");
+
         let canvas = 'canvas' + chart.chartnumber;
+        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data, maxTextWidth);
+        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart, maxTextWidth);
         let maxdata = [chart.yaxis.min, chart.yaxis.max];
         let linecord = [];
         for (let i = 0; i < chart.data.length; i++) {
             drawLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, linecord);
         }
-
-        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
-        LineChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart);
+        LineChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart, maxTextWidth);
         printAction(chartID, chart);
     } catch (err) {
         console.error("Exception occurred in line chart module:  " + err.message);
@@ -162,19 +166,21 @@ const GkStepChart = (data) => {
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
 
-        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
+        let maxTextWidth = 30 + calcTextWidth(chart.data[0].datapoints, ctx_base, "y");
 
         let canvas = 'canvas' + chart.chartnumber;
-        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
+        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data, maxTextWidth);
+        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart, maxTextWidth);
+
         let maxdata = [chart.yaxis.min, chart.yaxis.max];
         let linecord = [];
         for (let i = 0; i < chart.data.length; i++) {
-            DrawStepChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, linecord);
+            DrawStepChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, linecord, maxTextWidth);
         }
 
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
-        LineChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart);
+        LineChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart, maxTextWidth);
         printAction(chartID, chart);
         // console.log("End : stepChart");
     } catch (error) {
@@ -234,18 +240,21 @@ const GkSmoothLineChart = (data) => {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
-        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
+
+        let maxTextWidth = 30 + calcTextWidth(chart.data[0].datapoints, ctx_base, "y");
         let canvas = 'canvas' + chart.chartnumber;
-        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
+        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data, maxTextWidth);
+        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart, maxTextWidth);
+
         let maxdata = [chart.yaxis.min, chart.yaxis.max];
         let linecord = [];
         for (let i = 0; i < chart.data.length; i++) {
-            drawSmoothLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, linecord);
+            drawSmoothLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], maxdata, chart.data[i].chartColor, linecord, maxTextWidth);
         }
 
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
-        LineChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart);
+        LineChartUpperCanvas(chart.chartnumber, ctx_upper, linecord, chart.container, chart, maxTextWidth);
         printAction(chartID, chart);
         // console.log("End : splineChart");
     } catch (err) {
@@ -300,13 +309,7 @@ const GkBarChart = (data) => {
             // console.log(chart.yaxis.max, chart.yaxis.min);
         }
 
-        let maxTextWidth = chart.data[0].datapoints.reduce((acc, value) => {
-            const labelTextWidth = ctx_base.measureText(value.label).width;
-            if (labelTextWidth > acc) {
-                acc = labelTextWidth + 20;
-            }
-            return acc;
-        }, 0);
+        let maxTextWidth = calcTextWidth(chart.data[0].datapoints, ctx_base, "label");
 
         console.log(maxTextWidth);
 
@@ -403,8 +406,12 @@ const GkColumnChart = (data) => {
             chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
-        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
+
+        let maxTextWidth = 30 + calcTextWidth(chart.data[0].datapoints, ctx_base, "y");
         let canvas = 'canvas' + chart.chartnumber;
+        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data, maxTextWidth);
+        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart, maxTextWidth);
+
         let range = [chart.yaxis.min, chart.yaxis.max];
         let columnCords = [];
         let nextcurve = 0;
@@ -419,15 +426,15 @@ const GkColumnChart = (data) => {
                 nextcurve,
                 chartColor: chart.data[i].chartColor,
                 columnCords,
-                columnChartCount: barChartCount
+                columnChartCount: barChartCount,
+                maxTextWidth
             };
             const rData = drawColumnChart(props);
             nextcurve += rData.barwidth + 5;
         }
-        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
-        columnChartUpperCanvas(chart.chartnumber, ctx_upper, columnCords, chart.container, chart);
+        columnChartUpperCanvas(chart.chartnumber, ctx_upper, columnCords, chart.container, chart, maxTextWidth);
         printAction(chartID, chart);
         // console.log("End : barChart");
     } catch (err) {
@@ -641,48 +648,56 @@ const GkCombinationChart = (data) => {
         }
         let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
         //// console.log("verticaldevisions" + verticaldevisions);
-        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data);
+
+        let maxTextWidth = 30 + calcTextWidth(chart.data[0].datapoints, ctx_base, "y");
         let canvas = 'canvas' + chart.chartnumber;
+        drawGrid(chart.chartnumber, verticaldevisions, ctx_base, chart.data, maxTextWidth);
+        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart, maxTextWidth);
+
         let range = [chart.yaxis.min, chart.yaxis.max];
         //// console.log("maxdata:" + maxdata);
-        let linecord = [];
+        // let linecord = [];
         let columnCords = [];
         let lineLineCords = [];
         let nextcurve = 0;
         let columnChartCount = 0;
         for (let i in chart.data) {
-            (chart.data[i] && chart.data[i].type === "column-chart") ? columnChartCount++ : null;
+            (chart.data[i] && chart.data[i].type === enums.columnChart) ? columnChartCount++ : null;
         }
-        for (let i = 0; i < chart.data.length; i++) {
-            if (chart.data[i] && chart.data[i].type === "column-chart") {
-                const props = {
-                    canvas,
-                    ctx_base,
-                    verticaldevisions,
-                    data: chart.data[i],
-                    range,
-                    nextcurve,
-                    chartColor: chart.data[i].chartColor,
-                    columnCords,
-                    columnChartCount
-                };
-                const rData = drawColumnChart(props);
-                nextcurve += rData.barwidth + 5;
-            }
-            if (chart.data[i] && chart.data[i].type === "line-chart") {
-                drawLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], range, chart.data[i].chartColor, lineLineCords);
-            }
-            if (chart.data[i] && chart.data[i].type === "spline-chart") {
-                drawSmoothLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], range, chart.data[i].chartColor, lineLineCords);
-            }
+        const animate = false;
+        for (let j = 0; j < chart.data.length; j++) {
+            ((i) => {
+                if (chart.data[i] && chart.data[i].type === enums.columnChart) {
+                    const props = {
+                        canvas,
+                        ctx_base,
+                        verticaldevisions,
+                        data: chart.data[i],
+                        range,
+                        nextcurve,
+                        chartColor: chart.data[i].chartColor,
+                        columnCords,
+                        columnChartCount,
+                        animate,
+                        maxTextWidth
+                    };
+                    const rData = drawColumnChart(props);
+                    nextcurve += rData.barwidth + 5;
+                }
+                if (chart.data[i] && chart.data[i].type === enums.lineChart) {
+                    drawLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], range, chart.data[i].chartColor, lineLineCords, maxTextWidth);
+                }
+                if (chart.data[i] && chart.data[i].type === enums.smoothLineChart) {
+                    drawSmoothLineChart(canvas, ctx_base, verticaldevisions, chart.data[i], range, chart.data[i].chartColor, lineLineCords, maxTextWidth);
+                }
+            })(j);
         }
-        drawGraphicLinearYcord(canvas, ctx_base, verticaldevisions, chart);
         console.log("lineLineCords ", lineLineCords);
         let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
         let finalCords = [...columnCords, ...lineLineCords];
         ClearDetails(chart.chartnumber, ctx_upper, chart.container);
-        columnChartUpperCanvas(chart.chartnumber, ctx_upper, finalCords, chart.container, chart);
-        LineChartUpperCanvas(chart.chartnumber, ctx_upper, finalCords, chart.container, chart);
+        columnChartUpperCanvas(chart.chartnumber, ctx_upper, finalCords, chart.container, chart, maxTextWidth);
+        LineChartUpperCanvas(chart.chartnumber, ctx_upper, finalCords, chart.container, chart, maxTextWidth);
 
         printAction(chartID, chart);
         // console.log("End : barChart");
