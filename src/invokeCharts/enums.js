@@ -1,12 +1,12 @@
 exports.xAxisSpacing = 104;
-exports.fontLineHeight = 16;
+exports.fontLineHeight = 26;
 exports.strokeStyle = "rgba(0,0,0,1)";
 exports.white = "#fff";
 exports.blackFillStyle = "#000";
 exports.canvasHeightSpareForDetails = 105;
 exports.canvasWidthSpareForDetails = 100;
 exports.font = "26px  Source Sans Pro, Helvetica Neue, Arial, sans-serif";
-exports.toolTipBgColor = "#000";
+exports.toolTipBgColor = "rgba(255, 255, 255, .9)";
 
 exports.barChart = "bar-chart";
 exports.columnChart = "column-chart";
