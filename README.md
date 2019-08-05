@@ -40,6 +40,18 @@ Few ScreenShots of charts output.
 <img width="729" alt="Screenshot 2019-08-05 at 8 44 46 PM" src="https://user-images.githubusercontent.com/13637167/62478260-4629d680-b7c8-11e9-85dc-bad872723f61.png">
 
 
+<img width="738" alt="Screenshot 2019-08-05 at 9 35 29 PM" src="https://user-images.githubusercontent.com/13637167/62478413-ad478b00-b7c8-11e9-8332-fbc60e0fbd39.png">
+
+<img width="738" alt="Screenshot 2019-08-05 at 9 35 29 PM" src="https://user-images.githubusercontent.com/13637167/62478450-c0f2f180-b7c8-11e9-8b90-b3fd555d2588.png">
+
+<img width="738" alt="Screenshot 2019-08-05 at 9 35 29 PM" src="https://user-images.githubusercontent.com/13637167/62478504-e122b080-b7c8-11e9-8129-dbb0ac5a81ee.png">
+
+<img width="738" alt="Screenshot 2019-08-05 at 9 35 29 PM" src="https://user-images.githubusercontent.com/13637167/62478542-fbf52500-b7c8-11e9-88de-ada301bdb9d9.png">
+
+<img width="450" alt="Screenshot 2019-08-05 at 9 35 29 PM" src="https://user-images.githubusercontent.com/13637167/62478574-0dd6c800-b7c9-11e9-854f-0da62f34c9f9.png">
+
+<img width="450" alt="Screenshot 2019-08-05 at 9 35 29 PM" src="https://user-images.githubusercontent.com/13637167/62478645-319a0e00-b7c9-11e9-9265-4e1e054c7f40.png">
+
 
 
 ### Contribution
