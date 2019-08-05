@@ -9,6 +9,10 @@ const Grids =  require("./src/common/grid");
 const drawGrid =  Grids.drawGrid;
 const drawGraphicLinearYcord =  Grids.drawGraphicLinearYcord;
 
+const newGrids = require("./src/common/grid_new");
+const drawNewGrid = newGrids.drawGridNew;
+const drawNewGraphicLinearYCord = newGrids.drawNewGraphicLinearYCord;
+
 const verticalGrids =  require("./src/common/vertical-grid");
 const drawVerticalGrid =  verticalGrids.drawVerticalGrid;
 const drawDocumentationDetails  =  verticalGrids.drawDocumentationDetails;
@@ -25,9 +29,11 @@ const drawSmoothLineChart = require("./src/common/drawChart/smooth_line_chart_ca
 // import drawBarChart from "./src/common/drawChart/bar_chart_canvas";
 const drawBarChart = require("./src/common/drawChart/bar_chart_canvas");
 const drawColumnChart = require("./src/common/drawChart/column_chart_canvas");
+const drawStackedChart = require("./src/common/drawChart/stacked_chart_canvas");
 // import BarChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
 const BarChartUpperCanvas = require("./src/common/drawUpperChart/bar_chart_upper_canvas");
 const columnChartUpperCanvas = require("./src/common/drawUpperChart/column_chart_upper_canvas");
+const stackedChartUpperCanvas = require("./src/common/drawUpperChart/stacked_chart_upper_canvas");
 // import drawPieChart from "./src/common/drawChart/pie_chart_canvas";
 const drawPieChart = require("./src/common/drawChart/pie_chart_canvas");
 // import PieChartUpperCanvas from "./src/common/drawUpperChart/pie_chart_upper_canvas";
@@ -442,6 +448,92 @@ const GkColumnChart = (data) => {
     }
 };
 
+const GkStackedChart = (data) => {
+    try {
+        // console.log("Start : barChart");
+        const chartSurface = new ChartSurface();
+
+        let chartID = data.id;
+        let chart = data.data;
+
+        chart.container = chartID;
+        chart.chartnumber = chartID;
+        let ChartContainer = document.querySelector("#" + chart.container);
+        chart.wid = ChartContainer.clientWidth - 10;
+        chart.hei = ChartContainer.clientHeight - 33;
+
+        let titleAndPrintButton = '';
+        if (chart.config.title) {
+            titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
+        }
+        titleAndPrintButton += printOptions(chartID, chart);
+        ChartContainer.innerHTML = titleAndPrintButton;
+
+        let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
+        !chart.yAxis ? chart.yAxis = {} : null;
+
+        const xAxisCount = chart.xAxis.length;
+        let max = 0;
+        let maxTextWidth = 0;
+        for(const d of chart.data){
+            const dataSet = d.dataSet;
+            const dataSetLength = dataSet.length;
+            for(let i = 0; i < xAxisCount; i++){
+                let sum = 0;
+                for(let j = 0; j < dataSetLength; j++) {
+                    sum = sum + dataSet[j].dataPoints[i].value;
+                }
+                if(sum > max) {
+                    max = sum;
+                }
+                const textWidth = ctx_base.measureText(sum).width;
+                maxTextWidth = textWidth > maxTextWidth ? textWidth : maxTextWidth;
+            }
+        }
+        max = max < 100 ? max + 5 : max + 10;
+        const canvasId = 'canvas' + chart.chartnumber;
+        let verticalNr = chart.yAxis.rowCount;
+        if (!verticalNr) {
+            verticalNr = 8;
+        }
+
+        // calculate the yAix difference variable
+        chart.yAxis.difference = (max - chart.yAxis.min) / verticalNr;
+
+        drawNewGrid(chart.chartnumber, verticalNr, ctx_base, chart, maxTextWidth);
+        drawNewGraphicLinearYCord(canvasId, ctx_base, verticalNr, chart, maxTextWidth);
+
+        let range = [chart.yAxis.min, max];
+        let columnCords = [];
+        let nextCurve = 0;
+        let columnChartCount = chart.data.length;
+        for (let i = 0; i < chart.data.length; i++) {
+            const props = {
+                canvasId,
+                ctx_base,
+                verticalNr,
+                chart,
+                renderCount: i,
+                range,
+                nextCurve,
+                chartColor: chart.data[i].chartColor,
+                columnCords,
+                columnChartCount,
+                maxTextWidth
+            };
+            const rData = drawStackedChart(props);
+            nextCurve += rData.barWidth + 5;
+        }
+        const ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
+        ClearDetails(chart.chartnumber, ctx_upper, chart.container);
+        stackedChartUpperCanvas(chart.chartnumber, ctx_upper, columnCords, chart.container, chart, maxTextWidth);
+        printAction(chartID, chart);
+        console.log("End : barChart");
+    } catch (err) {
+        console.error("Exception occurred in bar chart module:  " + err.message);
+    }
+};
+
 const GkPieChart = (data) => {
     try {
         // console.log("Start : pieChart");
@@ -706,6 +798,10 @@ const GkCombinationChart = (data) => {
     }
 };
 
+const GkSparkChart = (chartData) => {
+    console.log("Will be coming soon", chartData);
+};
+
 const GkChart = (chartData) => {
     try {
         // console.info("Enter: Chart Designing initialize function");
@@ -763,6 +859,18 @@ const GkChart = (chartData) => {
             case enums.stepLineChart:
             {
                 GkStepChart(chartData);
+                break;
+            }
+
+            case enums.sparkChart:
+            {
+                GkSparkChart(chartData);
+                break;
+            }
+
+            case enums.stackedChart:
+            {
+                GkStackedChart(chartData);
                 break;
             }
 

@@ -91,6 +91,9 @@ const dataPoint7 = [
     const columnLineAndAriaChart = document.getElementById("column-line-and-aria-chart");
     const columnSmoothLineAndAriaChart = document.getElementById("column-smooth-line-and-aria-chart");
 
+    const stackedChart = document.getElementById("stacked-chart");
+    const groupStackedChart = document.getElementById("group-stacked-chart");
+
     const doughnutChart = document.getElementById("doughnut-chart");
     const meterChart = document.getElementById("meter-chart");
     const pieChartId = document.getElementById("pie-chart");
@@ -99,7 +102,6 @@ const dataPoint7 = [
     const smoothChartComparisionId = document.getElementById("smooth-chart-comparision");
     const smoothChartFillId = document.getElementById("smooth-chart-fill");
     const smoothChartComparisionFillId = document.getElementById("smooth-chart-comparision-fill");
-
 
     const stepChartId = document.getElementById("step-chart");
     const stepChartComparisionId = document.getElementById("step-chart-comparision");
@@ -993,7 +995,7 @@ const dataPoint7 = [
             yaxis : {
                 min : 0,
                 numOfRows : 5,
-                title : "Hours"
+                title : "Miles"
             },
             "data": [
                 {
@@ -1057,6 +1059,215 @@ const dataPoint7 = [
         };
 
         GkChart({id: "column-smooth-line-and-aria-chart", data: chartbar});
+    }
+
+    if(stackedChart) {
+
+        const chartData = {
+            config: {
+                title: "Stacked Chart",
+                chartType: "stacked-chart",
+                printEnable: true
+            },
+            yAxis: {
+                min : 0,
+                rowCount : 5,
+                title : "Hours"
+            },
+            xAxis: [
+                {label: "January"},
+                {label: "February"},
+                {label: "March"},
+                {label: "April"},
+                {label: "May"},
+                {label: "June"},
+                {label: "July"},
+                {label: "August"},
+                {label: "September"},
+            ],
+            data: [
+                {
+                    dataSet: [
+                        {
+                            color: "#5d62b5",
+                            dataLabel: "Oil",
+                            dataPoints : [
+                                {value: 5},
+                                {value: 10},
+                                {value: 8},
+                                {value: 6},
+                                {value: 2},
+                                {value: 9},
+                                {value: 19},
+                                {value: 5},
+                                {value: 2},
+                            ]
+                        },
+                        {
+                            color: "#29c3be",
+                            dataLabel: "Gas",
+                            dataPoints : [
+                                {value: 2},
+                                {value: 6},
+                                {value: 12},
+                                {value: 15},
+                                {value: 1},
+                                {value: 5},
+                                {value: 15},
+                                {value: 25},
+                                {value: 5},
+                            ]
+                        },
+                        {
+                            color: "#f2726f",
+                            dataLabel: "Petrol",
+                            dataPoints : [
+                                {value: 8},
+                                {value: 4},
+                                {value: 5},
+                                {value: 5},
+                                {value: 10},
+                                {value: 15},
+                                {value: 1},
+                                {value: 10},
+                                {value: 25},
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        GkChart({id: "stacked-chart", data: chartData});
+    }
+
+    if(groupStackedChart) {
+
+        const chartData = {
+            config: {
+                title: "Stacked Chart",
+                chartType: "stacked-chart",
+                printEnable: true
+            },
+            yAxis: {
+                min : 0,
+                rowCount : 5,
+                title : "Hours"
+            },
+            xAxis: [
+                {label: "January"},
+                {label: "February"},
+                {label: "March"},
+                {label: "April"},
+                {label: "May"},
+                {label: "June"},
+                {label: "July"},
+                {label: "August"},
+                {label: "September"},
+            ],
+            data: [
+                {
+                    dataSet: [
+                        {
+                            color: "#5d62b5",
+                            dataLabel: "Oil",
+                            dataPoints : [
+                                {value: 5},
+                                {value: 10},
+                                {value: 8},
+                                {value: 6},
+                                {value: 2},
+                                {value: 9},
+                                {value: 19},
+                                {value: 5},
+                                {value: 2},
+                            ]
+                        },
+                        {
+                            color: "#29c3be",
+                            dataLabel: "Gas",
+                            dataPoints : [
+                                {value: 2},
+                                {value: 6},
+                                {value: 12},
+                                {value: 15},
+                                {value: 1},
+                                {value: 5},
+                                {value: 15},
+                                {value: 25},
+                                {value: 5},
+                            ]
+                        },
+                        {
+                            color: "#f2726f",
+                            dataLabel: "Petrol",
+                            dataPoints : [
+                                {value: 8},
+                                {value: 4},
+                                {value: 5},
+                                {value: 5},
+                                {value: 10},
+                                {value: 15},
+                                {value: 1},
+                                {value: 10},
+                                {value: 25},
+                            ]
+                        }
+                    ]
+                },
+                {
+                    dataSet: [
+                        {
+                            color: "#5d62b5",
+                            dataLabel: "Oil",
+                            dataPoints : [
+                                {value: 15},
+                                {value: 1},
+                                {value: 18},
+                                {value: 10},
+                                {value: 12},
+                                {value: 19},
+                                {value: 9},
+                                {value: 15},
+                                {value: 22},
+                            ]
+                        },
+                        {
+                            color: "#29c3be",
+                            dataLabel: "Gas",
+                            dataPoints : [
+                                {value: 12},
+                                {value: 16},
+                                {value: 2},
+                                {value: 5},
+                                {value: 11},
+                                {value: 25},
+                                {value: 5},
+                                {value: 21},
+                                {value: 35},
+                            ]
+                        },
+                        {
+                            color: "#f2726f",
+                            dataLabel: "Petrol",
+                            dataPoints : [
+                                {value: 18},
+                                {value: 24},
+                                {value: 15},
+                                {value: 35},
+                                {value: 1},
+                                {value: 1},
+                                {value: 11},
+                                {value: 16},
+                                {value: 2},
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        GkChart({id: "group-stacked-chart", data: chartData});
     }
 
 })();

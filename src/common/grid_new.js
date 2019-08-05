@@ -7,7 +7,7 @@ const blackFillStyle = gkChartConsts.blackFillStyle;
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-const drawGrid = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
+const drawGridNew = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
     try {
         // console.log("Start : drawGrid");
         if(maxTextWidth > canvasWidthSpareForDetails) {
@@ -22,20 +22,10 @@ const drawGrid = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
         ctx.fillStyle = blackFillStyle;
 
         const spacingVertical = hei / verticanNr;
+        const dataCount = data.xAxis.length;
         //// console.log("canvas vertical spacings to draw grid lines:" + spacingVertical);
-        const spacingHorizontal = wid / data[0].datapoints.length;
-        //// console.log("canvas horizontal spacings to draw grid lines:" + spacingHorizontal);
-        /*// console.log(spacingVertical + 20);
-         // console.log(wid);*/
-        let barwidth = 0;
-        if (data.length > 1) {
-            barwidth = (spacingHorizontal - 30) / data.length;
-        } else {
-            barwidth = 30;
-        }
-        if (barwidth > 30) {
-            barwidth = 30;
-        }
+        const spacingHorizontal = wid / dataCount;
+
         /*Vertical grid*/
         // Vartical first grid row
         ctx.beginPath();
@@ -46,7 +36,7 @@ const drawGrid = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
         ctx.stroke();
 
         // vartical other grid rows
-        for (let i = 0; i < data[0].datapoints.length; i++) {
+        for (let i = 0; i < dataCount; i++) {
             ctx.beginPath();
             ctx.moveTo(i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails, hei);
             ctx.lineTo(i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails, hei + 10);
@@ -67,17 +57,16 @@ const drawGrid = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
                 ctx.strokeStyle = strokeStyle;
             }
             ctx.moveTo(canvasWidthSpareForDetails - 10, i * spacingVertical + 1);
-            ctx.lineTo(wid + canvasWidthSpareForDetails, i * spacingVertical + 1);
+            ctx.lineTo(wid + canvasWidthSpareForDetails, i * spacingVertical +1);
             ctx.stroke();
         }
         // console.log("End : drawGrid");
-        return barwidth;
     } catch (e) {
         console.log("error occurred in drawGrid : ", e);
     }
 };
 
-const drawGraphicLinearYcord = (canvasId, ctx, verticalNr, cdata, maxTextWidth = 0) => {
+const drawNewGraphicLinearYCord = (canvasId, ctx, verticalNr, cdata, maxTextWidth = 0) => {
     try {
         // console.log("Start : drawGraphicLinearYcord");
         if(maxTextWidth > canvasWidthSpareForDetails) {
@@ -87,7 +76,8 @@ const drawGraphicLinearYcord = (canvasId, ctx, verticalNr, cdata, maxTextWidth =
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         const spacingVertical = hei / verticalNr;
-        const spacingHorizontal = wid / cdata.data[0].datapoints.length;
+        const charXAxisLength = cdata.xAxis.length;
+        const spacingHorizontal = wid / charXAxisLength;
         //// console.log(spacingHorizontal);
         ctx.beginPath();
         ctx.fillStyle = blackFillStyle;
@@ -95,53 +85,53 @@ const drawGraphicLinearYcord = (canvasId, ctx, verticalNr, cdata, maxTextWidth =
         ctx.translate(0, canvas.height / 2);
         ctx.rotate(-Math.PI / 2);
         ctx.textAlign = "center";
-        if (!cdata.yaxis.title) {
-            cdata.yaxis.title = "Y-Axis data"
+        if (!cdata.yAxis.title) {
+            cdata.yAxis.title = "Y-Axis data"
         }
-        ctx.fillText(cdata.yaxis.title, 0, 20);
+        ctx.fillText(cdata.yAxis.title, 0, 20);
 
         ctx.restore();
-        /* xaxis Horizontal Documents*/
+        /* xAxis Horizontal Documents*/
         ctx.save();
-        let xangle;
-        for (let i = 0; i < cdata.data[0].datapoints.length; i++) {
-            if (ctx.measureText(cdata.data[0].datapoints[i].label).width > spacingHorizontal / 1.1) {
-                xangle = 'angular';
+        let xAngle;
+        for (let i = 0; i < charXAxisLength; i++) {
+            if (ctx.measureText(cdata.xAxis[i].label).width > spacingHorizontal / 1.1) {
+                xAngle = 'angular';
                 break;
-            } else if (ctx.measureText(cdata.data[0].datapoints[i].label).width < spacingHorizontal / 2) {
-                xangle = 'straight';
+            } else if (ctx.measureText(cdata.xAxis[i].label).width < spacingHorizontal / 2) {
+                xAngle = 'straight';
             }
         }
-        if (xangle === 'angular') {
+        if (xAngle === 'angular') {
             const translateXWithoutSpacingHorizontal =  xAxisSpacing + spacingHorizontal/2 - fontLineHeight;
             const translateYAxis = hei + 12;
-            for (let i = 0; i < cdata.data[0].datapoints.length; i++) {
+            for (let i = 0; i < charXAxisLength; i++) {
                 const translatexWithSpacing = i * spacingHorizontal + translateXWithoutSpacingHorizontal;
                 ctx.translate(translatexWithSpacing, translateYAxis);
                 ctx.rotate(Math.PI / 2);
-                ctx.fillText(cdata.data[0].datapoints[i].label, 0, 0);
+                ctx.fillText(cdata.xAxis[i].label, 0, 0);
                 //// console.log(cdata.xaxis.categories[i], i*spacingHorizontal, hei-spacingVertical);
                 ctx.rotate(-Math.PI / 2);
                 ctx.translate(-translatexWithSpacing, - translateYAxis);
             }
         } else {
-            for (let i = 0; i < cdata.data[0].datapoints.length; i++) {
-                let textWidth = ctx.measureText(cdata.data[0].datapoints[i].label).width;
+            for (let i = 0; i < charXAxisLength; i++) {
+                const text = cdata.xAxis[i].label;
+                let textWidth = ctx.measureText(text).width;
                 let fromLeft = (i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails) - textWidth / 2;
-                ctx.fillText(cdata.data[0].datapoints[i].label, fromLeft, hei + 35);
+                ctx.fillText(text, fromLeft, hei + 35);
             }
         }
         //ctx.restore();
 
-        /* yaxis Vertical Documents*/
+        /* yAxis Vertical Documents*/
         ctx.save();
+        const min = cdata.yAxis.min;
+        const difference = cdata.yAxis.difference;
         for (let i = 0; i < verticalNr + 1; i++) {
-            // const max = cdata.yaxis.max;
-            const min = cdata.yaxis.min;
-            const difference = cdata.yaxis.difference;
             let yAxis = canvas.height - (i * spacingVertical + canvasHeightSpareForDetails);
             yAxis = i !== verticalNr ? yAxis : yAxis + fontLineHeight;
-            const text = String(Math.floor(i * difference + min));
+            const text = String(Math.ceil(i * difference + min));
             const xAxis = canvasWidthSpareForDetails - ctx.measureText(text).width - 20;
             ctx.fillText(text, xAxis, yAxis);
         }
@@ -154,5 +144,5 @@ const drawGraphicLinearYcord = (canvasId, ctx, verticalNr, cdata, maxTextWidth =
 
 };
 
-exports.drawGrid = drawGrid;
-exports.drawGraphicLinearYcord = drawGraphicLinearYcord;
+exports.drawGridNew = drawGridNew;
+exports.drawNewGraphicLinearYCord = drawNewGraphicLinearYCord;
