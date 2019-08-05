@@ -30,17 +30,16 @@ There are two different version of gkCharts :-
 GkCharts support more than 20+ combination of charts with 8 chart types.
 
 Few ScreenShots of charts output.
-<img width="1122" alt="lineChart" src="https://user-images.githubusercontent.com/13637167/57194430-875de080-6f64-11e9-8b11-f9af31ed87d2.png">
 
-<img width="1125" alt="linchart_comparision" src="https://user-images.githubusercontent.com/13637167/57194458-c55b0480-6f64-11e9-83d1-6d2e4fe473cc.png">
+<img width="1150" alt="Screenshot 2019-08-04 at 3 01 57 PM" src="https://user-images.githubusercontent.com/13637167/62478257-45914000-b7c8-11e9-8b22-5668d62f645c.png">
 
-<img width="663" alt="barchartcomparisionwithlinechart" src="https://user-images.githubusercontent.com/13637167/57194497-3995a800-6f65-11e9-9dba-8475a81985df.png">
+<img width="673" alt="Screenshot 2019-08-04 at 3 08 40 PM" src="https://user-images.githubusercontent.com/13637167/62478258-45914000-b7c8-11e9-992a-398fc2927619.png">
 
-<img width="491" alt="piechart" src="https://user-images.githubusercontent.com/13637167/57194499-3ac6d500-6f65-11e9-8edd-e8b248e19f8e.png">
+<img width="521" alt="Screenshot 2019-08-05 at 8 07 22 PM" src="https://user-images.githubusercontent.com/13637167/62478259-45914000-b7c8-11e9-8462-25f63003590c.png">
 
-<img width="493" alt="doughnutchart" src="https://user-images.githubusercontent.com/13637167/57194500-3bf80200-6f65-11e9-8329-fcf9e94bba49.png">
+<img width="729" alt="Screenshot 2019-08-05 at 8 44 46 PM" src="https://user-images.githubusercontent.com/13637167/62478260-4629d680-b7c8-11e9-85dc-bad872723f61.png">
 
-<img width="491" alt="meterchart" src="https://user-images.githubusercontent.com/13637167/57194503-3dc1c580-6f65-11e9-9f76-3161db686914.png">
+
 
 
 ### Contribution
