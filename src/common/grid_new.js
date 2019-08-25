@@ -15,15 +15,12 @@ const drawGridNew = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
         }
         const canvas = document.getElementById('canvas' + nr);
         const hei = canvas.height - canvasHeightSpareForDetails;
-        //// console.log("canvas height to draw grid lines:" + hei);
         const wid = canvas.width - canvasWidthSpareForDetails;
-        //// console.log("canvas width to draw grid lines:" + wid);
         ctx.beginPath();
         ctx.fillStyle = blackFillStyle;
 
         const spacingVertical = hei / verticanNr;
-        const dataCount = data.xAxis.length;
-        //// console.log("canvas vertical spacings to draw grid lines:" + spacingVertical);
+        const dataCount = data.categories.length;
         const spacingHorizontal = wid / dataCount;
 
         /*Vertical grid*/
@@ -76,7 +73,7 @@ const drawNewGraphicLinearYCord = (canvasId, ctx, verticalNr, cdata, maxTextWidt
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         const spacingVertical = hei / verticalNr;
-        const charXAxisLength = cdata.xAxis.length;
+        const charXAxisLength = cdata.categories.length;
         const spacingHorizontal = wid / charXAxisLength;
         //// console.log(spacingHorizontal);
         ctx.beginPath();
@@ -91,14 +88,14 @@ const drawNewGraphicLinearYCord = (canvasId, ctx, verticalNr, cdata, maxTextWidt
         ctx.fillText(cdata.yAxis.title, 0, 20);
 
         ctx.restore();
-        /* xAxis Horizontal Documents*/
+        /* categories Horizontal Documents*/
         ctx.save();
         let xAngle;
         for (let i = 0; i < charXAxisLength; i++) {
-            if (ctx.measureText(cdata.xAxis[i].label).width > spacingHorizontal / 1.1) {
+            if (ctx.measureText(cdata.categories[i].label).width > spacingHorizontal / 1.1) {
                 xAngle = 'angular';
                 break;
-            } else if (ctx.measureText(cdata.xAxis[i].label).width < spacingHorizontal / 2) {
+            } else if (ctx.measureText(cdata.categories[i].label).width < spacingHorizontal / 2) {
                 xAngle = 'straight';
             }
         }
@@ -109,14 +106,14 @@ const drawNewGraphicLinearYCord = (canvasId, ctx, verticalNr, cdata, maxTextWidt
                 const translatexWithSpacing = i * spacingHorizontal + translateXWithoutSpacingHorizontal;
                 ctx.translate(translatexWithSpacing, translateYAxis);
                 ctx.rotate(Math.PI / 2);
-                ctx.fillText(cdata.xAxis[i].label, 0, 0);
+                ctx.fillText(cdata.categories[i].label, 0, 0);
                 //// console.log(cdata.xaxis.categories[i], i*spacingHorizontal, hei-spacingVertical);
                 ctx.rotate(-Math.PI / 2);
                 ctx.translate(-translatexWithSpacing, - translateYAxis);
             }
         } else {
             for (let i = 0; i < charXAxisLength; i++) {
-                const text = cdata.xAxis[i].label;
+                const text = cdata.categories[i].label;
                 let textWidth = ctx.measureText(text).width;
                 let fromLeft = (i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails) - textWidth / 2;
                 ctx.fillText(text, fromLeft, hei + 35);

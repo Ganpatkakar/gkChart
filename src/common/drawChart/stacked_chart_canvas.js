@@ -26,7 +26,7 @@ function drawStackedChart(props) {
         const canvas = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
-        const horizontalDivision = chart.xAxis.length;
+        const horizontalDivision = chart.categories.length;
         const spacingHorizontal = wid / horizontalDivision;
         const totalRange = range[1] - range[0];
         const verticalCoefficient = hei / totalRange;
@@ -68,18 +68,6 @@ function drawStackedChart(props) {
         const dataSet = chart.data[renderCount].dataSet;
         const renderStackCount = dataSet.length;
 
-        // for(let i = 0; i < xAxisCount; i++){
-        //     let sum = 0;
-        //     for(let j = 0; j < dataSetLength; j++) {
-        //         sum = sum + dataSet[j].dataPoints[i].value;
-        //     }
-        //     if(sum > max) {
-        //         max = sum;
-        //     }
-        //     const textWidth = ctx_base.measureText(sum).width;
-        //     maxTextWidth = textWidth > maxTextWidth ? textWidth : maxTextWidth;
-        // }
-
         for (let i = 0; i < horizontalDivision; i++) {
             let startHeight = 0;
             const newObj = [];
@@ -95,7 +83,7 @@ function drawStackedChart(props) {
                     y: rectHeight,
                     wid: barWidth,
                     hei: currentRectHeight,
-                    label: chart.xAxis[i].label,
+                    label: chart.categories[i].label,
                     dataLabel: dataSet[j].dataLabel,
                     dataVal: currentValue,
                     dataColor: dataSet[j].color

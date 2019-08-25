@@ -1,10 +1,7 @@
-// import { printOptions, printAction } from "./src/common/print_options";
 const printOpts = require("./src/common/print_options");
 const printOptions = printOpts.printOptions;
 const printAction = printOpts.printAction;
-// import ChartSurface from "./src/common/chart_surface";
 const ChartSurface = require("./src/common/chart_surface");
-// import { drawGrid, drawGraphicLinearYcord } from "./src/common/grid";
 const Grids =  require("./src/common/grid");
 const drawGrid =  Grids.drawGrid;
 const drawGraphicLinearYcord =  Grids.drawGraphicLinearYcord;
@@ -16,34 +13,23 @@ const drawNewGraphicLinearYCord = newGrids.drawNewGraphicLinearYCord;
 const verticalGrids =  require("./src/common/vertical-grid");
 const drawVerticalGrid =  verticalGrids.drawVerticalGrid;
 const drawDocumentationDetails  =  verticalGrids.drawDocumentationDetails;
-// import drawLineChart from "./src/common/drawChart/line_chart_canvas";
 const drawLineChart = require("./src/common/drawChart/line_chart_canvas");
-// import LineChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
 const LineChartUpperCanvas =  require("./src/common/drawUpperChart/line_chart_upper_canvas");
-// import ClearDetails from "./src/common/drawUpperChart/clear_upper_canvas_details";
 const ClearDetails = require("./src/common/drawUpperChart/clear_upper_canvas_details");
-// import DrawStepChart from "./src/common/drawChart/step_chart_canvas";
 const DrawStepChart = require("./src/common/drawChart/step_chart_canvas");
-// import drawSmoothLineChart from "./src/common/drawChart/smooth_line_chart_canvas";
 const drawSmoothLineChart = require("./src/common/drawChart/smooth_line_chart_canvas");
-// import drawBarChart from "./src/common/drawChart/bar_chart_canvas";
 const drawBarChart = require("./src/common/drawChart/bar_chart_canvas");
 const drawColumnChart = require("./src/common/drawChart/column_chart_canvas");
 const drawStackedChart = require("./src/common/drawChart/stacked_chart_canvas");
-// import BarChartUpperCanvas from "./src/common/drawUpperChart/line_chart_upper_canvas";
 const BarChartUpperCanvas = require("./src/common/drawUpperChart/bar_chart_upper_canvas");
 const columnChartUpperCanvas = require("./src/common/drawUpperChart/column_chart_upper_canvas");
 const stackedChartUpperCanvas = require("./src/common/drawUpperChart/stacked_chart_upper_canvas");
-// import drawPieChart from "./src/common/drawChart/pie_chart_canvas";
 const drawPieChart = require("./src/common/drawChart/pie_chart_canvas");
-// import PieChartUpperCanvas from "./src/common/drawUpperChart/pie_chart_upper_canvas";
 const PieChartUpperCanvas = require("./src/common/drawUpperChart/pie_chart_upper_canvas");
-// import drawDoughnutChart from "./src/common/drawChart/doughnut_chart_canvas";
 const drawDoughnutChart = require("./src/common/drawChart/doughnut_chart_canvas");
-// import DoughnutChartUpperCanvas from "./src/common/drawUpperChart/doughnut_chart_upper_canvas";
 const DoughnutChartUpperCanvas = require("./src/common/drawUpperChart/doughnut_chart_upper_canvas");
-// import drawMeterChart from "./src/common/drawChart/meter_chart_canvas";
 const drawMeterChart = require("./src/common/drawChart/meter_chart_canvas");
+const drawStackedBarChart = require("./src/common/drawChart/stacked_bar_chart_canvas");
 
 const calcTextWidth = require("./src/common/calc-text-width");
 
@@ -268,6 +254,8 @@ const GkSmoothLineChart = (data) => {
     }
 };
 
+//Todo: MAP bar chart properly with the latest data format
+
 const GkBarChart = (data) => {
     try {
         // console.log("Start : barChart");
@@ -290,46 +278,43 @@ const GkBarChart = (data) => {
         ChartContainer.innerHTML = titleAndPrintButton;
 
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
-        !chart.yaxis ? chart.yaxis = {} : null;
+        !chart.xAxis ? chart.xAxis = {} : null;
 
-        if (!chart.yaxis.hasOwnProperty("max") || !chart.yaxis.hasOwnProperty("min")) {
-            let max = parseInt(chart.data[0].datapoints[0].y);
-            let min = parseInt(chart.data[0].datapoints[0].y);
+        if (!chart.xAxis.hasOwnProperty("max") || !chart.xAxis.hasOwnProperty("min")) {
+            let max = parseInt(chart.data[0].datapoints[0].value);
+            let min = max;
             for (let i = 0; i < chart.data.length; i++) {
                 for (let j = 0; j < chart.data[i].datapoints.length; j++) {
-                    if (parseInt(chart.data[i].datapoints[j].y) < min) {
-                        min = parseInt(chart.data[i].datapoints[j].y);
+                    if (parseInt(chart.data[i].datapoints[j].value) < min) {
+                        min = parseInt(chart.data[i].datapoints[j].value);
                     }
-                    if (parseInt(chart.data[i].datapoints[j].y) > max) {
-                        max = parseInt(chart.data[i].datapoints[j].y);
+                    if (parseInt(chart.data[i].datapoints[j].value) > max) {
+                        max = parseInt(chart.data[i].datapoints[j].value);
                     }
                 }
             }
-            if(!chart.yaxis.hasOwnProperty("max")) {
+            if(!chart.xAxis.hasOwnProperty("max")) {
                 const extraAddition = max < 100 ? 2 : 10;
-                chart.yaxis.max = max + extraAddition;
+                chart.xAxis.max = max + extraAddition;
             }
-            if (!chart.yaxis.hasOwnProperty("min")) {
-                chart.yaxis.min = (chart.yaxis.min >= 10) ? min -10 : min
+            if (!chart.xAxis.hasOwnProperty("min")) {
+                chart.xAxis.min = (chart.xAxis.min >= 10) ? min -10 : min
             }
-            // console.log(chart.yaxis.max, chart.yaxis.min);
         }
 
-        let maxTextWidth = calcTextWidth(chart.data[0].datapoints, ctx_base, "label");
+        let maxTextWidth = calcTextWidth(chart.categories, ctx_base, "label");
 
-        console.log(maxTextWidth);
-
-        if (!chart.yaxis.numOfRows) {
-            chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / 8);
+        if (!chart.xAxis.numOfRows) {
+            chart.xAxis.difference = (chart.xAxis.max - chart.xAxis.min) / 8;
         } else {
-            chart.yaxis.difference = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.numOfRows);
+            chart.xAxis.difference = (chart.xAxis.max - chart.xAxis.min) / chart.xAxis.numOfRows;
         }
-        // let verticaldevisions = Math.floor((chart.yaxis.max - chart.yaxis.min) / chart.yaxis.difference);
-        let horizontalNr = chart.xaxis.numOfRows ? chart.xaxis.numOfRows : 8;
+
+        let horizontalNr = chart.xAxis.numOfRows ? chart.xAxis.numOfRows : 8;
         let canvas = 'canvas' + chart.chartnumber;
         drawVerticalGrid(chart.chartnumber, horizontalNr, ctx_base, chart.data, maxTextWidth);
         drawDocumentationDetails(canvas, ctx_base, horizontalNr, chart, maxTextWidth);
-        let rangedata = [chart.yaxis.min, chart.yaxis.max];
+        let rangedata = [chart.xAxis.min, chart.xAxis.max];
         let linecord = [];
         let nextcurve = 0;
         let barChartCount = chart.data.length;
@@ -339,6 +324,7 @@ const GkBarChart = (data) => {
                 ctx_base,
                 horizontalNr,
                 data: chart.data[i],
+                categories: chart.categories,
                 rangedata,
                 nextcurve,
                 chartColor: chart.data[i].chartColor,
@@ -357,6 +343,94 @@ const GkBarChart = (data) => {
         // console.log("End : barChart");
     } catch (err) {
         console.error("Exception occurred in bar chart module:  " + err.message);
+    }
+};
+
+const GkStackedBarChart = (data) => {
+    try {
+        // console.log("Start : barChart");
+        const chartSurface = new ChartSurface();
+
+        let chartID = data.id;
+        let chart = data.data;
+
+        chart.container = chartID;
+        chart.chartnumber = chartID;
+        let ChartContainer = document.querySelector("#" + chart.container);
+        chart.wid = ChartContainer.clientWidth - 10;
+        chart.hei = ChartContainer.clientHeight - 33;
+
+        let titleAndPrintButton = '';
+        if (chart.config.title) {
+            titleAndPrintButton += '<h2 class="chartTitle">' + chart.config.title + '</h2>';
+        }
+        titleAndPrintButton += printOptions(chartID, chart);
+        ChartContainer.innerHTML = titleAndPrintButton;
+
+        let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
+        !chart.xAxis ? chart.xAxis = {} : null;
+
+        const xAxisCount = chart.categories.length;
+        let max = 0;
+        const maxTextWidth = calcTextWidth(chart.categories, ctx_base, "label");
+        for(const d of chart.data){
+            const dataSet = d.dataSet;
+            const dataSetLength = dataSet.length;
+            for(let i = 0; i < xAxisCount; i++){
+                let sum = 0;
+                for(let j = 0; j < dataSetLength; j++) {
+                    sum = sum + dataSet[j].dataPoints[i].value;
+                }
+                if(sum > max) {
+                    max = sum;
+                }
+            }
+        }
+        max = max < 100 ? max + 5 : max + 10;
+        const canvasId = 'canvas' + chart.chartnumber;
+        let verticalNr = chart.xAxis.rowCount;
+        chart.xAxis.max = max;
+        if (!verticalNr) {
+            verticalNr = 8;
+        }
+
+        // calculate the xAix difference variable
+        chart.xAxis.difference = (max - chart.xAxis.min) / verticalNr;
+
+        drawVerticalGrid(chart.chartnumber, verticalNr, ctx_base, chart, maxTextWidth);
+        drawDocumentationDetails(canvasId, ctx_base, verticalNr, chart, maxTextWidth);
+
+        let range = [chart.xAxis.min, chart.xAxis.max];
+        let barCords = [];
+        let nextCurve = 0;
+        let barChartCount = chart.data.length;
+        for (let i = 0; i < chart.data.length; i++) {
+            const barChartProps = {
+                canvasId,
+                ctx_base,
+                verticalNr,
+                data: chart.data[i],
+                categories: chart.categories,
+                range,
+                nextCurve,
+                chartColor: chart.data[i].chartColor,
+                barCords,
+                barChartCount,
+                chartDataLength: chart.data.length,
+                maxTextWidth,
+                chart,
+                renderCount: i,
+            };
+            const rData = drawStackedBarChart(barChartProps);
+            nextCurve += rData.barHeight + 5;
+        }
+        // let ctx_upper = chartSurface.preparePlotUpper(chart.chartnumber, chart.wid, chart.hei, chart.container);
+        // ClearDetails(chart.chartnumber, ctx_upper, chart.container);
+        // BarChartUpperCanvas(chart.chartnumber, ctx_upper, barCords, chart.container, chart, maxTextWidth);
+        // printAction(chartID, chart);
+        // console.log("End : barChart");
+    } catch (err) {
+        console.error("Exception occurred in Stacked bar chart module:  " + err.message);
     }
 };
 
@@ -472,7 +546,7 @@ const GkStackedChart = (data) => {
         let ctx_base = chartSurface.preparePlot(chart.chartnumber, chart.wid, chart.hei, chart.container);
         !chart.yAxis ? chart.yAxis = {} : null;
 
-        const xAxisCount = chart.xAxis.length;
+        const xAxisCount = chart.categories.length;
         let max = 0;
         let maxTextWidth = 0;
         for(const d of chart.data){
@@ -868,9 +942,15 @@ const GkChart = (chartData) => {
                 break;
             }
 
-            case enums.stackedChart:
+            case enums.stackedColumnChart:
             {
                 GkStackedChart(chartData);
+                break;
+            }
+
+            case enums.stackedBarChart:
+            {
+                GkStackedBarChart(chartData);
                 break;
             }
 
@@ -881,7 +961,7 @@ const GkChart = (chartData) => {
             }
         }
     } catch (err) {
-        console.log("Error Found in GKChart Constructoru", err);
+        console.log("Error Found in GKChart Constructor", err);
     }
 };
 

@@ -49,20 +49,14 @@ function BarChartUpperCanvas(nr, ctx, linecord, container, chart, maxTextWidth) 
                         ctx.closePath();
                         for (let j = 0; j < lineCordRepeat; j++) {
                             let position = j * dataPointLen + i;
-                            // ctx.beginPath();
-                            // ctx.rect(linecord[position].x, linecord[position].y, linecord[position].wid, linecord[position].hei);
-                            // ctx.lineWidth = .5;
-                            // ctx.fillStyle = 'rgba(0,0,0,.3)';
-                            // ctx.fill();
-                            // ctx.stroke();
                             if(chartToolTip) {
                                 cssStyle(chartToolTip, {
                                     "left": mousePos.x / ratio(ctx) + 30 + "px",
-                                    "top": mousePos.y / ratio(ctx) + "px",
+                                    "top": mousePos.y / ratio(ctx) + 30 + "px",
                                     "display": "block"
                                 });
                             }
-                            details += `<div style="color: ${linecord[position].dataColor}">${linecord[position].dataLabel}  <br />  ${linecord[position].label} : ${linecord[position].dataval} <br /></div>`;
+                            details += `<div style="color: ${linecord[position].dataColor}">${linecord[position].dataLabel} - ${linecord[position].label} : <b>${linecord[position].dataval}</b> <br /></div>`;
                         }
                         ctx.beginPath();
                         let lineX = x1 + (spacingHorizontal / 2);

@@ -18,7 +18,7 @@ function stackedChartUpperCanvas(nr, ctx, lineCord, container, chart, maxTextWid
             canvasWidthSpareForDetails = maxTextWidth;
         }
         console.log(lineCord);
-        let dataPointLen = chart.xAxis.length;
+        let dataPointLen = chart.categories.length;
         let wid = document.getElementById('canvasupper' + nr).width - canvasWidthSpareForDetails;
         const spacingHorizontal = wid / dataPointLen;
         let lineCordRepeat = lineCord.length / dataPointLen;

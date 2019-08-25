@@ -20,19 +20,19 @@ const drawVerticalGrid = (nr, horizontalNr, ctx, data, maxTextWidth) => {
         ctx.beginPath();
         ctx.fillStyle = blackFillStyle;
 
-        const spacingVertical = hei / data[0].datapoints.length;
+        const dataCount = data.categories.length;
+        const spacingVertical = hei / dataCount;
         const spacingHorizontal = wid / horizontalNr;
 
         /*Vertical grid*/
 
         // Vertical grid rows
-        for (let i = 0; i < data[0].datapoints.length + 1; i++) {
+        for (let i = 0; i < dataCount + 1; i++) {
             ctx.beginPath();
             ctx.strokeStyle = 'rgba(0,0,0,.5)';
             ctx.lineWidth = .5;
             ctx.moveTo(canvasWidthSpareForDetails - 10, i * spacingVertical + 1);
             ctx.lineTo(wid + canvasWidthSpareForDetails, i * spacingVertical +1);
-            // ctx.stroke();
             ctx.closePath();
         }
 
@@ -62,26 +62,27 @@ const drawDocumentationDetails = (canvasId, ctx, horizontalNr, cdata, maxTextWid
         const canvas = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
-        const spacingVertical = hei / cdata.data[0].datapoints.length;
+        const categoriesLength = cdata.categories.length;
+        const spacingVertical = hei / categoriesLength;
         const spacingHorizontal = wid / horizontalNr;
         ctx.beginPath();
         ctx.fillStyle = blackFillStyle;
 
         /* yAxis data */
         const spacingTopYAxisText = spacingVertical / 2 + fontLineHeight / 2;
-        for (let i = 0; i < cdata.data[0].datapoints.length; i++) {
-            let textWidth = ctx.measureText(cdata.data[0].datapoints[i].label).width;
+        for (let i = 0; i < categoriesLength; i++) {
+            let textWidth = ctx.measureText(cdata.categories[i].label).width;
             let fromLeft = (canvasWidthSpareForDetails - textWidth - 10); // extra -10 to give more space after y axis test is written
             ctx.beginPath();
-            ctx.fillText(cdata.data[0].datapoints[i].label, fromLeft, i * spacingVertical + spacingTopYAxisText);
+            ctx.fillText(cdata.categories[i].label, fromLeft, i * spacingVertical + spacingTopYAxisText);
             ctx.closePath();
         }
 
         /* xAxis Vertical Documents*/
         for (let i = 0; i < horizontalNr + 1; i++) {
-            const min = cdata.yaxis.min;
-            const difference = cdata.yaxis.difference;
-            const text = i * difference + min;
+            const min = cdata.xAxis.min;
+            const difference = cdata.xAxis.difference;
+            const text = String(Math.ceil(i * difference + min));
             let textWidth = ctx.measureText(text).width;
             textWidth = i > 0 ? textWidth : 0;
             ctx.beginPath();

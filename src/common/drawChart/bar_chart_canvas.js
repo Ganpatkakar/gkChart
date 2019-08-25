@@ -17,6 +17,7 @@ function drawBarChart(props) {
         const barChartCount = props.barChartCount;
         const chartDataLength = props.chartDataLength;
         const maxTextWidth = props.maxTextWidth;
+        const categories = props.categories;
 
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
@@ -66,7 +67,7 @@ function drawBarChart(props) {
         const localLineCord = [];
         for (let i = 0; i < data.datapoints.length; i++) {
             // var rectHeight = barHeight;
-            const barChartWidth = (data.datapoints[i].y - range[0]) * horizontalCoefficient;
+            const barChartWidth = (data.datapoints[i].value - range[0]) * horizontalCoefficient;
             // let barChartWidth = barChartCount * barWidth + (barChartCount - 1) * 5;
             let fromLeft = canvasWidthSpareForDetails;
             let fromTop = (i * spacingVertical + spacingVertical / 2 + curx) - (barHeight / 2) * barChartCount;
@@ -75,9 +76,9 @@ function drawBarChart(props) {
                 y: fromTop,
                 wid: barChartWidth,
                 hei: barHeight,
-                label: data.datapoints[i].label,
+                label: categories[i].label,
                 dataLabel: data.dataLabel,
-                dataval: data.datapoints[i].y,
+                dataval: data.datapoints[i].value,
                 dataColor: data.chartColor
             };
             linecord.push(newObj);

@@ -91,8 +91,11 @@ const dataPoint7 = [
     const columnLineAndAriaChart = document.getElementById("column-line-and-aria-chart");
     const columnSmoothLineAndAriaChart = document.getElementById("column-smooth-line-and-aria-chart");
 
-    const stackedChart = document.getElementById("stacked-chart");
-    const groupStackedChart = document.getElementById("group-stacked-chart");
+    const stackedChart = document.getElementById("stacked-column-chart");
+    const groupStackedChart = document.getElementById("group-stacked-column-chart");
+
+    const stackedBarChart = document.getElementById("stacked-bar-chart");
+    const groupStackedBarChart = document.getElementById("group-stacked-bar-chart");
 
     const doughnutChart = document.getElementById("doughnut-chart");
     const meterChart = document.getElementById("meter-chart");
@@ -327,78 +330,49 @@ const dataPoint7 = [
                 "chartType": 'bar-chart',
                 "printEnable": true
             },
-            yaxis : {
+            xAxis : {
                 min : 0,
                 numOfRows : 5,
                 title : "Hours"
             },
-            xaxis : {
-                min : 0,
-                numOfRows : 5,
-                title : "Hours"
-            },
-            "data": [{
-                "chartColor": "#5d62b5",
-                "dataLabel": "Data set 1",
-                "datapoints": [
-                    {
-                        label: "Travel & Leisure",
-                        y: "41"
-                    },
-                    {
-                        label: "Advertising/Marketing/PR",
-                        y: "39"
-                    },
-                    {
-                        label: "Other",
-                        y: "38"
-                    },
-                    {
-                        label: "Real Estate",
-                        y: "32"
-                    },
-                    {
-                        label: "Communications/Cable/Phone",
-                        y: "26"
-                    },
-                    {
-                        label: "Construction",
-                        y: "25"
-                    },
-                    {
-                        label: "Entertainment",
-                        y: "25"
-                    },
-                    {
-                        label: "Staffing Firm/Full Time/Temporary",
-                        y: "24"
-                    },
-                    {
-                        label: "Transportation/Logistics",
-                        y: "23"
-                    },
-                    {
-                        label: "Utilities",
-                        y: "22"
-                    },
-                    {
-                        label: "Aerospace/Defense Products",
-                        y: "18"
-                    },
-                    {
-                        label: "Banking/Finance/Securities",
-                        y: "16"
-                    },
-                    {
-                        label: "Consumer Products - Non-Durables",
-                        y: "15"
-                    },
-                    {
-                        label: "Distribution",
-                        y: "13"
-                    }
-                ]
-            }]
+            categories : [
+                {label: "Travel & Leisure"},
+                {label: "Advertising/Marketing/PR"},
+                {label: "Other"},
+                {label: "Real Estate"},
+                {label: "Communications/Cable/Phone"},
+                {label: "Construction"},
+                {label: "Entertainment"},
+                {label: "Staffing Firm/Full Time/Temporary"},
+                {label: "Transportation/Logistics"},
+                {label: "Utilities"},
+                {label: "Aerospace/Defense Products"},
+                {label: "Banking/Finance/Securities"},
+                {label: "Consumer Products - Non-Durables"},
+                {label: "Distribution"}
+            ],
+            "data": [
+                {
+                    "chartColor": "#5d62b5",
+                    "dataLabel": "Data set 1",
+                    "datapoints": [
+                        {value: "41"},
+                        {value: "39"},
+                        {value: "38"},
+                        {value: "32"},
+                        {value: "26"},
+                        {value: "25"},
+                        {value: "25"},
+                        {value: "24"},
+                        {value: "23"},
+                        {value: "22"},
+                        {value: "18"},
+                        {value: "16"},
+                        {value: "15"},
+                        {value: "13"}
+                    ]
+                }
+            ]
         };
 
         GkChart({id: "bar-chart", data: chartbar});
@@ -411,123 +385,62 @@ const dataPoint7 = [
                 "chartType": 'bar-chart',
                 "printEnable": true
             },
-            yaxis : {
-                min : 0,
-                numOfRows : 5,
-                title : "Hours"
-            },
             xaxis : {
                 min : 0,
                 numOfRows : 5,
                 title : "Hours"
             },
+            categories : [
+                {label: "Travel & Leisure"},
+                {label: "Advertising/Marketing/PR"},
+                {label: "Other"},
+                {label: "Real Estate"},
+                {label: "Communications/Cable/Phone"},
+                {label: "Construction"},
+                {label: "Entertainment"},
+                {label: "Staffing Firm/Full Time/Temporary"},
+                {label: "Transportation/Logistics"},
+                {label: "Utilities"},
+                {label: "Aerospace/Defense Products"},
+                {label: "Banking/Finance/Securities"},
+                {label: "Consumer Products - Non-Durables"},
+                {label: "Distribution"}
+            ],
             "data": [
                 {
                     "chartColor": "#5d62b5",
                     "dataLabel": "Data set 1",
                     "datapoints": [
-                        {
-                            label: "Travel & Leisure",
-                            y: "41"
-                        },
-                        {
-                            label: "Advertising/Marketing/PR",
-                            y: "39"
-                        },
-                        {
-                            label: "Other",
-                            y: "38"
-                        },
-                        {
-                            label: "Real Estate",
-                            y: "32"
-                        },
-                        {
-                            label: "Communications/Cable/Phone",
-                            y: "26"
-                        },
-                        {
-                            label: "Construction",
-                            y: "25"
-                        },
-                        {
-                            label: "Entertainment",
-                            y: "25"
-                        },
-                        {
-                            label: "Staffing Firm/Full Time/Temporary",
-                            y: "24"
-                        },
-                        {
-                            label: "Transportation/Logistics",
-                            y: "23"
-                        },
-                        {
-                            label: "Utilities",
-                            y: "22"
-                        },
-                        {
-                            label: "Aerospace/Defense Products",
-                            y: "18"
-                        },
-                        {
-                            label: "Banking/Finance/Securities",
-                            y: "16"
-                        }
+                        {value: "41"},
+                        {value: "39"},
+                        {value: "38"},
+                        {value: "32"},
+                        {value: "26"},
+                        {value: "25"},
+                        {value: "25"},
+                        {value: "24"},
+                        {value: "23"},
+                        {value: "22"},
+                        {value: "18"},
+                        {value: "16"}
                     ]
                 },
                 {
                     "chartColor": "#29c3be",
                     "dataLabel": "Data set 1",
                     "datapoints": [
-                        {
-                            label: "Travel & Leisure",
-                            y: "30"
-                        },
-                        {
-                            label: "Advertising/Marketing/PR",
-                            y: "20"
-                        },
-                        {
-                            label: "Other",
-                            y: "18"
-                        },
-                        {
-                            label: "Real Estate",
-                            y: "41"
-                        },
-                        {
-                            label: "Communications/Cable/Phone",
-                            y: "40"
-                        },
-                        {
-                            label: "Construction",
-                            y: "35"
-                        },
-                        {
-                            label: "Entertainment",
-                            y: "15"
-                        },
-                        {
-                            label: "Staffing Firm/Full Time/Temporary",
-                            y: "4"
-                        },
-                        {
-                            label: "Transportation/Logistics",
-                            y: "2"
-                        },
-                        {
-                            label: "Utilities",
-                            y: "28"
-                        },
-                        {
-                            label: "Aerospace/Defense Products",
-                            y: "38"
-                        },
-                        {
-                            label: "Banking/Finance/Securities",
-                            y: "36"
-                        }
+                        {value: "30"},
+                        {value: "20"},
+                        {value: "18"},
+                        {value: "41"},
+                        {value: "40"},
+                        {value: "35"},
+                        {value: "15"},
+                        {value: "4"},
+                        {value: "2"},
+                        {value: "28"},
+                        {value: "38"},
+                        {value: "36"}
                     ]
                 }
             ]
@@ -1065,8 +978,8 @@ const dataPoint7 = [
 
         const chartData = {
             config: {
-                title: "Stacked Chart",
-                chartType: "stacked-chart",
+                title: "Stacked Column Chart",
+                chartType: "stacked-column-chart",
                 printEnable: true
             },
             yAxis: {
@@ -1074,7 +987,7 @@ const dataPoint7 = [
                 rowCount : 5,
                 title : "Hours"
             },
-            xAxis: [
+            categories: [
                 {label: "January"},
                 {label: "February"},
                 {label: "March"},
@@ -1138,15 +1051,15 @@ const dataPoint7 = [
             ]
         };
 
-        GkChart({id: "stacked-chart", data: chartData});
+        GkChart({id: "stacked-column-chart", data: chartData});
     }
 
     if(groupStackedChart) {
 
         const chartData = {
             config: {
-                title: "Stacked Chart",
-                chartType: "stacked-chart",
+                title: "Group Stacked Column Chart",
+                chartType: "stacked-column-chart",
                 printEnable: true
             },
             yAxis: {
@@ -1154,7 +1067,7 @@ const dataPoint7 = [
                 rowCount : 5,
                 title : "Hours"
             },
-            xAxis: [
+            categories: [
                 {label: "January"},
                 {label: "February"},
                 {label: "March"},
@@ -1267,7 +1180,216 @@ const dataPoint7 = [
             ]
         };
 
-        GkChart({id: "group-stacked-chart", data: chartData});
+        GkChart({id: "group-stacked-column-chart", data: chartData});
+    }
+
+    if(stackedBarChart) {
+
+        const chartData = {
+            config: {
+                title: "Stacked Bar Chart",
+                chartType: "stacked-bar-chart",
+                printEnable: true
+            },
+            xAxis: {
+                min : 0,
+                rowCount : 5,
+                title : "Hours"
+            },
+            categories: [
+                {label: "January"},
+                {label: "February"},
+                {label: "March"},
+                {label: "April"},
+                {label: "May"},
+                {label: "June"},
+                {label: "July"},
+                {label: "August"},
+                {label: "September"},
+            ],
+            data: [
+                {
+                    dataSet: [
+                        {
+                            color: "#5d62b5",
+                            dataLabel: "Oil",
+                            dataPoints : [
+                                {value: 5},
+                                {value: 10},
+                                {value: 8},
+                                {value: 6},
+                                {value: 2},
+                                {value: 9},
+                                {value: 19},
+                                {value: 5},
+                                {value: 2},
+                            ]
+                        },
+                        {
+                            color: "#29c3be",
+                            dataLabel: "Gas",
+                            dataPoints : [
+                                {value: 2},
+                                {value: 6},
+                                {value: 12},
+                                {value: 15},
+                                {value: 1},
+                                {value: 5},
+                                {value: 15},
+                                {value: 25},
+                                {value: 5},
+                            ]
+                        },
+                        {
+                            color: "#f2726f",
+                            dataLabel: "Petrol",
+                            dataPoints : [
+                                {value: 8},
+                                {value: 4},
+                                {value: 5},
+                                {value: 5},
+                                {value: 10},
+                                {value: 15},
+                                {value: 1},
+                                {value: 10},
+                                {value: 25},
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        GkChart({id: "stacked-bar-chart", data: chartData});
+    }
+
+    if(groupStackedBarChart) {
+
+        const chartData = {
+            config: {
+                title: "Stacked Chart",
+                chartType: "stacked-bar-chart",
+                printEnable: true
+            },
+            xAxis: {
+                min : 0,
+                rowCount : 5,
+                title : "Hours"
+            },
+            categories: [
+                {label: "January"},
+                {label: "February"},
+                {label: "March"},
+                {label: "April"},
+                {label: "May"},
+                {label: "June"},
+                {label: "July"},
+                {label: "August"},
+                {label: "September"},
+            ],
+            data: [
+                {
+                    dataSet: [
+                        {
+                            color: "#5d62b5",
+                            dataLabel: "Oil",
+                            dataPoints : [
+                                {value: 5},
+                                {value: 10},
+                                {value: 8},
+                                {value: 6},
+                                {value: 2},
+                                {value: 9},
+                                {value: 19},
+                                {value: 5},
+                                {value: 2},
+                            ]
+                        },
+                        {
+                            color: "#29c3be",
+                            dataLabel: "Gas",
+                            dataPoints : [
+                                {value: 2},
+                                {value: 6},
+                                {value: 12},
+                                {value: 15},
+                                {value: 1},
+                                {value: 5},
+                                {value: 15},
+                                {value: 25},
+                                {value: 5},
+                            ]
+                        },
+                        {
+                            color: "#f2726f",
+                            dataLabel: "Petrol",
+                            dataPoints : [
+                                {value: 8},
+                                {value: 4},
+                                {value: 5},
+                                {value: 5},
+                                {value: 10},
+                                {value: 15},
+                                {value: 1},
+                                {value: 10},
+                                {value: 25},
+                            ]
+                        }
+                    ]
+                },
+                {
+                    dataSet: [
+                        {
+                            color: "#5d62b5",
+                            dataLabel: "Oil",
+                            dataPoints : [
+                                {value: 15},
+                                {value: 1},
+                                {value: 18},
+                                {value: 10},
+                                {value: 12},
+                                {value: 19},
+                                {value: 9},
+                                {value: 15},
+                                {value: 22},
+                            ]
+                        },
+                        {
+                            color: "#29c3be",
+                            dataLabel: "Gas",
+                            dataPoints : [
+                                {value: 12},
+                                {value: 16},
+                                {value: 2},
+                                {value: 5},
+                                {value: 11},
+                                {value: 25},
+                                {value: 5},
+                                {value: 21},
+                                {value: 35},
+                            ]
+                        },
+                        {
+                            color: "#f2726f",
+                            dataLabel: "Petrol",
+                            dataPoints : [
+                                {value: 18},
+                                {value: 24},
+                                {value: 15},
+                                {value: 35},
+                                {value: 1},
+                                {value: 1},
+                                {value: 11},
+                                {value: 16},
+                                {value: 2},
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        GkChart({id: "group-stacked-bar-chart", data: chartData});
     }
 
 })();
