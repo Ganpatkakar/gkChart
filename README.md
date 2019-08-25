@@ -24,7 +24,8 @@ There are two different version of gkCharts :-
     pieChart = "pie-chart";
     doughnutChart = "doughnut-chart";
     meterChart = "meter-chart";
-    stackedChart = "stacked-chart";
+    stackedColumnChart = "stacked-column-chart";
+    stackedBarChart = "stacked-bar-chart";
 
 ### How to use GkChart Library or GkChart NPM package (npm install gk-cahrt) :-
 GkCharts support more than 20+ combination of charts with 8 chart types.
