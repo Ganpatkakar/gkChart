@@ -5615,10 +5615,10 @@ github-slugger@^1.0.0:
   resolved "https://registry.yarnpkg.com/github-slugger/-/github-slugger-1.5.0.tgz#17891bbc73232051474d68bd867a34625c955f7d"
   integrity sha512-wIh+gKBI9Nshz2o46B0B3f5k/W+WI9ZAv6y5Dn5WJ5SK1t0TnDimB4WE5rmTD05ZAIn8HALCZVmCsvj0w0v0lw==
 
-gk-chart@^1.2.11:
-  version "1.2.11"
-  resolved "https://registry.yarnpkg.com/gk-chart/-/gk-chart-1.2.11.tgz#f39f93088f0391270bebfafeb4f503e509928a52"
-  integrity sha512-XJvyEWcCv5DNBmZOIb9vO2ZXS9vKWyoXpoqisS/f/yRxBZXhbH+ZYJ0JyLw6+fRz7v0oXJhA4Cz/d/wQLQBZUg==
+gk-chart@^1.2.13:
+  version "1.2.13"
+  resolved "https://registry.yarnpkg.com/gk-chart/-/gk-chart-1.2.13.tgz#9a8152ba3515c53cc3021a311147dfec465a9953"
+  integrity sha512-x/+7Htq3MxphYndMnUXx0Ec59GbZf6QqwjOSbJKii/klBA0Vcp3E0drLJXGirRjS431dnvWTUy1H7POHX9y2DA==
 
 glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"
