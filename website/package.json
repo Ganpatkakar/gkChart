@@ -62,7 +62,7 @@
     "string-width": "^4",
     "jackspeak": "^2",
     "styled-components": "^5",
-    "gk-chart": "^1.1.9"
+    "gk-chart": "^1.1.91"
   },
   "dependencies": {
     "@actions/core": "1.10.0",

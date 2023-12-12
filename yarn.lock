@@ -2751,10 +2751,12 @@ get-value@^2.0.3, get-value@^2.0.6:
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha512-Ln0UQDlxH1BapMu3GPtf7CuYNwRZf2gwCuPqbyG6pB8WfmFpzqcy4xtAaAMUhnNqjMKTiCPZG2oMT3YSx8U2NA==
 
-gk-chart@^1.1.9:
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/gk-chart/-/gk-chart-1.1.9.tgz#db918dc97638b33b3a740cae7a0454fd7810317b"
-  integrity sha512-Me0ue3JKyBRxDEB8DOaC3pD+OFUYAek6IBqe8BQIro/0oZArgW+ieYFCJcpodMDbxHO6N8WkwQQDvDQ+5bTvEQ==
+gk-chart@1.1.91, gk-chart@^1.1.9:
+  version "1.1.91"
+  resolved "https://registry.yarnpkg.com/gk-chart/-/gk-chart-1.1.91.tgz#e7aaef4b38a3a9338100f9b4d202f15bf83f21fe"
+  integrity sha512-1XdKYf76E7bH7PfCoUm4ScZAhw+FDrx0WydqZlFq8dKJLe1c67/BrJFIpA0KA94qr3yijDQCdS0F4jiBANm2Ng==
+  dependencies:
+    gk-chart "^1.1.9"
 
 glob-base@^0.3.0:
   version "0.3.0"
