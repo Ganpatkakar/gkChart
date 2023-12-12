@@ -3,6 +3,10 @@
   "description": "Open Source JavaScript chart library",
   "name": "gk-chart",
   "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "types": "dist/main.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc",
@@ -15,10 +19,6 @@
     "type": "git",
     "url": "git+https://github.com/Ganpatkakar/gkChart"
   },
-  "files": [
-    "lib",
-    "src"
-  ],
   "keywords": [
     "Chart",
     "Library",
