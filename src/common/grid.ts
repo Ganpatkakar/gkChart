@@ -1,13 +1,13 @@
-import {xAxisSpacing, fontLineHeight, strokeStyle, blackFillStyle, canvasHeightSpareForDetails, canvasWidthSpareForDetails} from '../invokeCharts/enums';
-let canvasWidthSpareForDetails = canvasWidthSpareForDetails;
+import {xAxisSpacing, fontLineHeight, strokeStyle, blackFillStyle, canvasHeightSpareForDetails, canvasWidthSpareForDetails as canvasDetailsWidth} from '../invokeCharts/enums';
+let canvasWidthSpareForDetails = canvasDetailsWidth;
 
-const drawGrid = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
+export const drawGrid = (nr: any, verticanNr: any, ctx: any, data: any, maxTextWidth = 0) => {
     try {
         // console.log("Start : drawGrid");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
-        const canvas = document.getElementById('canvas' + nr);
+        const canvas: any = document.getElementById('canvas' + nr);
         const hei = canvas.height - canvasHeightSpareForDetails;
         //// console.log("canvas height to draw grid lines:" + hei);
         const wid = canvas.width - canvasWidthSpareForDetails;
@@ -71,13 +71,13 @@ const drawGrid = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
     }
 };
 
-const drawGraphicLinearYcord = (canvasId, ctx, verticalNr, cdata, maxTextWidth = 0) => {
+export const drawGraphicLinearYcord = (canvasId: any, ctx: any, verticalNr: any, cdata: any, maxTextWidth = 0) => {
     try {
         // console.log("Start : drawGraphicLinearYcord");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
-        const canvas = document.getElementById(canvasId);
+        const canvas: any = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         const spacingVertical = hei / verticalNr;

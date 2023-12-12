@@ -1,15 +1,15 @@
 // import Canvas2Image from "./canvas_to_image";
-const Canvas2Image = require("./canvas_to_image");
+import Canvas2Image from "./canvas_to_image";
 // import cssStyle from "./css_style";
-const cssStyle = require("./css_style");
+import cssStyle from "./css_style";
 // import PrintContent from "./print_content";
-const PrintContent = require("./print_content");
+import PrintContent from "./print_content";
 
-const printOptions = (chartID, chart) => {
+export const printOptions = (chartID: any, chart: any): string | null => {
     try {
 
         if (chart.config.printEnable != undefined && chart.config.printEnable == true) {
-            let content = `
+            return `
                         <div id="print-option-menu" style="
                                         position: absolute;
                                         right: 25px;
@@ -33,21 +33,24 @@ const printOptions = (chartID, chart) => {
                           <div style=" padding: 3px 5px;cursor: pointer;" id="jpg_${chartID}">Save as JPEG</div>
                           <div style=" padding: 3px 5px;cursor: pointer;" id="png_${chartID}">Save as PNG</div>
                         </div>
-                        `
-            return content;
+                        `;
         }
-        return null
+        return null;
     } catch (err) {
         console.log("Error in Print Options", err);
+        return null;
     }
 };
 
-const printAction = (chartID, chart) => {
+export const printAction = (chartID: any, chart: any): void => {
     try {
         if (chart.config.printEnable != undefined && chart.config.printEnable == true) {
             let visible = false;
-            document.querySelector(`#${chartID} #print-option-menu`).addEventListener('click', function (event) {
-                cssStyle(document.querySelector(`#${chartID} #print-options`), {
+            const canvasChart: any = document.getElementById(`canvas${chartID}`)
+            const canvasPrintOptions: Element | null = document.querySelector(`#${chartID} #print-options`);
+            const printOptionMenu: Element | null = document.querySelector(`#${chartID} #print-option-menu`);
+            printOptionMenu?.addEventListener('click', function (event) {
+                cssStyle(canvasPrintOptions, {
                     "position": "absolute",
                     "right": "25px",
                     "border": "1px solid #000",
@@ -56,34 +59,40 @@ const printAction = (chartID, chart) => {
                     "margin-top": "-38px"
                 });
                 if (!visible) {
-                    cssStyle(document.querySelector(`#${chartID} #print-options`), {
+                    cssStyle(canvasPrintOptions, {
                         "display": "block"
                     });
                     visible = true;
                 } else {
-                    cssStyle(document.querySelector(`#${chartID} #print-options`), {
+                    cssStyle(canvasPrintOptions, {
                         "display": "none"
                     });
                     visible = false;
                 }
             });
-            document.querySelector("#" + chartID + " #print_" + chartID).addEventListener('click', function (event) {
+            const printChartId: Element | null = document.querySelector("#" + chartID + " #print_" + chartID);
+            printChartId?.addEventListener('click', function (event) {
                 PrintContent(event, chart.wid, chart.hei, chartID);
-                cssStyle(document.querySelector(`#${chartID} #print-options`), {
+                cssStyle(canvasPrintOptions, {
                     "display": "none"
                 });
                 visible = false;
             });
-            document.querySelector("#" + chartID + " #jpg_" + chartID).addEventListener('click', function (event) {
-                Canvas2Image.saveAsImage(document.getElementById(`canvas${chartID}`), document.getElementById(`canvas${chartID}`).width, document.getElementById(`canvas${chartID}`).height);
-                cssStyle(document.querySelector(`#${chartID} #print-options`), {
+
+
+            const charJpg: Element | null = document.querySelector("#" + chartID + " #jpg_" + chartID);
+            charJpg?.addEventListener('click', function (event) {
+                Canvas2Image().saveAsImage(canvasChart, canvasChart?.width, canvasChart?.height);
+                cssStyle(canvasPrintOptions, {
                     "display": "none"
                 });
                 visible = false;
             });
-            document.querySelector("#" + chartID + " #png_" + chartID).addEventListener('click', function (event) {
-                Canvas2Image.saveAsImage(document.getElementById(`canvas${chartID}`), document.getElementById(`canvas${chartID}`).width, document.getElementById(`canvas${chartID}`).height);
-                cssStyle(document.querySelector(`#${chartID} #print-options`), {
+
+            const chartPng = document.querySelector("#" + chartID + " #png_" + chartID);
+            chartPng?.addEventListener('click', function (event) {
+                Canvas2Image().saveAsImage(canvasChart, canvasChart?.width, canvasChart?.height);
+                cssStyle(canvasPrintOptions, {
                     "display": "none"
                 });
                 visible = false;
@@ -93,6 +102,3 @@ const printAction = (chartID, chart) => {
         console.log(error);
     }
 };
-
-exports.printOptions = printOptions;
-exports.printAction = printAction;

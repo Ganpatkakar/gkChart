@@ -1,23 +1,20 @@
-// import GetMousePos from "../mouse_position";
-const GetMousePos = require("../mouse_position");
-// import cssStyle from "../css_style";
-const cssStyle = require("../css_style");
-// import ratio from "../reatio";
-const ratio = require("../reatio");
+import GetMousePos from "../mouse_position";
+import ratio from "../reatio";
+import cssStyle from "../css_style";
 
-function PieChartUpperCanvas(nr, ctx, linecord, container) {
+export default function PieChartUpperCanvas(nr: any, ctx: any, linecord: any, container: any) {
     try {
         // console.log("Start : pieChartUpperCanvas");
-        const canvasUpper = document.getElementById('canvasupper' + nr);
-        const chartToolTip = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
+        const canvasUpper: any = document.getElementById('canvasupper' + nr);
+        const chartToolTip: any = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
         const canvasUpperHeight = canvasUpper.height;
         const canvasUpperWidth = canvasUpper.width;
         if(canvasUpper) {
-            canvasUpper.addEventListener('mousemove', function (evt) {
+            canvasUpper.addEventListener('mousemove', function (evt: any) {
                 ctx.clearRect(0, 0, canvasUpperWidth, canvasUpperHeight);
-                let mousePos = GetMousePos(canvasUpper, evt);
+                let mousePos: any = GetMousePos(canvasUpper, evt);
                 let lineCordLength = linecord.length;
-                for (var i = 0; i < lineCordLength; i++) {
+                for (let i = 0; i < lineCordLength; i++) {
                     ctx.beginPath();
                     ctx.lineTo(linecord[i].wid / 2, linecord[i].hei / 2);
                     ctx.arc(linecord[i].wid / 2, linecord[i].hei / 2, linecord[i].hei / 2, linecord[i].startangle, linecord[i].lastangle, false);
@@ -39,9 +36,10 @@ function PieChartUpperCanvas(nr, ctx, linecord, container) {
                         ctx.clearRect(0, 0, canvasUpperWidth, canvasUpperHeight);
                     }
                 }
+            // @ts-ignore
             }.bind(this), false);
 
-            canvasUpper.addEventListener('mouseout', function (evt) {
+            canvasUpper.addEventListener('mouseout', function (evt: any) {
                 setTimeout(function () {
                     ctx.clearRect(0, 0, canvasUpperWidth, canvasUpperHeight);
                     cssStyle(chartToolTip, {
@@ -55,5 +53,3 @@ function PieChartUpperCanvas(nr, ctx, linecord, container) {
         console.log("error occurred in pieChartUpperCanvas : ", e);
     }
 }
-
-module.exports = PieChartUpperCanvas;

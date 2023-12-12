@@ -1,24 +1,24 @@
-const gkChartConsts = require("../../invokeCharts/enums");
+import gkChartConsts from "../../invokeCharts/enums";
 
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-function DrawStepChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord, maxTextWidth = 0) {
+export default function DrawStepChart(canvasId: any, ctx: any, verticalNr: any, data: any, range: any, chartColor: any, linecord: any, maxTextWidth = 0) {
     try {
         // console.log("Start : drawStepchart");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
-        const calcWayPoints = (vertices) => {
+        const calcWayPoints = (vertices: any) => {
             const wayPoints = [];
-            for (var i = 1; i < vertices.length; i++) {
-                var pt0 = vertices[i - 1];
-                var pt1 = vertices[i];
-                var dx = pt1.x - pt0.x;
-                var dy = pt1.y - pt0.y;
-                for (var j = 0; j < differencePoints; j++) {
-                    var x = pt0.x + dx * j / differencePoints;
-                    var y = pt0.y + dy * j / differencePoints;
+            for (let i = 1; i < vertices.length; i++) {
+                let pt0 = vertices[i - 1];
+                let pt1 = vertices[i];
+                let dx = pt1.x - pt0.x;
+                let dy = pt1.y - pt0.y;
+                for (let j = 0; j < differencePoints; j++) {
+                    let x = pt0.x + dx * j / differencePoints;
+                    let y = pt0.y + dy * j / differencePoints;
                     wayPoints.push({
                         x: x,
                         y: y
@@ -28,7 +28,7 @@ function DrawStepChart(canvasId, ctx, verticalNr, data, range, chartColor, linec
             return (wayPoints);
         };
 
-        const fillAreaCall = (vertices) => {
+        const fillAreaCall = (vertices: any) => {
             ctx.beginPath();
             if (vertices.length) {
                 ctx.moveTo(vertices[0].x, hei);
@@ -86,19 +86,19 @@ function DrawStepChart(canvasId, ctx, verticalNr, data, range, chartColor, linec
             t += 1;
         };
 
-        var canvas = document.getElementById(canvasId);
-        var hei = canvas.height - canvasHeightSpareForDetails;
-        var wid = canvas.width - +canvasWidthSpareForDetails
-        var spacingVertical = hei / verticalNr;
-        var spacingHorizontal = wid / data.datapoints.length;
+        let canvas: any = document.getElementById(canvasId);
+        let hei: any = canvas.height - canvasHeightSpareForDetails;
+        let wid: any = canvas.width - +canvasWidthSpareForDetails
+        let spacingVertical = hei / verticalNr;
+        let spacingHorizontal = wid / data.datapoints.length;
 
-        var totalRange = range[1] - range[0];
-        var verticalCoefficient = hei / totalRange;
+        let totalRange = range[1] - range[0];
+        let verticalCoefficient = hei / totalRange;
 
         ctx.beginPath();
-        var localLineCords = [];
+        let localLineCords = [];
         for (let i = 0; i < data.datapoints.length; i++) {
-            var newobj = {
+            let newobj = {
                 x: i * spacingHorizontal + spacingHorizontal / 2 + canvasWidthSpareForDetails,
                 y: hei - (data.datapoints[i].y - range[0]) * verticalCoefficient,
                 label: data.datapoints[i].label,
@@ -140,5 +140,3 @@ function DrawStepChart(canvasId, ctx, verticalNr, data, range, chartColor, linec
         console.log("error occured in drawGraphicLinear : ", e);
     }
 }
-
-module.exports = DrawStepChart;

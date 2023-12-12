@@ -3,8 +3,8 @@ import gkChartConsts from "../../invokeCharts/enums";
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-export function bezierPointsCalc(a, f) {
-    for (let b = [], c, e = 0; e < a.length; e++)
+function bezierPointsCalc(a: any, f: any) {
+    for (var b = [], c, e = 0; e < a.length; e++)
         if (0 == e)
             b.push(a[0]);
         else {
@@ -40,13 +40,13 @@ export function bezierPointsCalc(a, f) {
     return b
 }
 
-export default function drawSmoothLineChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord, maxTextWidth) {
+export default function drawSmoothLineChart(canvasId: any, ctx: any, verticalNr: any, data: any, range: any, chartColor: any, linecord: any, maxTextWidth: any) {
     try {
         // console.log("Start : drawGraphicLinear");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
-        const calcWayPoints = (vertices) => {
+        const calcWayPoints = (vertices: any) => {
             const wayPoints = [];
             for (let i = 1; i < vertices.length; i += 3) {
                 let startPt = {x: vertices[i - 1].x, y: vertices[i - 1].y}
@@ -64,7 +64,7 @@ export default function drawSmoothLineChart(canvasId, ctx, verticalNr, data, ran
             return (wayPoints);
         };
 
-        const getQuadraticBezierXYatT = (startPt, ct1, ct2, endPt, t) => {
+        const getQuadraticBezierXYatT = (startPt: any, ct1: any, ct2: any, endPt: any, t: any) => {
             let x = Math.pow(1 - t, 3) * startPt.x + 3 * Math.pow(1 - t, 2) * t * ct1.x + 3 * (1 - t) * Math.pow(t, 2) * ct2.x + Math.pow(t, 3) * endPt.x
             let y = Math.pow(1 - t, 3) * startPt.y + 3 * Math.pow(1 - t, 2) * t * ct1.y + 3 * (1 - t) * Math.pow(t, 2) * ct2.y + Math.pow(t, 3) * endPt.y
             return ({x: x, y: y});
@@ -79,7 +79,7 @@ export default function drawSmoothLineChart(canvasId, ctx, verticalNr, data, ran
             ctx.stroke();
         };
 
-        const fillAreaCall = (vertices) => {
+        const fillAreaCall = (vertices: any) => {
             ctx.beginPath();
             if (vertices.length) {
                 ctx.moveTo(vertices[0].x, hei);
@@ -96,8 +96,9 @@ export default function drawSmoothLineChart(canvasId, ctx, verticalNr, data, ran
             ctx.fill();
         };
 
-        const animate = (points) =>  {
+        const animate = (points: any) =>  {
             if (i < points.length - 1) {
+                // @ts-ignore
                 requestAnimationFrame(animate.bind(this, points));
             }
             ctx.lineWidth = 3;
@@ -127,11 +128,11 @@ export default function drawSmoothLineChart(canvasId, ctx, verticalNr, data, ran
             i = i + 1;
         };
 
-        var canvas = document.getElementById(canvasId);
+        let canvas: any = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - +canvasWidthSpareForDetails;
         const spacingVertical = hei / verticalNr;
-        var spacingHorizontal = wid / data.datapoints.length;
+        let spacingHorizontal = wid / data.datapoints.length;
 
         const totalRange = range[1] - range[0];
         const verticalCoefficient = hei / totalRange;
@@ -173,5 +174,3 @@ export default function drawSmoothLineChart(canvasId, ctx, verticalNr, data, ran
         console.log("error occured in drawsplinechart : ", e);
     }
 }
-
-module.exports = drawSmoothLineChart;

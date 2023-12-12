@@ -1,4 +1,4 @@
-const gkChartConsts = require("../../invokeCharts/enums");
+import gkChartConsts from "../../invokeCharts/enums";
 
 const xAxisSpacing = gkChartConsts.xAxisSpacing;
 const fontLineHeight = gkChartConsts.fontLineHeight;
@@ -6,11 +6,11 @@ const blackFillStyle = gkChartConsts.blackFillStyle;
 const font = gkChartConsts.font;
 const white = gkChartConsts.white;
 
-function drawMeterChart(can, ctx, verticalNr, data, range, chartColor, ChartDataToShow) {
+export default function drawMeterChart(can: any, ctx: any, verticalNr: any, data: any, range: any, chartColor: any, ChartDataToShow: any) {
     try {
         // console.log("Start : drawMeter");
         let linecord = [];
-        const canvas = document.getElementById(can);
+        const canvas: any = document.getElementById(can);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         let linewidth = 50;
         ctx.lineWidth = 4;
@@ -101,5 +101,3 @@ function drawMeterChart(can, ctx, verticalNr, data, range, chartColor, ChartData
         console.log("error occured in drawMeter : ", e);
     }
 }
-
-module.exports = drawMeterChart;

@@ -1,22 +1,19 @@
-// import GetMousePos from "../mouse_position";
-const GetMousePos = require("../mouse_position");
-// import cssStyle from "../css_style";
-const cssStyle = require("../css_style");
-// import ratio from "../reatio";
-const ratio = require("../reatio");
+import GetMousePos from "../mouse_position";
+import cssStyle from "../css_style";
+import ratio from "../reatio";
 
-function DoughnutChartUpperCanvas(nr, ctx, linecord, container) {
+export default function DoughnutChartUpperCanvas(nr: any, ctx: any, linecord: any, container: any) {
     try {
         // console.log("Start : donutChartUpperCanvas");
-        const canvasUpper =document.getElementById('canvasupper' + nr);
-        const chartToolTip = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
+        const canvasUpper: any =document.getElementById('canvasupper' + nr);
+        const chartToolTip: any = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
         const canvasUpperHeight = canvasUpper.height;
         const canvasUpperWidth = canvasUpper.width;
         if(canvasUpper) {
-            canvasUpper.addEventListener('mousemove', function (evt) {
+            canvasUpper.addEventListener('mousemove', function (evt: any) {
                 ctx.clearRect(0, 0, canvasUpperWidth,canvasUpperHeight);
                 let linewidth = 80;
-                let mousePos = GetMousePos(canvasUpper, evt);
+                let mousePos: any = GetMousePos(canvasUpper, evt);
                 for (let i = 0; i < linecord.length; i++) {
                     let radius = linecord[i].hei / 2 - linewidth;
                     ctx.lineWidth = linewidth * 2;
@@ -39,6 +36,7 @@ function DoughnutChartUpperCanvas(nr, ctx, linecord, container) {
                         ctx.clearRect(0, 0, canvasUpperWidth,canvasUpperHeight);
                     }
                 }
+            // @ts-ignore
             }.bind(this), false);
 
             canvasUpper.addEventListener('mouseout', function () {
@@ -57,5 +55,3 @@ function DoughnutChartUpperCanvas(nr, ctx, linecord, container) {
         console.log("error occurred in donutChartUpperCanvas : ", e);
     }
 }
-
-module.exports = DoughnutChartUpperCanvas;

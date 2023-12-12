@@ -1,33 +1,32 @@
 // import GetMousePos from "../mouse_position";
-const GetMousePos = require("../mouse_position");
+import GetMousePos from "../mouse_position";
 // import cssStyle from "../css_style";
-const cssStyle = require("../css_style");
 // import ratio from "../reatio";
-const ratio = require("../reatio");
-
-const gkChartConsts = require("../../invokeCharts/enums");
+import ratio from "../reatio";
+import cssStyle from "../css_style";
+import gkChartConsts from "../../invokeCharts/enums";
 
 const strokeStyle = gkChartConsts.strokeStyle;
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-function LineChartUpperCanvas(nr, ctx, linecord, container, chart, maxTextWidth) {
+export default function LineChartUpperCanvas(nr: any, ctx: any, linecord: any, container: any, chart: any, maxTextWidth: any) {
     try {
         // console.log("Start : lineChartUpperCanvas");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
         let dataPointLen = chart.data[0].datapoints.length;
-        let wid = document.getElementById('canvasupper' + nr).width - canvasWidthSpareForDetails
-        var spacingHorizontal = wid / dataPointLen;
+        const canvasUpper: any = document.getElementById('canvasupper' + nr);
+        const chartToolTip: any = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
+        let wid: any = canvasUpper.width - canvasWidthSpareForDetails
+        let spacingHorizontal = wid / dataPointLen;
         let lineCordRepeat = linecord.length / dataPointLen;
-        const canvasUpper = document.getElementById('canvasupper' + nr);
-        const chartToolTip = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
         if (canvasUpper) {
-            canvasUpper.addEventListener('mousemove', function (evt) {
+            canvasUpper.addEventListener('mousemove', function (evt: any) {
                 let details = '';
-                let mousePos = GetMousePos(canvasUpper, evt);
-                for (var i = 0; i < dataPointLen; i++) {
+                let mousePos: any = GetMousePos(canvasUpper, evt);
+                for (let i = 0; i < dataPointLen; i++) {
                     ctx.beginPath();
                     let x1 = i * spacingHorizontal + canvasWidthSpareForDetails;
                     let x2 = spacingHorizontal;
@@ -68,6 +67,7 @@ function LineChartUpperCanvas(nr, ctx, linecord, container, chart, maxTextWidth)
                     }
                     ctx.closePath();
                 }
+            // @ts-ignore
             }.bind(this), false);
         }
         // console.log("End : lineChartUpperCanvas");
@@ -75,5 +75,3 @@ function LineChartUpperCanvas(nr, ctx, linecord, container, chart, maxTextWidth)
         console.log("error occurred in lineChartUpperCanvas : ", e);
     }
 }
-
-module.exports = LineChartUpperCanvas;

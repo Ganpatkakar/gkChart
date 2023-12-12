@@ -1,15 +1,14 @@
-
 /**
  * covert canvas to image
  * and save the image file
  */
-
-var Canvas2Image = function () {
+const Canvas2Image = function (): { saveAsImage: (canvas: any, width: any, height: any, type?: any) => void; saveAsPNG: (canvas: any, width: any, height: any) => void; saveAsJPEG: (canvas: any, width: any, height: any) => void } {
 
     // check if support sth.
-    var $support = function () {
-        var canvas = document.createElement('canvas'),
-            ctx = canvas.getContext('2d');
+    let $support = function () {
+        let canvas = document.createElement('canvas'),
+            ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
+        if (!ctx) return;
 
         return {
             canvas: !!ctx,
@@ -19,10 +18,10 @@ var Canvas2Image = function () {
         };
     }();
 
-    var downloadMime = 'image/octet-stream';
+    let downloadMime = 'image/octet-stream';
 
-    function scaleCanvas(canvas, width, height) {
-        var w = canvas.width,
+    function scaleCanvas(canvas: any, width: any, height: any) {
+        let w = canvas.width,
             h = canvas.height;
         if (width == undefined) {
             width = w;
@@ -31,44 +30,45 @@ var Canvas2Image = function () {
             height = h;
         }
 
-        var retCanvas = document.createElement('canvas');
-        var retCtx = retCanvas.getContext('2d');
+        let retCanvas = document.createElement('canvas');
+        let retCtx: CanvasRenderingContext2D | null = retCanvas.getContext('2d');
+        if (!retCtx) return;
         retCanvas.width = width;
         retCanvas.height = height;
         retCtx.drawImage(canvas, 0, 0, w, h, 0, 0, width, height);
         return retCanvas;
     }
 
-    function getDataURL(canvas, type, width, height) {
+    function getDataURL(canvas: any, type: any, width: any, height: any) {
         canvas = scaleCanvas(canvas, width, height);
         return canvas.toDataURL(type);
     }
 
-    function saveFile(strData) {
+    function saveFile(strData: any) {
         document.location.href = strData;
     }
 
-    function genImage(strData) {
-        var img = document.createElement('img');
+    function genImage(strData: any) {
+        let img = document.createElement('img');
         img.src = strData;
         return img;
     }
 
-    function fixType(type) {
+    function fixType(type: any) {
         type = type.toLowerCase().replace(/jpg/i, 'jpeg');
-        var r = type.match(/png|jpeg|bmp|gif/)[0];
+        let r = type.match(/png|jpeg|bmp|gif/)[0];
         return 'image/' + r;
     }
 
-    function encodeData(data) {
+    function encodeData(data: any) {
         if (!window.btoa) {
             throw 'btoa undefined'
         }
-        var str = '';
+        let str = '';
         if (typeof data == 'string') {
             str = data;
         } else {
-            for (var i = 0; i < data.length; i++) {
+            for (let i = 0; i < data.length; i++) {
                 str += String.fromCharCode(data[i]);
             }
         }
@@ -76,13 +76,13 @@ var Canvas2Image = function () {
         return btoa(str);
     }
 
-    function getImageData(canvas) {
-        var w = canvas.width,
+    function getImageData(canvas: any) {
+        let w = canvas.width,
             h = canvas.height;
         return canvas.getContext('2d').getImageData(0, 0, w, h);
     }
 
-    function makeURI(strData, type) {
+    function makeURI(strData: any, type: any) {
         return 'data:' + type + ';base64,' + strData;
     }
 
@@ -90,12 +90,12 @@ var Canvas2Image = function () {
     /**
      * create bitmap image
      */
-    var genBitmapImage = function (oData) {
+    let genBitmapImage = function (oData: any) {
 
-        var biWidth = oData.width;
-        var biHeight = oData.height;
-        var biSizeImage = biWidth * biHeight * 3;
-        var bfSize = biSizeImage + 54; // total header size = 54 bytes
+        let biWidth = oData.width;
+        let biHeight = oData.height;
+        let biSizeImage = biWidth * biHeight * 3;
+        let bfSize = biSizeImage + 54; // total header size = 54 bytes
 
         //
         //  typedef struct tagBITMAPFILEHEADER {
@@ -106,7 +106,7 @@ var Canvas2Image = function () {
         //  	DWORD bfOffBits;
         //  } BITMAPFILEHEADER;
         //
-        var BITMAPFILEHEADER = [
+        let BITMAPFILEHEADER = [
             // WORD bfType -- The file type signature; must be "BM"
             0x42, 0x4D,
             // DWORD bfSize -- The size, in bytes, of the bitmap file
@@ -134,7 +134,7 @@ var Canvas2Image = function () {
         //  	DWORD biClrImportant;
         //  } BITMAPINFOHEADER, *PBITMAPINFOHEADER;
         //
-        var BITMAPINFOHEADER = [
+        let BITMAPINFOHEADER = [
             // DWORD biSize -- The number of bytes required by the structure
             40, 0, 0, 0,
             // LONG biWidth -- The width of the bitmap, in pixels
@@ -160,33 +160,33 @@ var Canvas2Image = function () {
             0, 0, 0, 0
         ];
 
-        var iPadding = (4 - ((biWidth * 3) % 4)) % 4;
+        let iPadding = (4 - ((biWidth * 3) % 4)) % 4;
 
-        var aImgData = oData.data;
+        let aImgData = oData.data;
 
-        var strPixelData = '';
-        var biWidth4 = biWidth << 2;
-        var y = biHeight;
-        var fromCharCode = String.fromCharCode;
+        let strPixelData = '';
+        let biWidth4 = biWidth << 2;
+        let y = biHeight;
+        let fromCharCode = String.fromCharCode;
 
         do {
-            var iOffsetY = biWidth4 * (y - 1);
-            var strPixelRow = '';
-            for (var x = 0; x < biWidth; x++) {
-                var iOffsetX = x << 2;
+            let iOffsetY = biWidth4 * (y - 1);
+            let strPixelRow = '';
+            for (let x = 0; x < biWidth; x++) {
+                let iOffsetX = x << 2;
                 strPixelRow += fromCharCode(aImgData[iOffsetY + iOffsetX + 2]) +
                     fromCharCode(aImgData[iOffsetY + iOffsetX + 1]) +
                     fromCharCode(aImgData[iOffsetY + iOffsetX]);
             }
 
-            for (var c = 0; c < iPadding; c++) {
+            for (let c = 0; c < iPadding; c++) {
                 strPixelRow += String.fromCharCode(0);
             }
 
             strPixelData += strPixelRow;
         } while (--y);
 
-        var strEncoded = encodeData(BITMAPFILEHEADER.concat(BITMAPINFOHEADER)) + encodeData(strPixelData);
+        let strEncoded = encodeData(BITMAPFILEHEADER.concat(BITMAPINFOHEADER)) + encodeData(strPixelData);
 
         return strEncoded;
     };
@@ -198,8 +198,8 @@ var Canvas2Image = function () {
      * @param {Number} [optional] png width
      * @param {Number} [optional] png height
      */
-    var saveAsImage = function (canvas, width, height, type) {
-        if ($support.canvas && $support.dataURL) {
+    let saveAsImage = function (canvas: any, width: any, height: any, type?: any) {
+        if ($support?.canvas && $support.dataURL) {
             if (typeof canvas == "string") {
                 canvas = document.getElementById(canvas);
             }
@@ -208,18 +208,18 @@ var Canvas2Image = function () {
             }
             type = fixType(type);
             if (/bmp/.test(type)) {
-                var data = getImageData(scaleCanvas(canvas, width, height));
-                var strData = genBitmapImage(data);
+                let data = getImageData(scaleCanvas(canvas, width, height));
+                let strData = genBitmapImage(data);
                 saveFile(makeURI(strData, downloadMime));
             } else {
-                var strData = getDataURL(canvas, type, width, height);
+                let strData = getDataURL(canvas, type, width, height);
                 saveFile(strData.replace(type, downloadMime));
             }
         }
     };
 
-    var convertToImage = function (canvas, width, height, type) {
-        if ($support.canvas && $support.dataURL) {
+    let convertToImage = function (canvas: any, width: any, height: any, type?: any) {
+        if ($support?.canvas && $support.dataURL) {
             if (typeof canvas == "string") {
                 canvas = document.getElementById(canvas);
             }
@@ -229,11 +229,11 @@ var Canvas2Image = function () {
             type = fixType(type);
 
             if (/bmp/.test(type)) {
-                var data = getImageData(scaleCanvas(canvas, width, height));
-                var strData = genBitmapImage(data);
+                let data = getImageData(scaleCanvas(canvas, width, height));
+                let strData = genBitmapImage(data);
                 return genImage(makeURI(strData, 'image/bmp'));
             } else {
-                var strData = getDataURL(canvas, type, width, height);
+                let strData = getDataURL(canvas, type, width, height);
                 return genImage(strData);
             }
         }
@@ -241,34 +241,14 @@ var Canvas2Image = function () {
 
     return {
         saveAsImage: saveAsImage,
-        saveAsPNG: function (canvas, width, height) {
+        saveAsPNG: function (canvas: any, width: any, height: any) {
             return saveAsImage(canvas, width, height, 'png');
         },
-        saveAsJPEG: function (canvas, width, height) {
+        saveAsJPEG: function (canvas: any, width: any, height: any) {
             return saveAsImage(canvas, width, height, 'jpeg');
         },
-        // saveAsGIF: function (canvas, width, height) {
-        //   return saveAsImage(canvas, width, height, 'gif');
-        // },
-        // saveAsBMP: function (canvas, width, height) {
-        //   return saveAsImage(canvas, width, height, 'bmp');
-        // },
-
-        // convertToImage: convertToImage,
-        // convertToPNG: function (canvas, width, height) {
-        //   return convertToImage(canvas, width, height, 'png');
-        // },
-        // convertToJPEG: function (canvas, width, height) {
-        //   return convertToImage(canvas, width, height, 'jpeg');
-        // },
-        // convertToGIF: function (canvas, width, height) {
-        //   return convertToImage(canvas, width, height, 'gif');
-        // },
-        // convertToBMP: function (canvas, width, height) {
-        //   return convertToImage(canvas, width, height, 'bmp');
-        // }
     };
 
 };
 
-module.exports = Canvas2Image;
+export default Canvas2Image;

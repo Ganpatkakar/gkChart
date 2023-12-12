@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.01",
   "description": "Open Source JavaScript chart library",
   "name": "gk-chart",
   "main": "dist/index.js",

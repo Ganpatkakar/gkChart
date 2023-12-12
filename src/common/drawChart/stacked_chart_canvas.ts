@@ -13,7 +13,7 @@ export default function drawStackedChart(props: any) {
         const renderCount = props.renderCount;
         const range = props.range;
         const curx = props.nextCurve;
-        // const chartColor = props.chartColor;
+        const chartColor = props.chartColor;
         const columnCords = props.columnCords;
         const columnChartCount = props.columnChartCount;
         const maxTextWidth = props.hasOwnProperty("maxTextWidth") ? props.maxTextWidth : 0;
@@ -23,7 +23,7 @@ export default function drawStackedChart(props: any) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
 
-        const canvas = document.getElementById(canvasId);
+        const canvas: any = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         const horizontalDivision = chart.categories.length;
@@ -34,7 +34,7 @@ export default function drawStackedChart(props: any) {
 
         // ctx.globalCompositeOperation='destination-over';
 
-        const calcWayPoints = (points) => {
+        const calcWayPoints = (points: any) => {
             let wayPoints = [];
             for (let i = 0; i < points.length; i++) {
                 let x1 = points[i].x;
@@ -43,7 +43,7 @@ export default function drawStackedChart(props: any) {
                 let currentHeight = 0;
                 let newWayPoint = [];
                 while (currentHeight <= rectHeight) {
-                    newWayPoint.push({x: x1, y: totalHeight - currentHeight, hei: currentHeight, wid: barwidth});
+                    newWayPoint.push({x: x1, y: totalHeight - currentHeight, hei: currentHeight, wid});
                     let difference = rectHeight - currentHeight;
                     currentHeight += (difference < 15 && difference > 0) ? difference : 15;
                 }
@@ -52,14 +52,15 @@ export default function drawStackedChart(props: any) {
             return (wayPoints);
         };
 
-        const animate = (animateArr, t, cColor) => {
+        const animate = (animateArr: any, t: any, cColor: any) => {
             ctx.beginPath();
             ctx.globalAlpha = 1;
             ctx.fillStyle = cColor;
-            ctx.fillRect(animateArr[t].x, animateArr[t].y, barwidth, animateArr[t].hei);
+            ctx.fillRect(animateArr[t].x, animateArr[t].y, wid, animateArr[t].hei);
             ctx.closePath();
             t = t + 1;
             if (t < animateArr.length) {
+                // @ts-ignore
                 requestAnimationFrame(animate.bind(this, animateArr, t, cColor));
             }
         };

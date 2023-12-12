@@ -1,23 +1,23 @@
-const gkChartEnums = require("../invokeCharts/enums");
+import gkChartEnums from "../invokeCharts/enums";
 const font = gkChartEnums.font;
 
-class DrawChart {
+export default class DrawChart {
 
-    drawMeter(canvasId, ctx, verticalNr, data, range, chartColor, ChartDataToShow) {
+    drawMeter(canvasId: any, ctx: any, verticalNr: any, data: any, range: any, chartColor: any, ChartDataToShow: any) {
         try {
             // console.log("Start : drawMeter");
             const linecord = [];
-            const canvas = document.getElementById(canvasId);
+            const canvas: any = document.getElementById(canvasId);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            var linewidth = 50;
+            let linewidth = 50;
             ctx.lineWidth = 4;
-            var lastend = 3.141592653589793;
-            var myTotal = 0; // Automatically calculated so don't touch
-            var radius = canvas.height / 2 - linewidth;
-            for (var e = 0; e < data.datapoints.length; e++) {
+            let lastend = 3.141592653589793;
+            let myTotal = 0; // Automatically calculated so don't touch
+            let radius = canvas.height / 2 - linewidth;
+            for (let e = 0; e < data.datapoints.length; e++) {
                 myTotal += data.datapoints[e].y;
             }
-            for (var i = 0; i < data.datapoints.length; i++) {
+            for (let i = 0; i < data.datapoints.length; i++) {
                 ctx.strokeStyle = "#fff";
                 ctx.fillStyle = data.datapoints[i].color;
                 ctx.beginPath();
@@ -27,7 +27,7 @@ class DrawChart {
                 ctx.lineTo(canvas.width / 2, canvas.height / 2);
                 ctx.fill();
                 ctx.stroke();
-                var newobj = {
+                let newobj = {
                     x: canvas.width / 2,
                     startangle: lastend,
                     lastangle: lastend + (Math.PI * (data.datapoints[i].y / myTotal)),
@@ -50,13 +50,13 @@ class DrawChart {
             ctx.beginPath();
             let rotateangel = Math.PI * (ChartDataToShow / 100) + 3.141592653589793;
             //// console.log(rotateangel);
-            // var headlen = 10;
+            // let headlen = 10;
             ctx.lineWidth = 6;
             ctx.lineCap = "round";
             let tox = canvas.width / 2 + (radius * .8) * Math.cos(rotateangel);
             let toy = canvas.height / 2 + (radius * .8) * Math.sin(rotateangel);
-            // var fromx = canvas.width / 2;
-            // var fromy = canvas.height / 2;
+            // let fromx = canvas.width / 2;
+            // let fromy = canvas.height / 2;
             ctx.moveTo(canvas.width / 2, canvas.height / 2);
             ctx.lineTo(tox, toy);
             ctx.strokeStyle = "#000";
@@ -77,7 +77,7 @@ class DrawChart {
 
             /*Text in data format loop*/
             let anglenew;
-            for (i = 0; i < data.datapoints.length; i++) {
+            for (let i = 0; i < data.datapoints.length; i++) {
                 anglenew = (Math.PI * 2 * (data.datapoints[i].y / myTotal)) / 2;
                 let anglemiddle = anglenew / 6;
                 /*ctx.translate(x, y);
@@ -103,7 +103,4 @@ class DrawChart {
             console.log("error occured in drawMeter : ", e);
         }
     }
-
 }
-
-module.exports = DrawChart;

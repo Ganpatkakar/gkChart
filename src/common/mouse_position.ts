@@ -1,7 +1,7 @@
- export default function GetMousePos (canvas, evt) {
+ export default function GetMousePos (canvas: any, evt: any) {
     try {
         //// console.log("Start : getMousePos");
-        var rect = canvas.getBoundingClientRect();
+        let rect = canvas.getBoundingClientRect();
         return {
             x: (evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
             y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height

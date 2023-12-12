@@ -23,7 +23,7 @@ export default function drawBarChart(props: any) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
 
-        const canvas = document.getElementById(canvasId);
+        const canvas: any = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
 
@@ -33,7 +33,7 @@ export default function drawBarChart(props: any) {
         const horizontalCoefficient = wid / totalRange;
         const barHeight = spacingVertical / chartDataLength * .80;
 
-        const calcWayPoints = (points) => {
+        const calcWayPoints = (points: any) => {
             let wayPoints = [];
             for (let i = 0; i < points.length; i++) {
                 const x1 = points[i].x;
@@ -52,7 +52,7 @@ export default function drawBarChart(props: any) {
             return (wayPoints);
         };
 
-        const animate = (animateArr, t, cColor) => {
+        const animate = (animateArr: any, t: any, cColor: any) => {
             ctx.beginPath();
             ctx.globalAlpha = 1;
             ctx.fillStyle = cColor;
@@ -60,6 +60,7 @@ export default function drawBarChart(props: any) {
             ctx.closePath();
             t = t + 1;
             if (t < animateArr.length) {
+                // @ts-ignore
                 requestAnimationFrame(animate.bind(this, animateArr, t, cColor));
             }
         };

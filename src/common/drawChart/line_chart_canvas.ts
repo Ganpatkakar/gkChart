@@ -1,9 +1,9 @@
-const gkChartConsts = require("../../invokeCharts/enums");
+import gkChartConsts from "../../invokeCharts/enums";
 
 let canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-export default function drawLineChart(canvasId, ctx, verticalNr, data, range, chartColor, linecord, maxTextWidth) {
+export default function drawLineChart(canvasId: any, ctx: any, verticalNr: any, data: any, range: any, chartColor: any, linecord: any, maxTextWidth?: any) {
     try {
         // console.log("Start : drawGraphicLinear");
         if(maxTextWidth > canvasWidthSpareForDetails) {
@@ -19,7 +19,7 @@ export default function drawLineChart(canvasId, ctx, verticalNr, data, range, ch
             ctx.closePath();
         };
 
-        const fillAreaCall = (vertices) => {
+        const fillAreaCall = (vertices: any) => {
             ctx.beginPath();
             if (vertices.length) {
                 ctx.moveTo(vertices[0].x, hei);
@@ -36,7 +36,7 @@ export default function drawLineChart(canvasId, ctx, verticalNr, data, range, ch
             ctx.fill();
         };
 
-        const calcWayPoints = (vertices) => {
+        const calcWayPoints = (vertices: any) => {
             let wayPoints = [];
             for (let i = 1; i < vertices.length; i++) {
                 let pt0 = vertices[i - 1];
@@ -84,7 +84,7 @@ export default function drawLineChart(canvasId, ctx, verticalNr, data, range, ch
             t += 1;
         };
 
-        var canvas = document.getElementById(canvasId);
+        var canvas: any = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         const spacingVertical = hei / verticalNr;

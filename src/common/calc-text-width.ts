@@ -1,5 +1,5 @@
-const calcTextWidth = (data, ctx, calcFor) => {
-    return data.reduce((acc, value) => {
+const calcTextWidth = (data: any, ctx: any, calcFor: any) => {
+    return data.reduce((acc: any, value: any) => {
         const labelTextWidth = ctx.measureText(value[calcFor]).width;
         if (labelTextWidth > acc) {
             acc = labelTextWidth + 20;
@@ -8,4 +8,4 @@ const calcTextWidth = (data, ctx, calcFor) => {
     }, 0);
 };
 
-module.exports = calcTextWidth;
+export default calcTextWidth

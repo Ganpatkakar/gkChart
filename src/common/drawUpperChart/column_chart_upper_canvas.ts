@@ -1,33 +1,29 @@
-// import GetMousePos from "../mouse_position";
-const GetMousePos = require("../mouse_position");
-// import cssStyle from "../css_style";
-const cssStyle = require("../css_style");
-// import ratio from "../reatio";
-const ratio = require("../reatio");
-
-const gkChartConsts = require("../../invokeCharts/enums");
+import GetMousePos from "../mouse_position";
+import ratio from "../reatio";
+import cssStyle from "../css_style";
+import gkChartConsts from "../../invokeCharts/enums";
 
 const strokeStyle = gkChartConsts.strokeStyle;
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-export default function columnChartUpperCanvas(nr, ctx, linecord, container, chart, maxTextWidth = 0) {
+export default function columnChartUpperCanvas(nr: any, ctx: any, linecord: any, container: any, chart: any, maxTextWidth = 0) {
     try {
         // console.log("Start : barChartUpperCanvas");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
+        const canvasUpper: any = document.getElementById('canvasupper' + nr);
         let dataPointLen = chart.data[0].datapoints.length;
-        let wid = document.getElementById('canvasupper' + nr).width - canvasWidthSpareForDetails;
+        let wid = canvasUpper.width - canvasWidthSpareForDetails;
         const spacingHorizontal = wid / dataPointLen;
         let lineCordRepeat = linecord.length / dataPointLen;
-        const canvasUpper = document.getElementById('canvasupper' + nr);
-        const chartToolTip = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
+        const chartToolTip: any = document.querySelector('#' + container + ' .canvasjs-chart-tooltip');
         const canvasUpperHeight = canvasUpper.height;
         // const canvasUpperWidth = canvasUpper.width;
         if(canvasUpper) {
-            canvasUpper.addEventListener('mousemove', function (evt) {
-                let mousePos = GetMousePos(canvasUpper, evt);
+            canvasUpper.addEventListener('mousemove', function (evt: any) {
+                let mousePos: any = GetMousePos(canvasUpper, evt);
                 let details = '';
                 for (let i = 0; i < dataPointLen; i++) {
                     ctx.beginPath();
@@ -71,6 +67,7 @@ export default function columnChartUpperCanvas(nr, ctx, linecord, container, cha
                     }
                     ctx.closePath();
                 }
+            // @ts-ignore
             }.bind(this), false);
         }
         // console.log("End : barChartUpperCanvas");

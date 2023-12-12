@@ -8,13 +8,13 @@ const blackFillStyle = gkChartConsts.blackFillStyle;
 let canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-const drawVerticalGrid = (nr, horizontalNr, ctx, data, maxTextWidth) => {
+export const drawVerticalGrid = (nr: any, horizontalNr: any, ctx: any, data: any, maxTextWidth: any) => {
     try {
         // console.log("Start : drawGrid");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
-        const canvas = document.getElementById('canvas' + nr);
+        const canvas: any = document.getElementById('canvas' + nr);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         ctx.beginPath();
@@ -53,13 +53,13 @@ const drawVerticalGrid = (nr, horizontalNr, ctx, data, maxTextWidth) => {
     }
 };
 
-const drawDocumentationDetails = (canvasId, ctx, horizontalNr, cdata, maxTextWidth) => {
+export const drawDocumentationDetails = (canvasId: any, ctx: any, horizontalNr: any, cdata: any, maxTextWidth: any) => {
     try {
         // console.log("Start : drawGraphicLinearYcord");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
-        const canvas = document.getElementById(canvasId);
+        const canvas: any = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         const categoriesLength = cdata.categories.length;
@@ -94,8 +94,5 @@ const drawDocumentationDetails = (canvasId, ctx, horizontalNr, cdata, maxTextWid
     } catch (e) {
         console.log("error occurred in drawDocumentationDetails : ", e);
     }
-
 };
 
-exports.drawVerticalGrid = drawVerticalGrid;
-exports.drawDocumentationDetails = drawDocumentationDetails;

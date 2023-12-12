@@ -1,7 +1,7 @@
-function drawPieChart(can, ctx, data, linecord) {
+export default function drawPieChart(can: any, ctx: any, data: any, linecord: any) {
     try {
         // console.log("Start : drawPie");
-        const canvas = document.getElementById(can);
+        const canvas: any = document.getElementById(can);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         let lastend = 0;
         let myTotal = 0; // Automatically calculated so don't touch
@@ -59,5 +59,3 @@ function drawPieChart(can, ctx, data, linecord) {
         console.log("error occurred in drawPie : ", e);
     }
 }
-
-module.exports = drawPieChart;

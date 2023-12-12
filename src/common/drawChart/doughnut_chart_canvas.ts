@@ -1,7 +1,7 @@
-function drawDoughnutChart(can, ctx, data, linecord, chartHeight) {
+export default function drawDoughnutChart(can: any, ctx: any, data: any, linecord: any, chartHeight: any) {
     try {
         // console.log("Start : drawDonut");
-        const canvas = document.getElementById(can);
+        const canvas: any = document.getElementById(can);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         let linewidth = chartHeight / 4;
         let radius = canvas.height / 2 - linewidth;
@@ -58,5 +58,3 @@ function drawDoughnutChart(can, ctx, data, linecord, chartHeight) {
         console.log("error occurred in drawDonut : ", e);
     }
 }
-
-module.exports = drawDoughnutChart;

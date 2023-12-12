@@ -1,19 +1,13 @@
-const gkChartConsts = require("../invokeCharts/enums");
+import {xAxisSpacing, fontLineHeight, strokeStyle, blackFillStyle, canvasHeightSpareForDetails, canvasWidthSpareForDetails as canvasDetailsWidth} from '../invokeCharts/enums';
+let canvasWidthSpareForDetails = canvasDetailsWidth;
 
-const xAxisSpacing = gkChartConsts.xAxisSpacing;
-const fontLineHeight = gkChartConsts.fontLineHeight;
-const strokeStyle = gkChartConsts.strokeStyle;
-const blackFillStyle = gkChartConsts.blackFillStyle;
-const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
-let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
-
-const drawGridNew = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
+export const drawGridNew = (nr: any, verticanNr: any, ctx: any, data: any, maxTextWidth = 0) => {
     try {
         // console.log("Start : drawGrid");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
-        const canvas = document.getElementById('canvas' + nr);
+        const canvas: any = document.getElementById('canvas' + nr);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         ctx.beginPath();
@@ -63,13 +57,13 @@ const drawGridNew = (nr, verticanNr, ctx, data, maxTextWidth = 0) => {
     }
 };
 
-const drawNewGraphicLinearYCord = (canvasId, ctx, verticalNr, cdata, maxTextWidth = 0) => {
+export const drawNewGraphicLinearYCord = (canvasId: any, ctx: any, verticalNr: any, cdata: any, maxTextWidth = 0) => {
     try {
         // console.log("Start : drawGraphicLinearYcord");
         if(maxTextWidth > canvasWidthSpareForDetails) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
-        const canvas = document.getElementById(canvasId);
+        const canvas: any = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         const spacingVertical = hei / verticalNr;
@@ -140,6 +134,3 @@ const drawNewGraphicLinearYCord = (canvasId, ctx, verticalNr, cdata, maxTextWidt
     }
 
 };
-
-exports.drawGridNew = drawGridNew;
-exports.drawNewGraphicLinearYCord = drawNewGraphicLinearYCord;

@@ -1,0 +1,7 @@
+dist/*
+website/build/*
+website/docs/*
+website/dist/*
+website/docs-build/*
+package-lock.json
+yarn.lock

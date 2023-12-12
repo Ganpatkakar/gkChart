@@ -1,9 +1,9 @@
-const gkChartConsts = require("../../invokeCharts/enums");
+import gkChartConsts from "../../invokeCharts/enums";
 
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-function drawStackedBarChart(props) {
+export default function drawStackedBarChart(props: any) {
     try {
         // console.log("Start : drawBar");
         // const canvasId = props.canvasId;
@@ -38,7 +38,7 @@ function drawStackedBarChart(props) {
             canvasWidthSpareForDetails = maxTextWidth;
         }
 
-        const canvas = document.getElementById(canvasId);
+        const canvas: any = document.getElementById(canvasId);
         const hei = canvas.height - canvasHeightSpareForDetails;
         const wid = canvas.width - canvasWidthSpareForDetails;
         const categoriesLength = chart.categories.length;
@@ -49,7 +49,7 @@ function drawStackedBarChart(props) {
         const horizontalCoefficient = wid / totalRange;
         const barHeight = spacingVertical / barChartCount * .80;
 
-        const calcWayPoints = (points) => {
+        const calcWayPoints = (points: any) => {
             let wayPoints = [];
             for (let i = 0; i < points.length; i++) {
                 const x1 = points[i].x;
@@ -68,7 +68,7 @@ function drawStackedBarChart(props) {
             return (wayPoints);
         };
 
-        const animate = (animateArr, t, cColor) => {
+        const animate = (animateArr: any, t: any, cColor: any) => {
             ctx.beginPath();
             ctx.globalAlpha = 1;
             ctx.fillStyle = cColor;
@@ -76,6 +76,7 @@ function drawStackedBarChart(props) {
             ctx.closePath();
             t = t + 1;
             if (t < animateArr.length) {
+                // @ts-ignore
                 requestAnimationFrame(animate.bind(this, animateArr, t, cColor));
             }
         };
@@ -134,5 +135,3 @@ function drawStackedBarChart(props) {
         console.log("error occurred in drawBar : ", e);
     }
 }
-
-module.exports =  drawStackedBarChart;
