@@ -20,6 +20,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
-          folder: docs-build
+          folder: website/docs-build
           clean: true
           target-folder: docs
