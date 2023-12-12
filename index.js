@@ -975,3 +975,5 @@ exports.GkDoughnutChart = GkDoughnutChart;
 exports.GkMeterChart = GkMeterChart;
 exports.GkCombinationChart = GkCombinationChart;
 exports.GkChart = GkChart;
+exports.GkStackedChart = GkStackedChart;
+exports.GkStackedBarChart = GkStackedBarChart;
