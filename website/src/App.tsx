@@ -41,15 +41,16 @@ function App() {
   const cRef = useRef();
   useEffect(() => {
     if (cRef.current) {
-      new GkLineChart({
-        id: cRef.current,
+      GkLineChart({
+        id: "lineChartContainer",
         data: chartline
       });
     }
   }, []);
+  
   return (
     <>
-      <div className="lineChartContainer" ref={cRef}></div>
+      <div id="lineChartContainer" ref={cRef} style={{height: 500}}></div>
     </>
   );
 }
