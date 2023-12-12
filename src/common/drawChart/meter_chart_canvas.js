@@ -39,12 +39,16 @@ function drawMeterChart(can, ctx, verticalNr, data, range, chartColor, ChartData
             linecord.push(newobj);
             lastend += Math.PI * (data.datapoints[i].y / myTotal);
         }
+
+        // inner circle code
         ctx.beginPath();
         ctx.fillStyle = white;
         ctx.arc(canvas.width / 2, canvas.height / 2, radius * 0.7, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
         ctx.beginPath();
+
+        // meter handle code
         ctx.fillStyle = blackFillStyle;
         ctx.arc(canvas.width / 2, canvas.height / 2, radius * 0.1, 0, 2 * Math.PI);
         ctx.fill();
