@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { GKChart, GkLineChart } from 'gk-chart'
+import {MultiLineChartComparison} from './testChart';
 
 let datapoints = [
   {label: "January", y: 18},
@@ -47,10 +48,10 @@ function App() {
       });
     }
   }, []);
-  
+
   return (
     <>
-      <div id="lineChartContainer" ref={cRef} style={{height: 500}}></div>
+        <MultiLineChartComparison />
     </>
   );
 }
