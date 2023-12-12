@@ -58,5 +58,7 @@
     "webpack-cli": "3.3.5",
     "webpack-dev-server": "3.7.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gk-chart": "^1.1.9"
+  }
 }
