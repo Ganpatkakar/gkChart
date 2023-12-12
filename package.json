@@ -1,13 +1,13 @@
 {
-  "version": "1.2.12",
+  "version": "1.2.13",
   "description": "Open Source JavaScript chart library",
   "name": "gk-chart",
-  "main": "dist/index.js",
+  "main": "dist/index",
+  "types": "dist/index",
   "files": [
     "dist",
     "src"
   ],
-  "types": "dist/main.d.ts",
   "scripts": {
     "build": "rm -rf dist && tsc",
     "build-old": "webpack --mode development --watch",
