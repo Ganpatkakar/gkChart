@@ -1,54 +1,52 @@
 import React, { useEffect } from "react";
-import {GkColumnChart} from 'gk-chart';
-import {datapoints, datapoints1, datapoints2, datapoints3} from './data';
+import {GkMeterChart} from 'gk-chart';
 
-const chartMultiColumn = {
+
+const meterData = {
     "config": {
-        "title": "Multi Column Chart Comparision",
-        "chartType": 'column-chart',
+        "title": "Meter Gauge Chart",
+        "chartType": "meter-chart",
         "printEnable": true
     },
-    yaxis : {
-        min : 0,
-        numOfRows : 5,
-        title : "Hours"
-    },
-    "data": [
-        {
-            chartColor: "#5d62b5",
-            dataLabel: "Data Set 1",
-            datapoints: datapoints
-        },
-        {
-            chartColor: "#29c3be",
-            dataLabel: "Data Set 2",
-            datapoints: datapoints1
-        },
-        {
-            chartColor: "#ff00dd",
-            dataLabel: "Data Set 3",
-            datapoints: datapoints2
-        },
-        {
-            chartColor: "#f2726f",
-            dataLabel: "Data Set 4",
-            datapoints: datapoints3
-        }
-    ]
+    "data": [ /*Give as required data in given formate, syntax error with json will cause of error in charts*/ {
+        "chartColor": "#29c3be",
+        "datapoints": [{
+            "label": "Poor",
+            "y": 50,
+            "color": "#29c3be"
+        }, {
+            "label": "Blw Avg",
+            "y": 25,
+            "color": "#29c3be"
+        }, {
+            "label": "Average",
+            "y": 25,
+            "color": "#00ff00"
+        }, {
+            "label": "Abv Avg",
+            "y": 35,
+            "color": "#00ff00"
+        }, {
+            "label": "Exceed",
+            "y": 10,
+            "color": "#00ff00"
+        }],
+        dataval: 77
+    }]
 };
 
-export const MultiBarChart = () => {
+export const MeterChart = () => {
 
     useEffect(() => {
-        GkColumnChart({
-            id: "multiBarChart",
-            data: chartMultiColumn
+        GkMeterChart({
+            id: "meterChartId",
+            data: meterData
         })
     }, []);
 
     return (
         <>
-            <div id="multiBarChart" style={{width: "100%", height: "500px"}} />
+            <div id="meterChartId" style={{width: "100%", height: "400px"}}/>
         </>
     );
 }

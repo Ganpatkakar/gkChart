@@ -1,11 +1,11 @@
 import React from "react";
-import { MultiBarChart } from './testChart';
+import { MeterChart } from './testChart';
 
 function App() {
 
   return (
     <>
-        <MultiBarChart />
+        <MeterChart />
     </>
   );
 }
