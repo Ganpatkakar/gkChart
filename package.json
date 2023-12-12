@@ -1,13 +1,15 @@
 {
-  "name": "gk-chart",
-  "version": "1.1.91",
+  "version": "1.2.0",
   "description": "Open Source JavaScript chart library",
-  "main": "index.js",
+  "name": "gk-chart",
+  "main": "dist/index.js",
+  "types": "dist/main.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf dist && tsc",
+    "build-old": "webpack --mode development --watch",
+    "build-prod": "webpack --mode production",
     "dev": "webpack-dev-server --mode development",
-    "build": "webpack --mode development --watch",
-    "build-prod": "webpack --mode production"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -31,34 +33,19 @@
     "Canvas chart",
     "Charting library"
   ],
-  "author": "kakar",
+  "author": "Ganpat Kakar",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Ganpatkakar/gkChart/issues"
   },
   "homepage": "https://github.com/Ganpatkakar/gkChart#readme",
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-core": "6.26.3",
-    "babel-loader": "7.1.5",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "babel-polyfill": "6.26.0",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-stage-0": "6.24.1",
-    "clean-webpack-plugin": "3.0.0",
-    "css-loader": "3.0.0",
-    "extract-text-webpack-plugin": "3.0.2",
-    "file-loader": "4.0.0",
-    "glob": "^7.1.4",
-    "html-webpack-plugin": "3.2.0",
-    "mini-css-extract-plugin": "0.7.0",
-    "style-loader": "0.23.1",
-    "webpack": "4.35.3",
-    "webpack-cli": "3.3.5",
-    "webpack-dev-server": "3.7.2"
+    "@types/node": "20.10.4",
+    "gk-chart": "1.1.91",
+    "prettier": "3.1.1",
+    "tslint": "6.1.3",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "5.3.3"
   },
-  "dependencies": {
-    "gk-chart": "1.1.91"
-  }
+  "dependencies": {}
 }

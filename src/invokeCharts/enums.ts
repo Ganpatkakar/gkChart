@@ -1,0 +1,24 @@
+exports.xAxisSpacing = 104;
+exports.fontLineHeight = 26;
+exports.strokeStyle = "rgba(0,0,0,1)";
+exports.white = "#fff";
+exports.blackFillStyle = "#000";
+exports.canvasHeightSpareForDetails = 105;
+exports.canvasWidthSpareForDetails = 100;
+exports.font = "26px  Source Sans Pro, Helvetica Neue, Arial, sans-serif";
+exports.toolTipBgColor = "rgba(255, 255, 255, .9)";
+
+exports.barChart = "bar-chart";
+exports.columnChart = "column-chart";
+exports.lineChart = "line-chart";
+exports.stepLineChart = "step-line-chart";
+exports.smoothLineChart = "smooth-line-chart";
+exports.combinationChart = "combination-chart";
+exports.pieChart = "pie-chart";
+exports.doughnutChart = "doughnut-chart";
+exports.meterChart = "meter-chart";
+exports.sparkChart = "spark-chart";
+exports.stackedColumnChart = "stacked-column-chart";
+exports.stackedBarChart = "stacked-bar-chart";
+exports.overlapColumnChart = "overlap-column-chart";
+exports.overlapBarChart = "overlap-bar-chart";
