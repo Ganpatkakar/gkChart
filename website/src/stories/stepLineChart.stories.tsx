@@ -5,7 +5,6 @@ import {GkStepChart} from 'gk-chart';
 
 import styled from "styled-components";
 
-
 let chartStep = {
     config: {
         title: "Step Chart",
@@ -29,7 +28,7 @@ let chartStep = {
 
 const StepChartContainer = styled.div`
   width: 100%;
-  height: 500px;  
+  height: 500px;
 `
 
 export const StepChart = () => {
@@ -48,7 +47,6 @@ export const StepChart = () => {
     );
 }
 
-
 const meta: Meta = {
     title: "Components/StepChart",
     component: StepChart,
@@ -61,7 +59,6 @@ const meta: Meta = {
         ),
     ],
 };
-
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -133,7 +130,6 @@ StepChart.parameters = {
     },
 };
 
-
 // Chart step with fill style
 
 let chartStepFill = {
@@ -168,8 +164,6 @@ export const StepChartFill = () => {
     );
 }
 
-
-
 const stepChartFillExample: string = `
 import React, { useEffect } from "react";
 import {GkStepChart} from 'gk-chart';
@@ -189,7 +183,7 @@ let datapoints: {label: string, y: number}[] = [
     {label: "December", y: 92}
 ]
 
-let chartstepFill = {
+let chartStepFill = {
     config: {
         title: "step Chart Fill",
         chartType: "step",
@@ -210,13 +204,13 @@ export const stepChartFill = () => {
     useEffect(() => {
         GkStepChart({
             id: "stepChartFill",
-            data: chartstepFill
+            data: chartStepFill
         })
     }, []);
 
     return (
         <>
-            <StepChartContainer id="stepChartFill" />
+            <div id="stepChartFill" style={{width: "100%", height: "500px"}}></div>
         </>
     );
 };
@@ -231,8 +225,6 @@ StepChartFill.parameters = {
         },
     },
 };
-
-
 
 
 // Multiple step chart with and without fill style
@@ -291,8 +283,6 @@ export const MultiStepChartComparison = () => {
         </>
     );
 }
-
-
 
 const multiStepChartComparisonExample: string = `
 import React, { useEffect } from "react";

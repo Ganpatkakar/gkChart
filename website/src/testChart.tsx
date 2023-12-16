@@ -1,52 +1,100 @@
 import React, { useEffect } from "react";
-import {GkMeterChart} from 'gk-chart';
+import {GkStackedChart} from '../../dist';
 
+import styled from "styled-components";
 
-const meterData = {
-    "config": {
-        "title": "Meter Gauge Chart",
-        "chartType": "meter-chart",
-        "printEnable": true
+const StackedChartContainer = styled.div`
+  width: 100%;
+  height: 500px;
+`
+
+const chartData = {
+    config: {
+        title: "Stacked Column Chart",
+        chartType: "stacked-column-chart",
+        printEnable: true
     },
-    "data": [ /*Give as required data in given formate, syntax error with json will cause of error in charts*/ {
-        "chartColor": "#29c3be",
-        "datapoints": [{
-            "label": "Poor",
-            "y": 50,
-            "color": "#29c3be"
-        }, {
-            "label": "Blw Avg",
-            "y": 25,
-            "color": "#29c3be"
-        }, {
-            "label": "Average",
-            "y": 25,
-            "color": "#00ff00"
-        }, {
-            "label": "Abv Avg",
-            "y": 35,
-            "color": "#00ff00"
-        }, {
-            "label": "Exceed",
-            "y": 10,
-            "color": "#00ff00"
-        }],
-        dataval: 77
-    }]
+    yAxis: {
+        min : 0,
+        rowCount : 5,
+        title : "Hours"
+    },
+    categories: [
+        {label: "January"},
+        {label: "February"},
+        {label: "March"},
+        {label: "April"},
+        {label: "May"},
+        {label: "June"},
+        {label: "July"},
+        {label: "August"},
+        {label: "September"},
+    ],
+    data: [
+        {
+            dataSet: [
+                {
+                    color: "#5d62b5",
+                    dataLabel: "Oil",
+                    dataPoints : [
+                        {value: 5},
+                        {value: 10},
+                        {value: 8},
+                        {value: 6},
+                        {value: 2},
+                        {value: 9},
+                        {value: 19},
+                        {value: 5},
+                        {value: 2},
+                    ]
+                },
+                {
+                    color: "#29c3be",
+                    dataLabel: "Gas",
+                    dataPoints : [
+                        {value: 2},
+                        {value: 6},
+                        {value: 12},
+                        {value: 15},
+                        {value: 1},
+                        {value: 5},
+                        {value: 15},
+                        {value: 25},
+                        {value: 5},
+                    ]
+                },
+                {
+                    color: "#f2726f",
+                    dataLabel: "Petrol",
+                    dataPoints : [
+                        {value: 8},
+                        {value: 4},
+                        {value: 5},
+                        {value: 5},
+                        {value: 10},
+                        {value: 15},
+                        {value: 1},
+                        {value: 10},
+                        {value: 25},
+                    ]
+                }
+            ]
+        }
+    ]
 };
 
-export const MeterChart = () => {
+export const StackedChart = () => {
 
     useEffect(() => {
-        GkMeterChart({
-            id: "meterChartId",
-            data: meterData
+        GkStackedChart({
+            id: "stackedChart",
+            data: chartData
         })
     }, []);
 
     return (
         <>
-            <div id="meterChartId" style={{width: "100%", height: "400px"}}/>
+            <StackedChartContainer id="stackedChart" />
         </>
     );
 }

@@ -1,11 +1,11 @@
 import React from "react";
-import { MeterChart } from './testChart';
+import { StackedChart } from './testChart';
 
 function App() {
 
   return (
     <>
-        <MeterChart />
+        <StackedChart />
     </>
   );
 }

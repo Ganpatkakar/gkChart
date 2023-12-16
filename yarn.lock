@@ -119,12 +119,10 @@ function-bind@^1.1.2:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.2.tgz#2c02d864d97f3ea6c8830c464cbd11ab6eab7a1c"
   integrity sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==
 
-gk-chart@1.1.91, gk-chart@^1.1.9:
-  version "1.1.91"
-  resolved "https://registry.yarnpkg.com/gk-chart/-/gk-chart-1.1.91.tgz#e7aaef4b38a3a9338100f9b4d202f15bf83f21fe"
-  integrity sha512-1XdKYf76E7bH7PfCoUm4ScZAhw+FDrx0WydqZlFq8dKJLe1c67/BrJFIpA0KA94qr3yijDQCdS0F4jiBANm2Ng==
-  dependencies:
-    gk-chart "^1.1.9"
+gk-chart@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/gk-chart/-/gk-chart-1.2.2.tgz#3da25ed2c8b4e65335fb9364b926966efe07c90a"
+  integrity sha512-kyfd3/SItkvk2nzdI4H6qYxTfCOXbMcdzZP6we6KaQ4YLunaZPvfDLISPvTL+BtPYYxy0ZnZAGMihHNcqOFQxw==
 
 glob@^7.1.1:
   version "7.2.3"
