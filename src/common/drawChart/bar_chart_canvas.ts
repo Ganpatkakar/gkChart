@@ -3,11 +3,26 @@ import gkChartConsts from "../../invokeCharts/enums";
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-export default function drawBarChart(props: any) {
+type DrawBarChartType = {
+    canvas?: any;
+    ctx_base?: any;
+    horizontalNr?: any;
+    data?: any;
+    rangedata?: any;
+    nextcurve?: any;
+    chartColor?: any;
+    linecord?: any;
+    barChartCount?: any;
+    chartDataLength?: any;
+    maxTextWidth?: any;
+    categories?: any;
+}
+
+export default function drawBarChart(props: DrawBarChartType) {
     try {
         // console.log("Start : drawBar");
         const canvasId = props.canvas;
-        const ctx = props. ctx_base;
+        const ctx = props.ctx_base;
         const horizontalNr = props.horizontalNr;
         const data = props.data;
         const range = props.rangedata;

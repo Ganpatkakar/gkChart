@@ -2,7 +2,7 @@ lib/
 .idea
 test/
 src-old/
-website/
+website/*
 tsconfig.json
 tslint.json
 .prettierrc

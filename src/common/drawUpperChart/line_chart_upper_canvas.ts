@@ -10,7 +10,7 @@ const strokeStyle = gkChartConsts.strokeStyle;
 const canvasHeightSpareForDetails = gkChartConsts.canvasHeightSpareForDetails;
 let canvasWidthSpareForDetails = gkChartConsts.canvasWidthSpareForDetails;
 
-export default function LineChartUpperCanvas(nr: any, ctx: any, linecord: any, container: any, chart: any, maxTextWidth: any) {
+export default function LineChartUpperCanvas(nr: any, ctx: any, linecord: any, container: any, chart: any, maxTextWidth?: any) {
     try {
         // console.log("Start : lineChartUpperCanvas");
         if(maxTextWidth > canvasWidthSpareForDetails) {

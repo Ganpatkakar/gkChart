@@ -864,18 +864,6 @@ const GkSparkChart = (chartData: any): void => {
     console.log("Will be coming soon", chartData);
 };
 
-exports.GkLineChart = GkLineChart;
-exports.GkStepChart = GkStepChart;
-exports.GkSmoothLineChart = GkSmoothLineChart;
-exports.GkBarChart = GkBarChart;
-exports.GkColumnChart = GkColumnChart;
-exports.GkPieChart = GkPieChart;
-exports.GkDoughnutChart = GkDoughnutChart;
-exports.GkMeterChart = GkMeterChart;
-exports.GkCombinationChart = GkCombinationChart;
-exports.GkStackedChart = GkStackedChart;
-exports.GkStackedBarChart = GkStackedBarChart;
-
 export {
 GkLineChart,
 GkStepChart,

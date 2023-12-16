@@ -115,5 +115,3 @@ export default function drawStackedChart(props: any) {
         console.log("error occurred in drawBar : ", e);
     }
 }
-
-module.exports =  drawStackedChart;
