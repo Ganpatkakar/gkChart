@@ -1,5 +1,7 @@
-name: Build and Deploy
-on: push
+name: Build and Deploy Github pages
+on:
+  push:
+    paths: [website/*, src/*]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
